@@ -1,0 +1,35 @@
+<div id="fb-root"></div>
+<!--  Facebook -->
+<script>
+ window.fbAsyncInit = function() {
+   FB.init({
+     appId  : '<%= Facebook::APP_ID %>',
+     status : true, // check login status
+     cookie : true, // enable cookies to allow the server to access the session
+     xfbml  : true  // parse XFBML
+   });
+   if (typeof(FB_LOGOUT_FLAG)!="undefined"){
+       FB.logout();
+   }
+   // Browser-specific hacks to make FB Connect more reliable
+   $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+   if ($.browser.chrome || $.browser.msie) {
+     FB.XD._origin = window.location.protocol + "//" + document.domain + "/" + FB.guid();
+     FB.XD.Flash.init();
+     FB.XD._transport = "flash";
+   } else if ($.browser.opera) {
+     FB.XD._transport = "fragment";
+     FB.XD.Fragment._channelUrl = window.location.protocol + "//" + window.location.host + "/";
+   }
+};   
+(function() {   
+    var e = document.createElement('script'); 
+    e.async = true;
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+
+}());
+function LogOut(){
+	FB.logout(function(response){	location.href = "/"; });
+}
+</script>

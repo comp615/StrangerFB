@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_local_vars
+  before_filter :load_facebook
   before_filter :load_user
 
   def render_optional_error_file(status_code)
      status = interpret_status(status_code)
      render :template => "/errors/#{status[0,3]}.html.erb", :status => status, :layout => 'pages'
-   end    
+  end    
+  
+  def load_facebook
+      @fb_oauth = Koala::Facebook::OAuth.new
+      @fb_graph = Koala::Facebook::GraphAndRestAPI.new  # can only access public datam, temporary.
+  end
   
   def load_user
   	@fb_oauth = Koala::Facebook::OAuth.new  	
