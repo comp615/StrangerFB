@@ -1,0 +1,321 @@
+@import "common-vars";
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+html body{
+    margin:0px;
+	padding:0px;
+}
+body {
+	background: url(../images/bg.png);
+	position:static;
+}
+
+.container {
+	margin-bottom: 70px;
+	
+	&.show, &.admin {
+		margin-top: 40px;
+	}
+}
+
+#social_block{
+    position: absolute;
+    top: 7px;
+    right: 0px;
+    width: 128px;
+}
+#content-box {
+	margin-top: 10px;
+	background: #3E86CE;
+	padding: 20px;
+	position: relative;
+	@include roundedCorners(3px);	
+	@include dropShadow(0px, 2px, 9px, rgba(0,0,0,0.15));
+	
+	&.notop {
+		margin-top: 0px;
+	}
+}
+
+.event-input {
+	background: #383E4C;
+	@include dropShadow(0px, 1px, 0px, rgba(255,255,255,0.25));
+	border: 1px solid #2C3240;
+	padding: 3px 4px;
+	@include roundedCorners(3px);
+	box-sizing: border-box;
+	position: relative;
+	color: #ddd;
+	span {
+		text-shadow: 0px 1px 0px rgba(255,255,255,0.25);
+	}
+	input[type=text] {
+		padding: 7px 7px !important; 
+		margin-top: 0px; margin-bottom: 0px;
+		position: absolute;
+		top: 3px;
+		left: 2px;
+		right: 146px;
+		width: auto;
+		font-size: 16px !important;
+	}
+	
+	.button {
+		font-size: 14px;
+		padding: 9px 14px;
+		
+		&.green {
+			background-color: #53bb2a;
+			&.nice {
+				border: 1px solid #3e8e1e;
+			}
+			&:hover {
+				background-color: #4fad2a;
+			}
+		}
+	}
+
+}
+
+input:focus, textarea:focus {
+	border: 1px solid #999 !important;
+}
+
+input.input-text {
+	color: #666;
+	@include transition(color .15s ease-in-out);
+	
+	&:hover, &:active, &:focus {
+		color: #111;
+		@include transition(color .15s ease-in-out);
+	}
+}
+
+span.icon {
+	background: url(../images/meta_icons.png) no-repeat;
+	display: inline-block;
+	width: 12px;
+	height: 16px;
+}
+
+#small_logo_bar{
+    width:100%;
+    height:40px;
+    padding-top:20px;
+    #small_logo_float{
+        color:#555;
+        display:block;
+        margin-left:12%;
+        width:400px;
+        img{width:10px;}
+        font-size:24px
+    }
+}
+
+#powered-logo {
+	margin-top: 18px;
+}
+
+/* -----------------------------------------
+   Home
+----------------------------------------- */
+
+.event-input div.input-text {
+	background: white url(../images/misc/input-bg.png);
+	font: 16px/18px 'Lucida Grande', Helvetica, Arial, sans-serif;
+	color: #555;
+	margin: 0 2px;
+	padding: 7px;
+	border: 1px solid #bbb;
+	@include roundedCorners(2px);
+	position: absolute;
+		top: 3px;
+		left: 2px;
+		right: 95px;
+		width: auto;
+}
+
+#list-name {
+	background: none;
+	border: none;
+	position: absolute;
+	left: 140px;
+	top: 0px;
+	right: 0px;
+}
+#list-name:focus {
+	border: none !important;
+}
+#lookup-success{
+    margin-top:5px;
+    margin-left:2px;
+}
+#lookup-spinner{
+    display: block;
+    height: 9px;
+    padding-left: 10px;
+    padding-top: 12px; 
+}
+
+.inactive:hover{
+    background-color: #E9E9E9 !important;
+    cursor:default !important;
+}
+
+#result-message {
+	display: none;
+}
+
+#about-privacy {
+	text-align: center;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-family: "Lucida Grande", Arial, sans-serif;
+	padding: 5px 0px;
+	text-align: right;
+	
+	a {
+		color: #6F859E;
+		&:hover { color: #3E86CE;}
+	}
+}
+
+/* -----------------------------------------
+   Show
+----------------------------------------- */
+
+h1 {
+	font-size: 32px;
+	line-height: 34px;
+}
+h1,h2,h3,h4 {
+	color: #444A58;
+}
+#event-url, #event-admin-url {
+	font-size: 12px;
+}
+#event-url {
+	padding-top: 5px;
+}
+#expiration-highlight{
+    font-weight:bold;
+}
+form.std_input {
+    margin:0px;
+    height:34px;
+}
+#success-message{
+    height:34px;
+    color:#fff;
+    font-style:italic;
+    line-height:32px;
+    text-align:center;
+    font-size:14px;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3);
+}
+#error-message{
+    color: #fff;
+    background-color: #BA1326;
+    height: auto;
+    margin: 6px 2px 2px 2px;
+    padding: 1px 4px;
+    display: inline-block;
+    @include roundedCorners(1px);
+}
+#phone-number {
+	right: 94px;
+}
+
+/* -----------------------------------------
+   Admin
+----------------------------------------- */
+
+.admin .inline-edit {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.admin {
+	#event-name {
+		font-size: 24px !important;
+		padding: 7px !important;
+		margin-bottom: 0px;
+		color: #111;
+	}
+	
+	#event-url {
+		margin-bottom: 0px;
+	}
+	
+	textarea {
+		margin-top: 3px;
+		margin-bottom: 18px;
+		padding: 6px 7px 4px !important;
+		height: 85px;
+		resize: vertical;
+		max-height:300px;
+	}
+	
+	.event-input .button {
+		width: 100%;
+		box-sizing: border-box;
+	}
+	
+	span.reqd {
+		color: #E91C21;
+	}
+	
+	.error-input {
+		background-color: #E88B8B !important;
+	}
+}
+
+#phones_registered {
+	@include roundedCorners(8px);
+	background: rgba(0,0,0,0.15);
+	@include innerShadow(0px,0px,5px,rgba(0,0,0,0.3));
+	padding: 15px;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
+	
+	#phone_count {
+		display: block;
+		font-size: 90px;
+		line-height: 84px;
+		margin-top: -5px;
+		font-weight: normal;
+	}
+}
+
+#expiry-date {
+	display:inline-block; 
+	margin-left: 5px; 
+	margin-right: 5px; 
+	width: 100px;
+}
+#response{
+    padding-top:4px;
+    padding-left:4px;
+}
+#characters {
+	font-size: 11px;
+	float: right;
+	margin-top: 4px;
+}
+
+/* -----------------------------------------
+   About us / privacy
+----------------------------------------- */
+
+#about-us {
+	background: white url(../images/misc/input-bg.png);
+	color: #555;
+	padding: 8px 10px;
+	border: 1px solid #bbb;
+	@include roundedCorners(2px);
+}

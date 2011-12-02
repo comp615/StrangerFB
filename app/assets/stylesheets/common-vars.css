@@ -1,0 +1,15 @@
+/* ----------------------------------  Misc Fixes ------------------------- */
+/* line 50, sass/common-vars.scss */
+*:focus, *:active, a {
+  outline: none;
+}
+
+/* line 51, sass/common-vars.scss */
+img {
+  border: none;
+}
+
+/* line 52, sass/common-vars.scss */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+}

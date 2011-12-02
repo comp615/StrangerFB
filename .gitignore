@@ -1,7 +1,10 @@
 .bundle
 db/*.sqlite3
 log/*.log
-tmp/
+tmp/*
 .sass-cache/
 
 /config/*.yml
+.rvmrc
+*.lock
+*.LOCK
