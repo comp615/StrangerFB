@@ -2,17 +2,40 @@
    Shared Styles
 ----------------------------------------- */
 /* line 5, ../../app/assets/stylesheets/main.css.scss */
-html body {
+html {
+  height: 100%;
   margin: 0px;
   padding: 0px;
 }
 
-/* line 9, ../../app/assets/stylesheets/main.css.scss */
-body {
+/* line 10, ../../app/assets/stylesheets/main.css.scss */
+html body {
+  margin: 0px;
+  padding: 0px;
   position: static;
 }
 
-/* line 13, ../../app/assets/stylesheets/main.css.scss */
+/* line 15, ../../app/assets/stylesheets/main.css.scss */
+body {
+  background: #fdfdfd;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #fdfdfd 0%, #f3f3f3 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfdfd), color-stop(100%, #f3f3f3));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fdfdfd 0%, #f3f3f3 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fdfdfd 0%, #f3f3f3 100%);
+  /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #fdfdfd 0%, #f3f3f3 100%);
+  /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f3f3f3',GradientType=0 );
+  /* IE6-9 */
+  background: linear-gradient(top, #fdfdfd 0%, #f3f3f3 100%);
+  /* W3C */
+}
+
+/* line 27, ../../app/assets/stylesheets/main.css.scss */
 #social_block {
   position: absolute;
   top: 7px;
@@ -20,7 +43,28 @@ body {
   width: 128px;
 }
 
-/* line 20, ../../app/assets/stylesheets/main.css.scss */
+/* line 34, ../../app/assets/stylesheets/main.css.scss */
+#photorow_wrapper {
+  position: absolute;
+  top: 300px;
+  left: 0px;
+  width: 100%;
+  overflow-x: hidden;
+  height: 100px;
+  overflow: hidden;
+  z-index: -1;
+}
+/* line 43, ../../app/assets/stylesheets/main.css.scss */
+#photorow_wrapper #photorow {
+  width: 120%;
+}
+/* line 45, ../../app/assets/stylesheets/main.css.scss */
+#photorow_wrapper #photorow img {
+  width: 100px;
+  float: left;
+}
+
+/* line 52, ../../app/assets/stylesheets/main.css.scss */
 #container {
   width: 720px;
   min-height: 400px;
@@ -30,6 +74,33 @@ body {
   margin-right: auto;
   padding: 30px;
   margin-bottom: 50px;
+  background: #FAFAFA;
+  background-color: rgba(252, 252, 252, 0.9);
+  -moz-box-shadow: 0px 2px 8px #e5e5e5;
+  -webkit-box-shadow: 0px 2px 8px #e5e5e5;
+  box-shadow: 0px 2px 8px #e5e5e5;
+}
+
+/* line 66, ../../app/assets/stylesheets/main.css.scss */
+#footer {
+  width: 500px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  font-size: 11px;
+  text-shadow: 0px 1px 0px #fff;
+}
+/* line 74, ../../app/assets/stylesheets/main.css.scss */
+#footer a {
+  text-decoration: none;
+  color: #555;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/* line 79, ../../app/assets/stylesheets/main.css.scss */
+#footer a:hover {
+  font-weight: bold;
 }
 
 /*  

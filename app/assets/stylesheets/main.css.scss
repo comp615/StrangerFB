@@ -1,13 +1,27 @@
+@import 'common-vars';
 /* -----------------------------------------
    Shared Styles
 ----------------------------------------- */
-
-html body{
+html{
+    height:100%;
     margin:0px;
 	padding:0px;
 }
-body {
+html body{
+    margin:0px;
+	padding:0px;
 	position:static;
+}
+body {
+	//background gradient
+	background: rgb(253,253,253); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(253,253,253,1) 0%, rgba(243,243,243,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(253,253,253,1)), color-stop(100%,rgba(243,243,243,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(253,253,253,1) 0%,rgba(243,243,243,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(253,253,253,1) 0%,rgba(243,243,243,1) 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, rgba(253,253,253,1) 0%,rgba(243,243,243,1) 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(253,253,253,1) 0%,rgba(243,243,243,1) 100%); /* W3C */
 }
 
 #social_block{
@@ -15,6 +29,24 @@ body {
     top: 7px;
     right: 0px;
     width: 128px;
+}
+
+#photorow_wrapper{
+    position:absolute;
+    top:300px;
+    left:0px;
+    width:100%;
+	overflow-x:hidden;
+    height:100px;
+    overflow:hidden;
+    z-index:-1;
+    #photorow{
+        width:120%;
+        img{
+            width:100px;
+            float:left;
+        }   
+    }   
 }
 
 #container{
@@ -26,6 +58,28 @@ body {
     margin-right:auto;
     padding:30px;
     margin-bottom:50px;
+    background: #FAFAFA;
+    background-color: rgba(252, 252, 252, 0.9);
+    @include dropShadow(0px, 2px, 8px, #e5e5e5);
+}
+
+#footer{
+    width:500px;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:50px;
+    font-size:11px;
+    text-shadow: 0px 1px 0px #fff;
+    a{ 
+        text-decoration:none;
+        color:#555;
+        padding-top:5px;
+        padding-bottom:5px;
+        &:hover{
+            font-weight:bold;   
+        }
+    }
 }
 
 
