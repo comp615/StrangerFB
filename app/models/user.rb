@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
     def incorrect_guesses
         self.attempts.where(:correct => false).count
     end
-    
     def score
         self.correct_guesses / self.guesses
     end
+    
     
     def grab_friends(n)
     	#Get the data on all the friends and remove any we've already done
@@ -22,12 +22,18 @@ class User < ActiveRecord::Base
     	friends = @fb_graph.fql_query("SELECT uid,name,sex,birthday FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())")
         friends.reject! {|f| done_friends.include? f["uid"].to_i}
         
-        puts "No friends left!" if(friends.length == 0) #TODO:?
+        if(friends.length == 0)
+            puts "No friends left!"
+            return nil
+        end
         
         friends = friends.sample(n)
         
         #Load photos onto each user
-        fql_query_hash = {"query1" => "SELECT pid,subject FROM photo_tag WHERE subject IN (" + friends.collect{|f| f["uid"]}.join(,) + ")", "query2" => "select src_big from photo where pid in (select pid from #query1)"}.to_json}
+        fql_query_hash = { "query1" => "SELECT pid,subject FROM photo_tag WHERE subject IN (" \
+                                    + friends.collect{|f| f["uid"]}.join(",") + ")", 
+                           "query2" => "select src_big from photo where pid in (select pid from #query1)" }.to_json
+                           
         results = @fb_graph.fql_multiquery(fql_query_hash) # convenience method
         
         #TODO: NO idea what is in results lol
@@ -43,7 +49,7 @@ class User < ActiveRecord::Base
 		user = User.new
 		user.facebook_id = fb_user["id"]
 		user.name = fb_user["first_name"] + " " + fb_user["last_name"]
-		#user.age = age_from_bday_string(fb_user["birthday"])
+		user.age = age_from_bday_string(fb_user["birthday"])
 		user.gender = fb_user["gender"]
 		user.save
 		user

@@ -6,17 +6,17 @@ Splash Page
 ------------------------------------------------------------------------------------------*/
 $(document).ready( function() {
     
-    //Document Hooks
-    
-
     //Facebook Login Code
     fb_connect($("#fb_login"), loginSuccess);
     function loginSuccess() { 
-        $('#splash').hide();
         $('#instructions').show();
+        showNextFriend();
+        $('#splash').animate({marginTop:'-400px'}, 800, function(){
+            $('#splash').hide();
+            startTimer();
+        });
     }
-    
-   
+      
 });
 
 function fb_connect(obj, success_function) {
@@ -46,3 +46,86 @@ function fb_connect(obj, success_function) {
 	}
 	$(obj).click(click_fn);
 }
+/*----------------------------------------------------------------------------------------
+Instructions Page
+------------------------------------------------------------------------------------------*/
+$(document).ready( function() {
+    
+   $('#start_button').click(function(){
+       $('#game').show();
+       $('#instructions').animate({marginTop:'-400px'}, 800, function(){
+           $('#instructions').hide();
+       });
+   });
+      
+});
+/*----------------------------------------------------------------------------------------
+Game Page
+------------------------------------------------------------------------------------------*/
+$(document).ready( function() {
+    
+ $('#guess').keyUp( checkName );
+ 
+ $('#idk').click( giveUp );
+      
+});
+
+var tenSecLimit = null; 
+function showNextFriend(){
+    $('#guess').value("");
+    tenSecLimit = setTimeout(giveUp, 10000);
+    //TODO:  show the next friend from queue
+}
+
+function checkName(){
+    //TODO: this logic...
+    //if guess == name then answerRight();
+}
+
+function giveUp(){
+    clearTimeout(tenSecLimit);
+    //TODO:  post failed attempt
+    showNextFriend();
+}
+
+function answerRight(){
+    clearTimeout(tenSecLimit);
+    //TODO:  post successful attempt
+    showNextFriend();
+}
+
+//Timer Code
+function startTimer(){
+    //delay timer start by 1.5 seconds
+    setTimeout(function(){
+        $("#timer").text('90');
+        var timerHandle = window.setInterval("dropTime()",1000);
+    }, 1500);
+    
+}
+function dropTime(){
+    t = Number( $("#timer").text() );
+    t = t -1;
+    $("#timer").text( t );
+    
+    if ( t==0 )
+        gameOver();
+}
+
+//called by timer when game is up
+function gameOver(){
+    $('#results').show();
+    $('#game').animate({marginTop:'-400px'}, 800, function(){
+        $('#game').hide();
+    });
+}
+/*----------------------------------------------------------------------------------------
+Results Page
+------------------------------------------------------------------------------------------*/
+$(document).ready( function() {
+    
+    $('#results_button').click(function(){
+        document.location.href="/results";
+    });
+    
+});

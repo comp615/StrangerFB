@@ -2,42 +2,168 @@
 The Login Splash
 ------------------------------------------*/
 /* line 5, ../../app/assets/stylesheets/game.css.scss */
-#fb_login {
+#splash {
+  background-color: #fff;
+  padding: 50px !important;
+  padding-bottom: 20px !important;
+}
+/* line 9, ../../app/assets/stylesheets/game.css.scss */
+#splash h4 {
+  margin-bottom: 15px;
+}
+/* line 12, ../../app/assets/stylesheets/game.css.scss */
+#splash p {
+  font-size: 15px;
+  line-height: 1.43em;
+  color: #444;
+}
+/* line 16, ../../app/assets/stylesheets/game.css.scss */
+#splash p strong {
+  font-weight: normal;
+  color: #3b5998;
+}
+/* line 21, ../../app/assets/stylesheets/game.css.scss */
+#splash #fb_connect {
+  width: 208px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+/* line 27, ../../app/assets/stylesheets/game.css.scss */
+#splash #fb_login {
   height: 46px;
   width: 160px;
   display: block;
-  background: transparent url('/images/facebook-lg-f.png') no-repeat top left;
+  background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
   padding-left: 48px;
   cursor: pointer;
 }
-/* line 13, ../../app/assets/stylesheets/game.css.scss */
-#fb_login .button-text {
+/* line 35, ../../app/assets/stylesheets/game.css.scss */
+#splash #fb_login .button-text {
   display: block;
   padding: 15px 7px 17px 5px;
-  background: transparent url('/images/facebook-lg-r.png') no-repeat top right;
+  background: transparent url('/images/facebook-lg-r.png?1312231098') no-repeat top right;
   color: #f2f2f2;
 }
-/* line 20, ../../app/assets/stylesheets/game.css.scss */
-#fb_login.active {
+/* line 42, ../../app/assets/stylesheets/game.css.scss */
+#splash #fb_login.active {
   margin-top: 1px;
 }
-
-/* line 24, ../../app/assets/stylesheets/game.css.scss */
-.red-button {
-  display: inline-block;
-}
-
-/* line 28, ../../app/assets/stylesheets/game.css.scss */
-#privacy_info {
+/* line 47, ../../app/assets/stylesheets/game.css.scss */
+#splash #privacy_info {
   color: #666666;
   font-size: 11px;
   margin-top: 15px;
 }
-/* line 32, ../../app/assets/stylesheets/game.css.scss */
-#privacy_info a {
+/* line 51, ../../app/assets/stylesheets/game.css.scss */
+#splash #privacy_info a {
   color: #666666;
 }
-/* line 34, ../../app/assets/stylesheets/game.css.scss */
-#privacy_info a:hover {
+/* line 53, ../../app/assets/stylesheets/game.css.scss */
+#splash #privacy_info a:hover {
   text-decoration: underline;
+}
+
+/*-----------------------------------------
+The Instructions Page
+------------------------------------------*/
+/* line 63, ../../app/assets/stylesheets/game.css.scss */
+#instructions {
+  background-color: #fff;
+}
+/* line 65, ../../app/assets/stylesheets/game.css.scss */
+#instructions p {
+  font-size: 15px;
+  line-height: 1.43em;
+  color: #444;
+  padding-top: 15px;
+}
+
+/*-----------------------------------------
+The Game Page
+------------------------------------------*/
+/* line 76, ../../app/assets/stylesheets/game.css.scss */
+#game {
+  background-color: #fff;
+  position: relative;
+}
+/* line 80, ../../app/assets/stylesheets/game.css.scss */
+#game #timer {
+  position: absolute;
+  top: 16px;
+  right: 10px;
+  font-size: 64px;
+  font-weight: bold;
+  color: #bd1e1e;
+  text-shadow: 0px -1px 0px #995555;
+  padding: 20px;
+}
+/* line 91, ../../app/assets/stylesheets/game.css.scss */
+#game #left_block {
+  width: 340px;
+  float: left;
+}
+/* line 94, ../../app/assets/stylesheets/game.css.scss */
+#game #left_block img {
+  float: left;
+  padding: 3px;
+  border: 1px solid #eee;
+  margin: 6px;
+  -webkit-border-radius: 3px 3px;
+  -moz-border-radius: 3px / 3px;
+  -o-border-radius: 3px / 3px;
+  -ms-border-radius: 3px / 3px;
+  -khtml-border-radius: 3px / 3px;
+  border-radius: 3px;
+}
+/* line 100, ../../app/assets/stylesheets/game.css.scss */
+#game #left_block img.big {
+  margin-top: 20px;
+}
+/* line 103, ../../app/assets/stylesheets/game.css.scss */
+#game #right_block {
+  padding-top: 50px;
+  width: 280px;
+  padding-left: 20px;
+  float: left;
+}
+/* line 108, ../../app/assets/stylesheets/game.css.scss */
+#game #right_block h2 {
+  margin-bottom: 22px;
+}
+/* line 111, ../../app/assets/stylesheets/game.css.scss */
+#game #right_block input {
+  margin-top: 4px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 5px 5px;
+  -moz-border-radius: 5px / 5px;
+  -o-border-radius: 5px / 5px;
+  -ms-border-radius: 5px / 5px;
+  -khtml-border-radius: 5px / 5px;
+  border-radius: 5px;
+  width: 250px;
+  margin-bottom: 50px;
+}
+/* line 120, ../../app/assets/stylesheets/game.css.scss */
+#game #right_block #idk {
+  margin-top: 4px;
+}
+
+/*-----------------------------------------
+The Results Page
+------------------------------------------*/
+/* line 128, ../../app/assets/stylesheets/game.css.scss */
+#results {
+  padding: 160px 0px 0px 205px !important;
+}
+/* line 130, ../../app/assets/stylesheets/game.css.scss */
+#results h4 {
+  margin-bottom: 10px;
+}
+/* line 133, ../../app/assets/stylesheets/game.css.scss */
+#results #results_button {
+  margin-top: 15px;
+  margin-left: 180px;
 }

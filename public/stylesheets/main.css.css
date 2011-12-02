@@ -53,35 +53,41 @@ body {
   height: 100px;
   overflow: hidden;
   z-index: -1;
+  -moz-box-shadow: 0px 0px 3px #555555;
+  -webkit-box-shadow: 0px 0px 3px #555555;
+  box-shadow: 0px 0px 3px #555555;
 }
-/* line 43, ../../app/assets/stylesheets/main.css.scss */
+/* line 44, ../../app/assets/stylesheets/main.css.scss */
 #photorow_wrapper #photorow {
   width: 120%;
 }
-/* line 45, ../../app/assets/stylesheets/main.css.scss */
+/* line 46, ../../app/assets/stylesheets/main.css.scss */
 #photorow_wrapper #photorow img {
   width: 100px;
   float: left;
 }
 
-/* line 52, ../../app/assets/stylesheets/main.css.scss */
+/* line 53, ../../app/assets/stylesheets/main.css.scss */
 #container {
   width: 720px;
-  min-height: 400px;
+  height: 400px;
+  overflow: hidden;
   border: 1px solid #eee;
-  margin-top: 120px;
+  margin-top: 130px;
   margin-left: auto;
   margin-right: auto;
-  padding: 30px;
   margin-bottom: 50px;
-  background: #FAFAFA;
-  background-color: rgba(252, 252, 252, 0.9);
+  background: #fff;
   -moz-box-shadow: 0px 2px 8px #e5e5e5;
   -webkit-box-shadow: 0px 2px 8px #e5e5e5;
   box-shadow: 0px 2px 8px #e5e5e5;
 }
+/* line 65, ../../app/assets/stylesheets/main.css.scss */
+#container > div {
+  padding: 40px;
+}
 
-/* line 66, ../../app/assets/stylesheets/main.css.scss */
+/* line 70, ../../app/assets/stylesheets/main.css.scss */
 #footer {
   width: 500px;
   text-align: center;
@@ -91,16 +97,39 @@ body {
   font-size: 11px;
   text-shadow: 0px 1px 0px #fff;
 }
-/* line 74, ../../app/assets/stylesheets/main.css.scss */
+/* line 78, ../../app/assets/stylesheets/main.css.scss */
 #footer a {
   text-decoration: none;
   color: #555;
   padding-top: 5px;
   padding-bottom: 5px;
 }
-/* line 79, ../../app/assets/stylesheets/main.css.scss */
+/* line 83, ../../app/assets/stylesheets/main.css.scss */
 #footer a:hover {
   font-weight: bold;
+}
+
+/* line 89, ../../app/assets/stylesheets/main.css.scss */
+.button {
+  font-size: 14px;
+  padding: 9px 14px;
+}
+/* line 93, ../../app/assets/stylesheets/main.css.scss */
+.button.green {
+  background-color: #53bb2a;
+}
+/* line 95, ../../app/assets/stylesheets/main.css.scss */
+.button.green.nice {
+  border: 1px solid #3e8e1e;
+}
+/* line 98, ../../app/assets/stylesheets/main.css.scss */
+.button.green.arrow {
+  background: url("../images/white-button-arrow.png") no-repeat right center #53bb2a;
+  padding-right: 32px;
+}
+/* line 102, ../../app/assets/stylesheets/main.css.scss */
+.button.green:hover {
+  background: url("../images/white-button-arrow.png") no-repeat right center #4fad2a;
 }
 
 /*  

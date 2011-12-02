@@ -2,37 +2,136 @@
 /*-----------------------------------------
 The Login Splash
 ------------------------------------------*/
-#fb_login {
-	height: 46px;
-	width:160px;
-	display: block;
-	background: transparent image-url("facebook-lg-f.png") no-repeat top left;
-	padding-left: 48px;
-	cursor: pointer;
+#splash{
+    background-color:#fff;
+    padding:50px !important;
+    padding-bottom:20px !important;
+    h4{
+        margin-bottom:15px;
+    }
+    p{
+        font-size:15px;
+        line-height:1.43em;
+        color:#444;
+        strong{
+            font-weight:normal;
+            color:$blue;
+        }
+    }
+    #fb_connect{
+        width: 208px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+    }
+    #fb_login {
+    	height: 46px;
+    	width:160px;
+    	display: block;
+    	background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
+    	padding-left: 48px;
+    	cursor: pointer;
 	
-	.button-text {
-		display: block;
-		padding: 15px 7px 17px 5px;
-		background: transparent image-url("facebook-lg-r.png")no-repeat top right;
-		color: $grey;
-	}
+    	.button-text {
+    		display: block;
+    		padding: 15px 7px 17px 5px;
+    		background: transparent image-url("/images/facebook-lg-r.png") no-repeat top right;
+    		color: $grey;
+    	}
 	
-	&.active {
-		margin-top: 1px; // Class needs to be applied via JS since this is a div	
-	}
-}
-.red-button{
-    display:inline-block;
+    	&.active {
+    		margin-top: 1px; // Class needs to be applied via JS since this is a div	
+    	}
+    }
+
+    #privacy_info {
+    	color: $sec_text;
+    	font-size: 11px;
+    	margin-top: 15px;
+    	a{
+    		color: $sec_text;
+    		&:hover{
+    			text-decoration:underline;
+    		}
+    	}
+    }
 }
 
-#privacy_info {
-	color: $sec_text;
-	font-size: 11px;
-	margin-top: 15px;
-	a{
-		color: $sec_text;
-		&:hover{
-			text-decoration:underline;
-		}
-	}
+/*-----------------------------------------
+The Instructions Page
+------------------------------------------*/
+#instructions{
+    background-color:#fff;
+    p{
+        font-size:15px;
+        line-height:1.43em;
+        color:#444;
+        padding-top:15px;
+    }
+}
+
+/*-----------------------------------------
+The Game Page
+------------------------------------------*/
+#game{
+    background-color:#fff;
+    position:relative;
+    
+    #timer{
+        position:absolute;
+        top:16px;
+        right:10px;
+        font-size:64px;
+        font-weight:bold;
+        color:$red;
+        text-shadow:0px -1px 0px #955;
+        padding:20px;
+    }
+    
+    #left_block{
+        width:340px;
+        float:left;
+        img{
+            float:left;
+            padding:3px;
+            border:1px solid #eee;
+            margin:6px;
+            @include rounded_corners(3px);
+            &.big{margin-top:20px;}
+        }
+    }
+    #right_block{
+        padding-top:50px;
+        width:280px;
+        padding-left:20px;
+        float:left;
+        h2{
+            margin-bottom:22px;
+        }
+        input{
+            margin-top:4px;
+            padding:10px;
+            font-size:14px;
+            border:1px solid #ddd;
+            @include rounded_corners(5px);
+            width:250px;
+            margin-bottom:50px;
+        }
+        #idk{
+          margin-top:4px;  
+        }
+    }
+}
+/*-----------------------------------------
+The Results Page
+------------------------------------------*/
+#results{
+    padding:160px 0px 0px 205px !important;
+    h4{
+        margin-bottom:10px;
+    }
+    #results_button{
+        margin-top:15px;
+        margin-left:180px;
+    }
 }

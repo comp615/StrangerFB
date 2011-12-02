@@ -40,6 +40,7 @@ body {
     height:100px;
     overflow:hidden;
     z-index:-1;
+    @include dropShadow(0px, 0px, 3px, #555);
     #photorow{
         width:120%;
         img{
@@ -51,16 +52,19 @@ body {
 
 #container{
     width:720px;
-    min-height:400px;
+    height:400px;
+    overflow:hidden;
     border:1px solid #eee;
-    margin-top:120px;
+    margin-top:130px;
     margin-left:auto;
     margin-right:auto;
-    padding:30px;
     margin-bottom:50px;
-    background: #FAFAFA;
-    background-color: rgba(252, 252, 252, 0.9);
+    background: #fff;
+   // background-color: rgba(252, 252, 252, 0.88);
     @include dropShadow(0px, 2px, 8px, #e5e5e5);
+    >div{
+        padding:40px;
+    }
 }
 
 #footer{
@@ -80,6 +84,26 @@ body {
             font-weight:bold;   
         }
     }
+}
+
+.button {
+	font-size: 14px;
+	padding: 9px 14px;
+	
+	&.green {
+		background-color: #53bb2a;
+		&.nice {
+			border: 1px solid #3e8e1e;
+		}
+		&.arrow{
+    	    background: url("../images/white-button-arrow.png") no-repeat right center #53bb2a;
+    	    padding-right:32px;
+    	}
+		&:hover {
+		    background: url("../images/white-button-arrow.png") no-repeat right center #4fad2a;
+		}
+	}
+
 }
 
 
