@@ -24,19 +24,21 @@
 	<link rel="icon" href="/images/favicon.png" type="image/ico" />
 	
 	<%= csrf_meta_tag %>
-	<%= stylesheet_link_tag 'foundation', 'application' %>
+	<%= stylesheet_link_tag 'application' %>
 	<%= javascript_include_tag 'application' %>
-	<%= yield :head %>
-
+	<%= javascript_include_tag @current_controller %>
+	<%= stylesheet_link_tag @current_controller %>
+	
 	<!--[if lt IE 9]>
 		<%= stylesheet_link_tag 'ie' %>
 	<![endif]-->
-
 	
 	<!-- IE Fix for HTML5 Tags -->
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+	
+	<%= yield :head %>
 
 </head>
 <body>

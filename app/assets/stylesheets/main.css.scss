@@ -1,0 +1,26 @@
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+html body{
+    margin:0px;
+	padding:0px;
+}
+body {
+	position:static;
+}
+
+
+#social_block{
+    position: absolute;
+    top: 7px;
+    right: 0px;
+    width: 128px;
+}
+
+
+/*  
+    NOTE: to include images use 
+    image-url("search.png") 
+    image-path("search.png")
+*/
