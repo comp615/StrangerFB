@@ -10,12 +10,22 @@ body {
 	position:static;
 }
 
-
 #social_block{
     position: absolute;
     top: 7px;
     right: 0px;
     width: 128px;
+}
+
+#container{
+    width:720px;
+    min-height:400px;
+    border:1px solid #eee;
+    margin-top:120px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:30px;
+    margin-bottom:50px;
 }
 
 

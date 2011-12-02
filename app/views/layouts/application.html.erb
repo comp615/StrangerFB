@@ -47,9 +47,15 @@
     <a href="http://www.keepmelooped.in" class="twitter-share-button" data-url="www.keepmelooped.in" data-text="KeepMeLooped.in, call or text your friends en masse!" data-count="vertical" data-related="baygross:jayred">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 	</div>
     
-	<%= yield %>
+    <div id="container">
+	    <%= yield %>
+	</div>
 	
+	<!-- Page specific Javascript -->
 	<%= yield :bottom %>
+	
+	<!-- FB partial settings -->
+	<%= render :partial => 'shared/fbinit'%>
 	
 	<!-- Gaug.es -->
 

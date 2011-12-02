@@ -1,0 +1,38 @@
+@import "common-vars";
+/*-----------------------------------------
+The Login Splash
+------------------------------------------*/
+#fb_login {
+	height: 46px;
+	width:160px;
+	display: block;
+	background: transparent image-url("facebook-lg-f.png") no-repeat top left;
+	padding-left: 48px;
+	cursor: pointer;
+	
+	.button-text {
+		display: block;
+		padding: 15px 7px 17px 5px;
+		background: transparent image-url("facebook-lg-r.png")no-repeat top right;
+		color: $grey;
+	}
+	
+	&.active {
+		margin-top: 1px; // Class needs to be applied via JS since this is a div	
+	}
+}
+.red-button{
+    display:inline-block;
+}
+
+#privacy_info {
+	color: $sec_text;
+	font-size: 11px;
+	margin-top: 15px;
+	a{
+		color: $sec_text;
+		&:hover{
+			text-decoration:underline;
+		}
+	}
+}

@@ -1,0 +1,43 @@
+/*-----------------------------------------
+The Login Splash
+------------------------------------------*/
+/* line 5, ../../app/assets/stylesheets/game.css.scss */
+#fb_login {
+  height: 46px;
+  width: 160px;
+  display: block;
+  background: transparent url('/images/facebook-lg-f.png') no-repeat top left;
+  padding-left: 48px;
+  cursor: pointer;
+}
+/* line 13, ../../app/assets/stylesheets/game.css.scss */
+#fb_login .button-text {
+  display: block;
+  padding: 15px 7px 17px 5px;
+  background: transparent url('/images/facebook-lg-r.png') no-repeat top right;
+  color: #f2f2f2;
+}
+/* line 20, ../../app/assets/stylesheets/game.css.scss */
+#fb_login.active {
+  margin-top: 1px;
+}
+
+/* line 24, ../../app/assets/stylesheets/game.css.scss */
+.red-button {
+  display: inline-block;
+}
+
+/* line 28, ../../app/assets/stylesheets/game.css.scss */
+#privacy_info {
+  color: #666666;
+  font-size: 11px;
+  margin-top: 15px;
+}
+/* line 32, ../../app/assets/stylesheets/game.css.scss */
+#privacy_info a {
+  color: #666666;
+}
+/* line 34, ../../app/assets/stylesheets/game.css.scss */
+#privacy_info a:hover {
+  text-decoration: underline;
+}
