@@ -8,16 +8,17 @@ $(document).ready( function() {
     
     //Facebook Login Code
     fb_connect($("#fb_login"), loginSuccess);
-    function loginSuccess() { 
-        $('#instructions').show();
-        showNextFriend();
-        $('#splash').animate({marginTop:'-400px'}, 800, function(){
-            $('#splash').hide();
-            startTimer();
-        });
-    }
       
 });
+
+function loginSuccess() { 
+    $('#instructions').show();
+    var h = $('#splash').outerHeight();
+    $('#splash').animate({ marginTop: h*-1 }, 800, function(){
+        $('#splash').hide();
+    });
+}
+
 
 function fb_connect(obj, success_function) {
 	var click_fn = function() {
@@ -32,7 +33,7 @@ function fb_connect(obj, success_function) {
 		    } else {
 		      // user is logged in, but did not grant any permissions
   			  $(this).find("span.button-text").html("Connect with Facebook");
-		      alert('BlueFusion needs some more permissions to proceed!');
+		      alert('We need some more permissions to proceed!');
 		    }
 		  } else {
 		    // user is not logged in
@@ -53,8 +54,11 @@ $(document).ready( function() {
     
    $('#start_button').click(function(){
        $('#game').show();
-       $('#instructions').animate({marginTop:'-400px'}, 800, function(){
+       //showNextFriend();
+       var h = $('#instructions').outerHeight();
+       $('#instructions').animate({ marginTop: h*-1 }, 800, function(){
            $('#instructions').hide();
+           startTimer();
        });
    });
       
@@ -64,9 +68,9 @@ Game Page
 ------------------------------------------------------------------------------------------*/
 $(document).ready( function() {
     
- $('#guess').keyUp( checkName );
+ //$('#guess').keyUp( checkName );
  
- $('#idk').click( giveUp );
+// $('#idk').click( giveUp );
       
 });
 
