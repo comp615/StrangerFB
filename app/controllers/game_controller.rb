@@ -32,6 +32,7 @@ class GameController < ApplicationController
         #return success
     	render :json => {}, :status => :ok
     end
+
     
     
     def test

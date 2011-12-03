@@ -116,6 +116,17 @@ The Game Page
             @include rounded_corners(5px);
             width:250px;
             margin-bottom:50px;
+            &.invalid{
+                color: #B94A48;
+                border-color: #EE5F5B;
+                &:focus {
+                  outline:none;
+                  border-color: #e9322d;
+                  -webkit-box-shadow: 0 0 6px #f8b9b7;
+                  -moz-box-shadow: 0 0 6px #f8b9b7;
+                  box-shadow: 0 0 6px #f8b9b7;
+                 }
+            }
         }
         #idk{
           margin-top:4px;  

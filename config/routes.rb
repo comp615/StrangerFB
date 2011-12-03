@@ -6,6 +6,7 @@ StrangerFB::Application.routes.draw do
 
 # Game Routes
     match 'test' => "game#test"
+    match 'answer' => "game#answer"
     
 # Misc
     match 'logout' => "facebook#logout"

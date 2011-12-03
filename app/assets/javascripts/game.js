@@ -1,5 +1,19 @@
 // Code for Game Controller
 
+//This Global Array will hold all friend objects
+var Friends = [];
+var CurrFriend = null; //currenlty show friend
+/* 
+    friend = {
+        :fb_id
+        :name
+        :big_path
+        :small_path1
+        :small_path2
+    }
+*/
+
+
 
 /*----------------------------------------------------------------------------------------
 Splash Page
@@ -14,6 +28,7 @@ $(document).ready( function() {
 function loginSuccess() { 
     $('#instructions').show();
     var h = $('#splash').outerHeight();
+    showNextFriend(); //preload during instructions view
     $('#splash').animate({ marginTop: h*-1 }, 800, function(){
         $('#splash').hide();
     });
@@ -40,9 +55,7 @@ function fb_connect(obj, success_function) {
 		     $(this).find("span").html("Connect with Facebook");
 		     alert('Facebook login failed, please try again!');
 		  }
-		}, {perms:' user_birthday, user_education_history, user_hometown, user_location, \
-		            friends_birthday, friends_education_history, friends_hometown, friends_location, \
-		            friends_work_history, offline_access'}
+		}, {perms:' user_birthday, friends_birthday, user_photos, friends_photos'}
 		);
 	}
 	$(obj).click(click_fn);
@@ -54,7 +67,6 @@ $(document).ready( function() {
     
    $('#start_button').click(function(){
        $('#game').show();
-       //showNextFriend();
        var h = $('#instructions').outerHeight();
        $('#instructions').animate({ marginTop: h*-1 }, 800, function(){
            $('#instructions').hide();
@@ -68,34 +80,49 @@ Game Page
 ------------------------------------------------------------------------------------------*/
 $(document).ready( function() {
     
- //$('#guess').keyUp( checkName );
+ $('#guess').keyup( checkName );
  
-// $('#idk').click( giveUp );
+ $('#idk').click( giveUp );
       
 });
 
 var tenSecLimit = null; 
+
 function showNextFriend(){
-    $('#guess').value("");
+    $('#guess').val("").removeClass('invalid');
     tenSecLimit = setTimeout(giveUp, 10000);
-    //TODO:  show the next friend from queue
+    CurrFriend = Friends.pop();
+    
+    //TODO:  What happens when no more friends?
+    if ( CurrFriend == null )
+        return;
+        
+    $('#ibig').attr('src', CurrFriend['big_path']);
+    $('#ismall1').attr('src', CurrFriend['small_path1']);
+    $('#ismall2').attr('src', CurrFriend['small_path2']);
 }
 
 function checkName(){
-    //TODO: this logic...
-    //if guess == name then answerRight();
+    var guess = $('#guess').val();
+    
+    if ( guess == 'bay' )
+        sendAnswer(guess, true);
+    else
+        $('#guess').addClass('invalid');
+    
 }
 
-function giveUp(){
-    clearTimeout(tenSecLimit);
-    //TODO:  post failed attempt
-    showNextFriend();
-}
+function giveUp(){ sendAnswer('', false); }
 
-function answerRight(){
+function sendAnswer(guess, success){
     clearTimeout(tenSecLimit);
-    //TODO:  post successful attempt
-    showNextFriend();
+    $.ajax({
+      url: "/answer",
+      data: {fb_id : CurrFriend.fb_id, name : guess, success : success},
+      complete: function(){
+         showNextFriend();
+      }
+    });
 }
 
 //Timer Code

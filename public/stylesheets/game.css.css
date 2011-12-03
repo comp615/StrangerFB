@@ -146,7 +146,20 @@ The Game Page
   width: 250px;
   margin-bottom: 50px;
 }
-/* line 120, ../../app/assets/stylesheets/game.css.scss */
+/* line 119, ../../app/assets/stylesheets/game.css.scss */
+#game #right_block input.invalid {
+  color: #B94A48;
+  border-color: #EE5F5B;
+}
+/* line 122, ../../app/assets/stylesheets/game.css.scss */
+#game #right_block input.invalid:focus {
+  outline: none;
+  border-color: #e9322d;
+  -webkit-box-shadow: 0 0 6px #f8b9b7;
+  -moz-box-shadow: 0 0 6px #f8b9b7;
+  box-shadow: 0 0 6px #f8b9b7;
+}
+/* line 131, ../../app/assets/stylesheets/game.css.scss */
 #game #right_block #idk {
   margin-top: 4px;
 }
@@ -154,15 +167,15 @@ The Game Page
 /*-----------------------------------------
 The Results Page
 ------------------------------------------*/
-/* line 128, ../../app/assets/stylesheets/game.css.scss */
+/* line 139, ../../app/assets/stylesheets/game.css.scss */
 #results {
   padding: 160px 0px 0px 205px !important;
 }
-/* line 130, ../../app/assets/stylesheets/game.css.scss */
+/* line 141, ../../app/assets/stylesheets/game.css.scss */
 #results h4 {
   margin-bottom: 10px;
 }
-/* line 133, ../../app/assets/stylesheets/game.css.scss */
+/* line 144, ../../app/assets/stylesheets/game.css.scss */
 #results #results_button {
   margin-top: 15px;
   margin-left: 180px;
