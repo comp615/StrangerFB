@@ -39,6 +39,9 @@ class ApplicationController < ActionController::Base
 		    fb_obj = @fb_graph.get_object( session[:fb_id] )
 		    @current_user = User.newFromFB( fb_obj )
 		end
+		
+		#Update the last use time just for reporting purposes
+		@current_user.touch
     end
     
   end
