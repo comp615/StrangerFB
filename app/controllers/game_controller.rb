@@ -6,12 +6,6 @@ class GameController < ApplicationController
     def answer
         # post an answer via AJAX
         # params :fb_id, :name => guess, :success
-  
-        #force ajax post
-    	if !request.post?
-    	    render :json => {}, :status => :bad_request
-		    return
-	    end
     	    
     	#get user data	
 		result = @fb_graph.fql_query("SELECT uid,name,sex,birthday FROM user WHERE uid = " + params[:fb_id].to_s)   		
@@ -32,21 +26,13 @@ class GameController < ApplicationController
         #return success
     	render :json => {}, :status => :ok
     end
-
-    
-    
-    def test
-        session[:fb_id] = @fb_oauth.get_user_from_cookies(cookies)	
-        session[:fb_access_token]=@fb_oauth.get_user_info_from_cookies(cookies)["access_token"] rescue nil
-        @fb_graph =Koala::Facebook::GraphAndRestAPI.new( session[:fb_access_token] )
-        
-        render :json => @fb_graph.get_object('me')  
-    end
     
     def grab_friends
 		
+		params[:limit] ||= 15
+		params[:avoid] ||= []
     	params[:limit] = 15 if params[:limit].to_i > 15
-		params[:avoid].map!{|v| v.to_i} #saftey!
+		params[:avoid] = params[:avoid].map{|v| v.to_i} #safety!
 		
 		#Get the data on all the friends and remove any we've already done
     	done_friends = @current_user.attempts.collect{|a| a.target_facebook_id}
@@ -71,6 +57,15 @@ class GameController < ApplicationController
  		#Finally attach them to the friends object to be sent back
         friends.each{|f| f["photos"] = results[f["uid"].to_i].map{|p| p["src_small"]}}
 
+        friends = friends.map{|f| 
+            {
+                :fb_id => f['uid'],
+                :name => f['name'],
+                :big_path => "http://graph.facebook.com/" + f['uid'].to_s + "/picture?type=large",
+                :small_path1 => f["photos"][0],
+                :small_path2 => f["photos"][1]
+            }
+        }
         render :json => friends
     end
 end

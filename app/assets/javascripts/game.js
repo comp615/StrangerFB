@@ -5,12 +5,17 @@ var Friends = [];
 var CurrFriend = null; //currenlty show friend
 /* 
     friend = {
-        :fb_id
+        :uid
         :name
         :big_path
         :small_path1
         :small_path2
     }
+    
+    :uid
+    :name
+    :[pictures]
+    
 */
 
 //batch load friends
@@ -25,10 +30,9 @@ function ajaxLoadFriends(){
     //request new batch of friends
     $.ajax({
       url: "/grab_friends",
-      data: { limit : 50, avoid :  existing_friends},
+      data: { limit : 5, avoid :  existing_friends},
       success: function(resp){
          $.each(resp, function(i, f){
-             f.big_path = "http://graph.facebook.com/" + f.fb_id + "/picture?type=large";
              Friends.push(f);
          });
          
@@ -128,11 +132,13 @@ var tenSecLimit = null;
 
 function showNextFriend(){
     $('#guess').val("").removeClass('invalid');
-    tenSecLimit = setTimeout(giveUp, 10000);
+    if ( $('#game').css('display') !== 'none' ) 
+        tenSecLimit = setTimeout(giveUp, 10000);
+        
     CurrFriend = Friends.pop();
     
     //What happens when no more friends?
-    if ( CurrFriend == undefined )
+    if ( CurrFriend === undefined )
         gameOver();
         
     $('#ibig').attr('src', CurrFriend['big_path']);
@@ -177,7 +183,7 @@ function dropTime(){
     t = t -1;
     $("#timer").text( t );
     
-    if ( t==0 )
+    if ( t===0 )
         gameOver();
 }
 
