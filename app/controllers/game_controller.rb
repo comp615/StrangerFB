@@ -64,12 +64,12 @@ class GameController < ApplicationController
         #Load photos onto each user
         fql_query_hash = {}
         friends.each do |f|
-        	fql_query_hash[f["uid"]] = "SELECT src_big from photo where pid in (SELECT pid from photo_tag where subject =" + f["uid"].to_s + " order by rand() limit 3)"
+        	fql_query_hash[f["uid"]] = "SELECT src_small from photo where pid in (SELECT pid from photo_tag where subject =" + f["uid"].to_s + " order by rand() limit 3)"
         end 
         results = @fb_graph.fql_multiquery(fql_query_hash)
         
  		#Finally attach them to the friends object to be sent back
-        friends.each{|f| f["photos"] = results[f["uid"].to_i].map{|p| p["src_big"]}}
+        friends.each{|f| f["photos"] = results[f["uid"].to_i].map{|p| p["src_small"]}}
 
         render :json => friends
     end
