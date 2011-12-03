@@ -13,6 +13,44 @@ var CurrFriend = null; //currenlty show friend
     }
 */
 
+//batch load friends
+function ajaxLoadFriends(){
+    
+    //collect current friend list
+    existing_friends = [];
+    $.each(Friends, function(i, f){
+       existing_friends.push(f.fb_id); 
+    });
+
+    //request new batch of friends
+    $.ajax({
+      url: "/grab_friends",
+      data: { limit : 50, avoid :  existing_friends},
+      success: function(resp){
+         $.each(resp, function(i, f){
+             f.big_path = "http://graph.facebook.com/" + f.fb_id + "/picture?type=large";
+             Friends.push(f);
+         });
+         
+         //load first friend
+         if ( CurrFriend === null )
+            showNextFriend();
+            
+        //repeat ajax call in batches
+         if ( Friends.length < 50 )
+             ajaxLoadFriends();
+         
+      }, 
+      // problem with ajax, just show a nice error message and hide the game
+      error: function(){
+          $('#game >div').hide();
+          $('#game').append('<h2>Sorry, but there was an error loading friends for your game.</h2>Try again later?');
+          return;
+      }
+    });
+
+}
+
 
 
 /*----------------------------------------------------------------------------------------
@@ -28,9 +66,9 @@ $(document).ready( function() {
 function loginSuccess() { 
     $('#instructions').show();
     var h = $('#splash').outerHeight();
-    showNextFriend(); //preload during instructions view
     $('#splash').animate({ marginTop: h*-1 }, 800, function(){
         $('#splash').hide();
+        ajaxLoadFriends(); //preload during instructions view
     });
 }
 
@@ -93,9 +131,9 @@ function showNextFriend(){
     tenSecLimit = setTimeout(giveUp, 10000);
     CurrFriend = Friends.pop();
     
-    //TODO:  What happens when no more friends?
-    if ( CurrFriend == null )
-        return;
+    //What happens when no more friends?
+    if ( CurrFriend == undefined )
+        gameOver();
         
     $('#ibig').attr('src', CurrFriend['big_path']);
     $('#ismall1').attr('src', CurrFriend['small_path1']);
@@ -105,7 +143,7 @@ function showNextFriend(){
 function checkName(){
     var guess = $('#guess').val();
     
-    if ( guess == 'bay' )
+    if ( match_names(guess, CurrFriend.name) )
         sendAnswer(guess, true);
     else
         $('#guess').addClass('invalid');
