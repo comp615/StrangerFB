@@ -1,0 +1,76 @@
+<div id="photorow_wrapper">
+    <div id="photorow">
+        <!--img class="backphoto" src="/photorow/blank.png" -->
+        <div class="clearfix">&nbsp;</div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+//main application hooks
+$(document).ready(function(){
+    
+    // add photos to fit screen size
+    resizePhotoBar();
+    
+    //add photos if necessary on screen resize
+    $(window).resize( function(){
+        resizePhotoBar();
+        $('#photorow img').show();
+    });
+    
+    //either run animation, or display static
+    <% if @animatePhotosFlag %>
+        $(window).load(function(){
+            $('#container').css('marginTop',  '-440px');
+            $('#container').animate({'marginTop' : '130px'}, 600, slideOutPhotos);
+        });
+    <% else %>
+        $('#container').css('marginTop',  '130px');
+        $('#photorow img').show();
+        getSocialMedia(true);
+    <% end %>
+     
+});
+
+
+//resize photo bar to fit window
+function resizePhotoBar(){   
+    var currentCount = $('#photorow img').length;
+    var pics = Math.floor( $(window).width() / 100 ) + 5 - currentCount;    
+    for (var i=0; i< pics; i++)
+        $('#photorow').prepend('<img style="display:none" src="/photorow/' + Math.floor(Math.random()*28) + '.png" />');
+}
+
+//slide out photos animation
+function slideOutPhotos(){
+    $('#photorow img').slice(0, 3).show();  
+    $('#photorow img').slice(-4, -1).show();  
+    slideNextPhoto();
+    getSocialMedia();
+}
+
+//recursive helper function
+function slideNextPhoto(){
+    if (Math.random() > .5 )
+        var p = $('#photorow img:hidden').first();
+    else 
+        var p = $('#photorow img:hidden').last();
+        
+    if (p.length === 0 ){
+        $('#social_block').hide().css('top', '7px').fadeIn(2400);
+        return;
+    }
+             
+    p.css('width', '0px').show().animate({ 'width' : '100px'}, 20, slideNextPhoto);
+}
+
+//load social media links asynchronously
+function getSocialMedia(showImmediately){
+    if (showImmediately === true)
+        $('#social_block').load('/get_social_media');
+    else 
+        $('#social_block').css('top', '-200px').load('/get_social_media');
+}
+</script>

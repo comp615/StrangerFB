@@ -2,17 +2,15 @@ class User < ActiveRecord::Base
     has_many :attempts, :dependent => :destroy
 
     # Attempt Relations
-    def guesses
-        self.attempts.count
-    end
+
     def correct_guesses
-        self.attempts.where(:correct => true).count
+        self.attempts.where(:correct => true)
     end
     def incorrect_guesses
-        self.attempts.where(:correct => false).count
+        self.attempts.where(:correct => false)
     end
     def score
-        self.correct_guesses / self.guesses
+        self.correct_guesses.count / self.attempts.count
     end
     
     

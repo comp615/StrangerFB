@@ -2,7 +2,7 @@
     <%= javascript_include_tag 'name_compare'%>
 <% end %>
 
-<div id='splash' style="display:anone">
+<div id='splash' style="adisplay:none">
     <div id='introduction'>
         <h4>How well do YOU know your Facebook Friends?</h4>
         <p>
@@ -18,7 +18,8 @@
         </p>
             
         <p>
-        Login with Facebook below to see just how well you know your social network...
+        Login below to see how well you know your social network... Or 
+        <a href="/results">jump</a> straight to the results.
         </p>
         
     </div>
@@ -45,14 +46,15 @@
     </p>
     
     <p>
-    If you don't know someone, hit "I don't know" to quickly move on without wasting too much time!
-    There is a ten second maximum per friend!
+    If you don't know someone, hit "I don't know" to quickly move on without wasting too much time! 
+    <strong>Hint</strong>: Hover over the images for a larger photo.
     </p>
     
     <p>
     Good luck!
     </p>
-    <div id="start_button" class="button round green right nice arrow">Let's Go</div>
+    <div id="loading_wait"><img src="/images/spinner.gif" /> Loading...</div>
+    <div style="display:none" id="start_button" class="button round green right nice arrow">Let's Go</div>
     <div class="clearfix">&nbsp;</div>
 </div>
 
@@ -60,16 +62,16 @@
 <div id='game' style='display:none'>
     <div id="timer">90</div>
     <div id="left_block">
-        <img id="ibig" class="big" src="http://graph.facebook.com/baygross/picture?type=large" />
-        <img id="ismall1" class="small" src="http://graph.facebook.com/baygross/picture?type=normal" />
-        <img id="ismall2" class="small" src="http://graph.facebook.com/baygross/picture?type=normal" />
+        <img id="ibig" class="big" src="/images/loading_prof_pic.png" />
+
          <div class="clearfix">&nbsp;</div>
     </div>
     <div id="right_block">
         <h2>Game on!</h2>
-        <span class="helper">Oh, I know this person:</span>
-        <input id="guess" placeholder="zark f*ckerberg"/>
-        <span id="helper">Err, maybe not this one.</span>
+        <div class="helper">Oh, I know this person:</div>
+        <input id="guess" placeholder="chad kroeger"/>
+        <div id="answer"></div>
+        <div class="helper">Err, maybe not this one.</div>
         <div id="idk" class="button round nice white full-width">I forget!</div>
     </div>
     <div class="clearfix">&nbsp;</div>

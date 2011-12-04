@@ -8,14 +8,9 @@ var CurrFriend = null; //currenlty show friend
         :uid
         :name
         :big_path
-        :small_path1
-        :small_path2
+        :pictures[]
     }
-    
-    :uid
-    :name
-    :[pictures]
-    
+   
 */
 
 //batch load friends
@@ -30,26 +25,29 @@ function ajaxLoadFriends(){
     //request new batch of friends
     $.ajax({
       url: "/grab_friends",
-      data: { limit : 5, avoid :  existing_friends},
+      type : 'post',
+      data: { limit : 50, avoid :  existing_friends},
       success: function(resp){
          $.each(resp, function(i, f){
              Friends.push(f);
          });
          
-         //load first friend
+         //load play button
          if ( CurrFriend === null )
-            showNextFriend();
+            showPlayButton();
+        
             
         //repeat ajax call in batches
-         if ( Friends.length < 50 )
+         if ( Friends.length < 5 )
              ajaxLoadFriends();
          
       }, 
       // problem with ajax, just show a nice error message and hide the game
       error: function(){
-          $('#game >div').hide();
-          $('#game').append('<h2>Sorry, but there was an error loading friends for your game.</h2>Try again later?');
-          return;
+          if ( Friends.length < 5 ){
+              $('#loading_wait').append('FAILED! Sorry, try again later?');
+              return;
+          }
       }
     });
 
@@ -110,13 +108,19 @@ $(document).ready( function() {
    $('#start_button').click(function(){
        $('#game').show();
        var h = $('#instructions').outerHeight();
+       showNextFriend();
        $('#instructions').animate({ marginTop: h*-1 }, 800, function(){
            $('#instructions').hide();
            startTimer();
        });
-   });
-      
+   });  
 });
+
+//called once ten friends are loaded
+function showPlayButton(){
+    $("#loading_wait").hide();
+    $('#start_button').show(); 
+}
 /*----------------------------------------------------------------------------------------
 Game Page
 ------------------------------------------------------------------------------------------*/
@@ -128,45 +132,92 @@ $(document).ready( function() {
       
 });
 
-var tenSecLimit = null; 
-
 function showNextFriend(){
+
+    //reset 
     $('#guess').val("").removeClass('invalid');
-    if ( $('#game').css('display') !== 'none' ) 
-        tenSecLimit = setTimeout(giveUp, 10000);
-        
-    CurrFriend = Friends.pop();
+    $('#left_block img.small').remove();
+    $('#ibig').attr('src', "/images/loading_prof_pic.png");
     
-    //What happens when no more friends?
-    if ( CurrFriend === undefined )
-        gameOver();
+    //get next friend
+    CurrFriend = Friends.pop();
+
+    //if no friends, wait 1sec and try again (ajax will return)
+    if ( CurrFriend === undefined ){
+        setTimeout(showNextFriend, 1000);
+        return
+    }
         
+    //add new pictures    
     $('#ibig').attr('src', CurrFriend['big_path']);
-    $('#ismall1').attr('src', CurrFriend['small_path1']);
-    $('#ismall2').attr('src', CurrFriend['small_path2']);
-}
+    $.each( CurrFriend.photos, function(i,p){
+        $('#ibig').after('<img class="small" src="' + p + '" />');
+        
+        //on last photo set resize hook
+        if (i === CurrFriend.photos.length-1 )
+            var itotal = $('#game img').length;
+            var icount=0;
+            $('#game img').load(function(){
+                
+                icount+=1;      
+                if ( icount !== itotal )
+                    return;
+                
+                icount = 1;    
+                //smooth resize container if necessary
+                var h = $('#game').outerHeight();
+                h = ( h < 400 ) ? 400 : h;
+                $('#container').animate({'height' : h + 'px'}, 300);
+            });
+    });
+    
+
+
+
+}   
 
 function checkName(){
     var guess = $('#guess').val();
     
-    if ( match_names(guess, CurrFriend.name) )
-        sendAnswer(guess, true);
-    else
+    //return if CurrFriend undefined (waiting for ajax)
+    if ( CurrFriend === undefined )
+        return;
+        
+    //check if correct!
+    if ( match_names(guess, CurrFriend.name) ){
+        showAnswer( CurrFriend.name );
+        sendAnswer( guess, true );
+        return;
+    } 
+    
+    //mark guess as wrong (red)
+    if ( guess.length > 2 )
         $('#guess').addClass('invalid');
     
+}
+
+function showAnswer(name){
+    $('#answer').text(name + "!").show();
+    setTimeout(function(){
+        $('#answer').fadeOut(800);
+    }, 600);
 }
 
 function giveUp(){ sendAnswer('', false); }
 
 function sendAnswer(guess, success){
-    clearTimeout(tenSecLimit);
+    
+    if ( CurrFriend === undefined )
+        return;
+        
     $.ajax({
       url: "/answer",
       data: {fb_id : CurrFriend.fb_id, name : guess, success : success},
       complete: function(){
-         showNextFriend();
+         //nothing, run immediately!
       }
     });
+    showNextFriend();
 }
 
 //Timer Code
@@ -189,10 +240,12 @@ function dropTime(){
 
 //called by timer when game is up
 function gameOver(){
+    $("#game").css('paddingTop', '40px');
     $('#results').show();
-    $('#game').animate({marginTop:'-400px'}, 800, function(){
-        $('#game').hide();
-    });
+     var h = $('#game').outerHeight();
+       $('#game').animate({ marginTop: h*-1 }, 800, function(){
+           $('#game').hide();
+       });
 }
 /*----------------------------------------------------------------------------------------
 Results Page

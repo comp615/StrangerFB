@@ -3,7 +3,7 @@
    Shared Styles
 ----------------------------------------- */
 html{
-    height:100%;
+    min-height:100%;
     margin:0px;
 	padding:0px;
 }
@@ -43,9 +43,11 @@ body {
     @include dropShadow(0px, 0px, 3px, #555);
     #photorow{
         width:120%;
+        margin-left:-10%;
+        text-align:center;
         img{
-            width:100px;
-            float:left;
+            height:100px;
+            display:inline;
         }   
     }   
 }
@@ -55,7 +57,7 @@ body {
     height:400px;
     overflow:hidden;
     border:1px solid #eee;
-    margin-top:130px;
+    margin-top:-440px;  //animates to 130px
     margin-left:auto;
     margin-right:auto;
     margin-bottom:50px;
@@ -64,6 +66,34 @@ body {
     @include dropShadow(0px, 2px, 8px, #e5e5e5);
     >div{
         padding:40px;
+    }
+}
+
+#container_full{
+    width:85%;
+    min-height:600px;
+    margin-top:40px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:50px;
+}
+
+#nav_bar{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:26px;
+    background-color:#fff;
+    border-bottom:1px solid #eee;
+    @include dropShadow(0px, 1px, 3px, #f5f5f5);
+    padding-top:8px;
+    padding-left:20px;
+    a{
+        font-size: 14px;
+        padding-right: 10px;
+        padding-left: 10px;
+        font-weight: bold;
     }
 }
 

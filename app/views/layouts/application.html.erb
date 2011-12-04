@@ -44,33 +44,19 @@
 <body>
 
 	<div id="social_block" class="hide-on-phones">
-	  <iframe src="//www.facebook.com/plugins/like.php?href=http://www.facebook.com/pages/KeepMeLoopedin/169977336428367&amp;send=false&amp;layout=box_count&amp;width=62&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=71" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:62px; height:71px; float:left" allowTransparency="true"></iframe>
-      <a href="http://www.keepmelooped.in" class="twitter-share-button" data-url="www.keepmelooped.in" data-text="KeepMeLooped.in, call or text your friends en masse!" data-count="vertical" data-related="baygross:jayred">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+        <!-- filled with ajax call -->
 	</div>
     
-    <div id="photorow_wrapper">
-        <div id="photorow">
-            <img class="backphoto" src="/photorow/1.png">
-            <img class="backphoto" src="/photorow/2.png">
-            <img class="backphoto" src="/photorow/3.png">
-            <img class="backphoto" src="/photorow/blank.png">
-            <img class="backphoto" src="/photorow/5.png">
-            <img class="backphoto" src="/photorow/3.png">
-            <img class="backphoto" src="/photorow/4.png">
-            <img class="backphoto" src="/photorow/5.png">
-            <img class="backphoto" src="/photorow/blank.png">
-            <img class="backphoto" src="/photorow/4.png">
-            <img class="backphoto" src="/photorow/5.png">
-            <img class="backphoto" src="/photorow/6.png">
-            <img class="backphoto" src="/photorow/blank.png">
-            <img class="backphoto" src="/photorow/2.png">
-        </div>
-    </div>
-        
-    </div>
-    <div id="container">
-	    <%= yield %>
-	</div>
+    <% if !@fullPageFlag %>
+        <%= render :partial => 'shared/photo_row', :locals => { :animatePhotosFlag => @animatePhotosFlag } %>  
+        <div id="container">
+    	    <%= yield %>
+    	</div>
+    <% else %>
+        <div id="container_full">
+      	    <%= yield %>
+    	</div>  
+    <% end %>
 	
 	<div id="footer">
 	    A <a href="http://www.yalelawtech.org/">CPSC183</a> project, 2011

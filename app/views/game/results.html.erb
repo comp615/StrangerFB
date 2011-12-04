@@ -1,0 +1,32 @@
+<div id="nav_bar">
+    <a href="/">Home</a> | <a href="/about">About</a>
+    <span style='float:right; margin-right:30px'>[ fb + twitter ]</span>
+</div>
+
+<div id="full_results">
+    
+    <!-- individual stats -->
+    <% if @current_user %>
+        <h1>You scored <span class="score">95%</span></h1>
+ 
+        <h4>You could not name the following friends:</h4>
+        <% @current_user.incorrect_guesses.each do |f| %>
+            <a href="http://facebook.com/<%= f.target_facebook_id %>/" class="friend_box">
+                <div class="image_crop">
+                    <img src="http://graph.facebook.com/<%= f.target_facebook_id %>/picture?type=large">
+                </div>
+                <%= f.actual_name %>
+            </a>
+        <% end %>
+        <div class="clearfix">&nbsp;</div>
+    <% end %>
+    
+    
+    
+    <!--  Aggregate Stats -->
+    <h4>The average user knows <span class="score">84.3%</span> of their friends.</h4>
+    [ graph ]
+    [ interesting commentary.. ]
+    <br />
+    [ fb share buttons w/ badge?   get at me virality.]
+</div>

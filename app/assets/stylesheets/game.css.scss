@@ -25,35 +25,35 @@ The Login Splash
         margin-top: 30px;
     }
     #fb_login {
-    	height: 46px;
-    	width:160px;
-    	display: block;
-    	background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
-    	padding-left: 48px;
-    	cursor: pointer;
-	
-    	.button-text {
-    		display: block;
-    		padding: 15px 7px 17px 5px;
-    		background: transparent image-url("/images/facebook-lg-r.png") no-repeat top right;
-    		color: $grey;
-    	}
-	
-    	&.active {
-    		margin-top: 1px; // Class needs to be applied via JS since this is a div	
-    	}
+        height: 46px;
+        width:160px;
+        display: block;
+        background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
+        padding-left: 48px;
+        cursor: pointer;
+
+        .button-text {
+            display: block;
+            padding: 15px 7px 17px 5px;
+            background: transparent image-url("/images/facebook-lg-r.png") no-repeat top right;
+            color: $grey;
+        }
+
+        &.active {
+            margin-top: 1px; // Class needs to be applied via JS since this is a div	
+        }
     }
 
     #privacy_info {
-    	color: $sec_text;
-    	font-size: 11px;
-    	margin-top: 15px;
-    	a{
-    		color: $sec_text;
-    		&:hover{
-    			text-decoration:underline;
-    		}
-    	}
+        color: $sec_text;
+        font-size: 11px;
+        margin-top: 15px;
+        a{
+            color: $sec_text;
+            &:hover{
+                text-decoration:underline;
+            }
+        }
     }
 }
 
@@ -68,6 +68,14 @@ The Instructions Page
         color:#444;
         padding-top:15px;
     }
+    #loading_wait{
+        float:right;
+        font-size:14px;
+        color:$blue;
+        img{width:12px; padding-right:2px;}
+        padding-right:6px;
+        padding-bottom:4px;
+    }
 }
 
 /*-----------------------------------------
@@ -76,7 +84,8 @@ The Game Page
 #game{
     background-color:#fff;
     position:relative;
-    
+    padding-bottom:0px;
+
     #timer{
         position:absolute;
         top:16px;
@@ -87,9 +96,9 @@ The Game Page
         text-shadow:0px -1px 0px #955;
         padding:20px;
     }
-    
+
     #left_block{
-        width:340px;
+        width:440px;
         float:left;
         img{
             float:left;
@@ -97,44 +106,52 @@ The Game Page
             border:1px solid #eee;
             margin:6px;
             @include rounded_corners(3px);
-            &.big{margin-top:20px;}
+            &.small{
+                max-width:200px;
+            }
         }
     }
     #right_block{
         padding-top:50px;
-        width:280px;
+        width:180px;
         padding-left:20px;
         float:left;
-        h2{
-            margin-bottom:22px;
-        }
+
+        .helper{ margin-top:22px;}
+
         input{
             margin-top:4px;
             padding:10px;
             font-size:14px;
             border:1px solid #ddd;
             @include rounded_corners(5px);
-            width:250px;
-            margin-bottom:50px;
+            width:100%;
             &.invalid{
                 color: #B94A48;
                 border-color: #EE5F5B;
                 &:focus {
-                  outline:none;
-                  border-color: #e9322d;
-                  -webkit-box-shadow: 0 0 6px #f8b9b7;
-                  -moz-box-shadow: 0 0 6px #f8b9b7;
-                  box-shadow: 0 0 6px #f8b9b7;
-                 }
+                    outline:none;
+                    border-color: #e9322d;
+                    -webkit-box-shadow: 0 0 6px #f8b9b7;
+                    -moz-box-shadow: 0 0 6px #f8b9b7;
+                    box-shadow: 0 0 6px #f8b9b7;
+                }
             }
         }
+        #answer{
+            color:#5AA732;
+            margin-top:2px;
+            margin-bottom:40px;
+            padding-left:6px;
+            font-size:14px;
+        }
         #idk{
-          margin-top:4px;  
+            margin-top:4px;  
         }
     }
 }
 /*-----------------------------------------
-The Results Page
+The Results Link Page
 ------------------------------------------*/
 #results{
     padding:160px 0px 0px 205px !important;
@@ -144,5 +161,46 @@ The Results Page
     #results_button{
         margin-top:15px;
         margin-left:180px;
+    }
+}
+/*-----------------------------------------
+The Actual Results Page
+------------------------------------------*/
+#full_results{
+    .score{
+        color:$dark_blue;
+        font-weight:bold;
+        text-shadow:0px -1px 0px $grey;
+    } 
+    .friend_box{
+        display:block;
+        float:left;
+        padding:4px;
+        width:150px;
+        text-align:center;
+        border:1px solid #eee;
+        margin:6px;
+        @include rounded_corners(3px);
+        .image_crop{
+            height:80px;
+            width:100px;
+            text-align:center;
+            overflow:hidden;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        a{
+            font-size:14px;
+        }
+        &:hover{
+            background-color:#fff;
+            border:1px solid #ddd;
+        }
+    }
+    h1{
+        margin-top:60px;
+    }
+    h4{
+        margin-top:30px;
     }
 }

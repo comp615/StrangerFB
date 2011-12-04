@@ -1,2 +1,23 @@
 /*   SCSS for Public Controller  */
 /*       [ static pages ]        */
+/* line 7, ../../app/assets/stylesheets/public.css.scss */
+#static_page {
+  padding: 30px 60px 40px 40px !important;
+}
+/* line 9, ../../app/assets/stylesheets/public.css.scss */
+#static_page .bottom_link {
+  float: right;
+}
+/* line 12, ../../app/assets/stylesheets/public.css.scss */
+#static_page .hand {
+  font-size: 2em;
+  display: inline-block;
+  padding-left: 5px;
+  line-height: 8px;
+  vertical-align: middle;
+}
+/* line 19, ../../app/assets/stylesheets/public.css.scss */
+#static_page .emphasis {
+  color: #3e86ce;
+  font-weight: bold;
+}

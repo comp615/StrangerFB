@@ -1,5 +1,23 @@
 /*   SCSS for Public Controller  */
 /*       [ static pages ]        */
+@import 'common-vars';
 
 
 
+#static_page{
+    padding:30px 60px 40px 40px !important;
+    .bottom_link{
+        float:right; 
+    }
+    .hand{
+        font-size: 2em;
+        display: inline-block;
+        padding-left: 5px;
+        line-height: 8px;
+        vertical-align:middle;
+    }
+    .emphasis{
+        color: $dark_blue;
+        font-weight:bold;
+    }
+}

@@ -13,7 +13,7 @@ StrangerFB::Application.routes.draw do
 
 # Misc
     match 'logout' => "facebook#logout"
-
+    match 'get_social_media' => 'public#get_social_media'
 
 # map the root
   root :to => "game#splash"
