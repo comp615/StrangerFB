@@ -47,9 +47,6 @@ function ajaxLoadFriends(count, newRound){
             showPlayButton();
         
         requestActive = false;
-        //repeat ajax call in batches
-         if ( Friends.length < 6 )
-             ajaxLoadFriends();
              
          if(newRound) {
 	      	preload(Friends[0].photos);
@@ -176,8 +173,8 @@ function showNextFriend(){
 	}
 
     //check if we need more friends
-    if(Friends.length < 6)
-    	ajaxLoadFriends();
+    if(Friends.length < 8)
+    	ajaxLoadFriends(8); //may have to fudge this in production
     
     //if no friends, wait 1sec and try again (ajax will return)
     if ( CurrFriend === undefined ){

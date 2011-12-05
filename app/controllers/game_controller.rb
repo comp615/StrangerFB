@@ -111,7 +111,7 @@ class GameController < ApplicationController
     	
     	#Aggregate stuff
     	@overall_correct_pct = ((Attempt.where(:correct => true).count.to_f  / Attempt.count.to_f) * 1000.0).round / 10.0
-        @avg_friend_count = User.connection.select_value("SELECT AVG(`friend_count`) FROM `StrangerFB_development`.`users`")
+        @avg_friend_count = User.connection.select_value("SELECT AVG(`friend_count`) FROM `users`")
         
         @attempts.each{|a|  puts a.affils.include?(33572843)}
     end
