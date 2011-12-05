@@ -34,13 +34,24 @@ $(document).ready(function(){
      
 });
 
+//make sure photos aren't repeated
+var totalPhotos = 28; //0 indexed
+var photos = [];
+function randPhoto(){
+    if (photos.length === 0){
+        for (var i=0; i< totalPhotos; i++)
+            photos.push(i);
+        photos.sort( function(x){return 0.5 - Math.random();} );
+    } 
+    photos.pop();
+}
 
 //resize photo bar to fit window
 function resizePhotoBar(){   
     var currentCount = $('#photorow img').length;
     var pics = Math.floor( $(window).width() / 100 ) + 5 - currentCount;    
     for (var i=0; i< pics; i++)
-        $('#photorow').prepend('<img style="display:none" src="/photorow/' + Math.floor(Math.random()*28) + '.png" />');
+        $('#photorow').prepend('<img style="display:none" src="/photorow/' + randPhoto() + '.png" />');
 }
 
 //slide out photos animation

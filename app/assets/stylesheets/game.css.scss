@@ -168,6 +168,9 @@ The Results Link Page
 The Actual Results Page
 ------------------------------------------*/
 #full_results{
+    p{
+        font-size:14px;
+    }
     .score{
         color:$dark_blue;
         font-weight:bold;
@@ -200,6 +203,10 @@ The Actual Results Page
     }
     h1{
         margin-top:60px;
+        .button{
+            top:-9px;
+            left:496px;
+        }
     }
     h4{
         margin-top:30px;
