@@ -3,6 +3,8 @@
 //This Global Array will hold all friend objects
 var Friends = [];
 var CurrFriend = null; //currenlty show friend
+var requestActive = false;
+var game_end_ts = null;
 /* 
     friend = {
         :uid
@@ -14,8 +16,16 @@ var CurrFriend = null; //currenlty show friend
 */
 
 //batch load friends
-function ajaxLoadFriends(){
-    
+function ajaxLoadFriends(count, newRound){
+	if(newRound === undefined)
+		newRound = false;
+	
+	if(count === undefined)
+		count = 10;
+	
+	if(requestActive)
+		return;
+    requestActive = true;
     //collect current friend list
     existing_friends = [];
     $.each(Friends, function(i, f){
@@ -26,7 +36,7 @@ function ajaxLoadFriends(){
     $.ajax({
       url: "/grab_friends",
       type : 'post',
-      data: { limit : 50, avoid :  existing_friends},
+      data: { limit : count, avoid :  existing_friends, new_round: newRound},
       success: function(resp){
          $.each(resp, function(i, f){
              Friends.push(f);
@@ -36,14 +46,15 @@ function ajaxLoadFriends(){
          if ( CurrFriend === null )
             showPlayButton();
         
-            
+        requestActive = false;
         //repeat ajax call in batches
-         if ( Friends.length < 5 )
+         if ( Friends.length < 6 )
              ajaxLoadFriends();
          
       }, 
       // problem with ajax, just show a nice error message and hide the game
       error: function(){
+	      requestActive = false;
           if ( Friends.length < 5 ){
               $('#loading_wait').append('FAILED! Sorry, try again later?');
               return;
@@ -70,7 +81,7 @@ function loginSuccess() {
     var h = $('#splash').outerHeight();
     $('#splash').animate({ marginTop: h*-1 }, 800, function(){
         $('#splash').hide();
-        ajaxLoadFriends(); //preload during instructions view
+        ajaxLoadFriends(10, true); //preload during instructions view
     });
 }
 
@@ -142,6 +153,10 @@ function showNextFriend(){
     //get next friend
     CurrFriend = Friends.pop();
 
+    //check if we need more friends
+    if(Friends.length < 6)
+    	ajaxLoadFriends();
+    
     //if no friends, wait 1sec and try again (ajax will return)
     if ( CurrFriend === undefined ){
         setTimeout(showNextFriend, 1000);
@@ -243,9 +258,10 @@ function gameOver(){
     $("#game").css('paddingTop', '40px');
     $('#results').show();
      var h = $('#game').outerHeight();
-       $('#game').animate({ marginTop: h*-1 }, 800, function(){
-           $('#game').hide();
-       });
+	   $('#game').animate({ marginTop: h*-1 }, 800, function(){
+	       $('#game').hide();
+	   });
+	 game_end_ts = new Date().getTime();
 }
 /*----------------------------------------------------------------------------------------
 Results Page
@@ -253,7 +269,7 @@ Results Page
 $(document).ready( function() {
     
     $('#results_button').click(function(){
-        document.location.href="/results";
+        document.location.href= "/results?ts=" + game_end_ts;
     });
     
 });
