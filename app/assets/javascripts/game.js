@@ -70,7 +70,10 @@ function ajaxLoadFriends(count, newRound){
 
 function preload(arrayOfImages) {
     $(arrayOfImages).each(function(){
-        $('<img/>')[0].src = this;
+	    if(this["src"] != undefined)
+	    	$('<img/>')[0].src = this["src"];
+        else
+        	$('<img/>')[0].src = this;
         // Alternatively you could use:
         // (new Image()).src = this;
     });
@@ -138,6 +141,25 @@ $(document).ready( function() {
            $('#guess').focus();
        });
    });  
+   
+   $('#left_block').delegate('img.small','hover',function(event) {
+	   if( event.type === 'mouseenter' ) {
+		   $("#hover_img img")[0].src = $(this).attr('src');
+		   $("#hover_img").css("left", 5);
+		   $("#hover_img").css("top", 5);
+		   $("#hover_img").show();
+		   
+		   var w = $("#hover_img img").width();
+		   var h = $("#hover_img img").height();
+		   var wh = Math.max(w/8,h/8);
+		   $("#hover_img .tag_box").css("left", $("#hover_img img").offset().left + w * $(this).data("x") / 100 - wh/2);
+		   $("#hover_img .tag_box").css("top", $("#hover_img img").offset().top + h * $(this).data("y") / 100 - wh/2);
+		   $("#hover_img .tag_box").width(wh).height(wh);
+		   
+	   } else {
+		   $("#hover_img").hide();
+	   }
+   });
 });
 
 //called once ten friends are loaded
@@ -186,7 +208,8 @@ function showNextFriend(){
     //add new pictures    
     $('#ibig').attr('src', CurrFriend['big_path']);
     $.each( CurrFriend.photos, function(i,p){
-        $('#ibig').after('<img class="small" src="' + p + '" />');
+        $('#ibig').after('<img class="small" src="' + p["src"] + '" data-x="' + p["xcoord"] + '" data-y="' + p["ycoord"] + '"/>');
+        //TODO: Add a target box?
         
         //on last photo set resize hook
         if (i === CurrFriend.photos.length-1 )

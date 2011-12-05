@@ -7,7 +7,7 @@ function match_names(input,target) {
 	if(target.length > 1)
 		target[1] = target.slice(1,target.length).join(" ")
 	
-	if(levenshtein(input[0],target[0]) <= 1 || (levenshtein(input[0],target[0]) <= 3 && levenshtein(input[1],target[1]) <= 3))
+	if(levenshtein(input[0],target[0]) <= 1 || (levenshtein(input[0],target[1]) <= 1) || (levenshtein(input[0],target[0]) <= 3 && levenshtein(input[1],target[1]) <= 3))
 		return true;
 	return false;
 }
