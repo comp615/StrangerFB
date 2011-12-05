@@ -33,6 +33,8 @@
         Things you share with friends of friends are distributed to around:<br />
         <%= @fof_count %> people<br /><br />
     
+        http://www.takethislollipop.com/
+        
         In addition, you are in the following networks:
         <% @my_affiliations.each do |a| %>
             <%= a[:name] + " - " + a[:accuracy] + "%" %> accuracy in this network (<%= a[:attempts] %> attempts)<br />

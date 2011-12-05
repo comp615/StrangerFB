@@ -60,7 +60,7 @@ function ajaxLoadFriends(count, newRound){
       error: function(){
 	      requestActive = false;
           if ( Friends.length < 5 ){
-              $('#loading_wait').append('FAILED! Sorry, try again later?');
+              $('#loading_wait').text('FAILED! Sorry, try again later?');
               return;
           }
       }
@@ -135,6 +135,7 @@ $(document).ready( function() {
        $('#instructions').animate({ marginTop: h*-1 }, 800, function(){
            $('#instructions').hide();
            startTimer();
+           $('#guess').focus();
        });
    });  
 });
@@ -159,7 +160,7 @@ $(document).ready( function() {
 function showNextFriend(){
 
     //reset 
-    $('#guess').val("").removeClass('invalid');
+    $('#guess').val("").removeClass('invalid').focus();
     $('#left_block img.small').remove();
     $('#ibig').attr('src', "/images/loading_prof_pic.png");
     
@@ -219,6 +220,10 @@ function checkName(){
         
     //check if correct!
     if ( match_names(guess, CurrFriend.name) ){
+        $('#guess').attr('disabled', true);
+        setTimeout(function(){
+           $('#guess').attr('disabled', false); 
+        }, 400);
         showAnswer( CurrFriend.name );
         sendAnswer( guess, true );
         return;
@@ -231,13 +236,13 @@ function checkName(){
 }
 
 function showAnswer(name){
-    $('#answer').text(name + "!").show();
+    $('#answer span').text(name + "!").show();
     setTimeout(function(){
-        $('#answer').fadeOut(800);
-    }, 600);
+        $('#answer span').fadeOut(800);
+    }, 900);
 }
 
-function giveUp(){ sendAnswer('', false); }
+function giveUp(){  sendAnswer('', false); }
 
 function sendAnswer(guess, success){
     

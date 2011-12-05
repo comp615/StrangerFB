@@ -179,8 +179,9 @@ The Game Page
   margin-bottom: 40px;
   padding-left: 6px;
   font-size: 14px;
+  height: 16px;
 }
-/* line 148, ../../app/assets/stylesheets/game.css.scss */
+/* line 149, ../../app/assets/stylesheets/game.css.scss */
 #game #right_block #idk {
   margin-top: 4px;
 }
@@ -188,15 +189,15 @@ The Game Page
 /*-----------------------------------------
 The Results Link Page
 ------------------------------------------*/
-/* line 156, ../../app/assets/stylesheets/game.css.scss */
+/* line 157, ../../app/assets/stylesheets/game.css.scss */
 #results {
   padding: 160px 0px 0px 205px !important;
 }
-/* line 158, ../../app/assets/stylesheets/game.css.scss */
+/* line 159, ../../app/assets/stylesheets/game.css.scss */
 #results h4 {
   margin-bottom: 10px;
 }
-/* line 161, ../../app/assets/stylesheets/game.css.scss */
+/* line 162, ../../app/assets/stylesheets/game.css.scss */
 #results #results_button {
   margin-top: 15px;
   margin-left: 180px;
@@ -205,13 +206,13 @@ The Results Link Page
 /*-----------------------------------------
 The Actual Results Page
 ------------------------------------------*/
-/* line 170, ../../app/assets/stylesheets/game.css.scss */
+/* line 171, ../../app/assets/stylesheets/game.css.scss */
 #full_results .score {
   color: #3e86ce;
   font-weight: bold;
   text-shadow: 0px -1px 0px #f2f2f2;
 }
-/* line 175, ../../app/assets/stylesheets/game.css.scss */
+/* line 176, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box {
   display: block;
   float: left;
@@ -227,7 +228,7 @@ The Actual Results Page
   -khtml-border-radius: 3px / 3px;
   border-radius: 3px;
 }
-/* line 184, ../../app/assets/stylesheets/game.css.scss */
+/* line 185, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box .image_crop {
   height: 80px;
   width: 100px;
@@ -236,20 +237,20 @@ The Actual Results Page
   margin-left: auto;
   margin-right: auto;
 }
-/* line 192, ../../app/assets/stylesheets/game.css.scss */
+/* line 193, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box a {
   font-size: 14px;
 }
-/* line 195, ../../app/assets/stylesheets/game.css.scss */
+/* line 196, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box:hover {
   background-color: #fff;
   border: 1px solid #ddd;
 }
-/* line 200, ../../app/assets/stylesheets/game.css.scss */
+/* line 201, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 {
   margin-top: 60px;
 }
-/* line 203, ../../app/assets/stylesheets/game.css.scss */
+/* line 204, ../../app/assets/stylesheets/game.css.scss */
 #full_results h4 {
   margin-top: 30px;
 }

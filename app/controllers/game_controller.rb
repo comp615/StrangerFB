@@ -72,6 +72,13 @@ class GameController < ApplicationController
             }
         }
         
+        #if we can limit to just friends with good photos easily, do so
+        friends_with_pics = friends.select{ |f| f[:photos].count > 1 }
+        if friends_with_pics.count > params[:limit]*0.75
+            friends = friends_with_pics
+        end
+            
+        
         #Update play count if needed
         if(params[:new_round])
         	@current_user.play_count += 1
