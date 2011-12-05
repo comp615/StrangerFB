@@ -50,6 +50,13 @@ function ajaxLoadFriends(count, newRound){
         //repeat ajax call in batches
          if ( Friends.length < 6 )
              ajaxLoadFriends();
+             
+         if(newRound) {
+	      	preload(Friends[0].photos);
+	      	preload(Friends[0]['big_path']);
+	      	preload(Friends[1].photos);   
+	      	preload(Friends[1]['big_path']);
+         }
          
       }, 
       // problem with ajax, just show a nice error message and hide the game
@@ -62,6 +69,14 @@ function ajaxLoadFriends(count, newRound){
       }
     });
 
+}
+
+function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        $('<img/>')[0].src = this;
+        // Alternatively you could use:
+        // (new Image()).src = this;
+    });
 }
 
 
@@ -143,6 +158,7 @@ $(document).ready( function() {
       
 });
 
+
 function showNextFriend(){
 
     //reset 
@@ -151,7 +167,13 @@ function showNextFriend(){
     $('#ibig').attr('src', "/images/loading_prof_pic.png");
     
     //get next friend
-    CurrFriend = Friends.pop();
+    CurrFriend = Friends.shift();
+    
+    //preload the second to next
+    if(Friends.length > 1) {
+    	preload(Friends[1].photos);
+    	preload(Friends[1]['big_path']);
+	}
 
     //check if we need more friends
     if(Friends.length < 6)
