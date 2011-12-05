@@ -25,6 +25,7 @@ $(document).ready(function(){
         $(window).load(function(){
             $('#container').css('marginTop',  '-440px');
             $('#container').animate({'marginTop' : '130px'}, 600, slideOutPhotos);
+            getSocialMedia(false);
         });
     <% else %>
         $('#container').css('marginTop',  '130px');
@@ -43,38 +44,40 @@ function randPhoto(){
             photos.push(i);
         photos.sort( function(x){return 0.5 - Math.random();} );
     } 
-    photos.pop();
+    return photos.pop();
 }
 
 //resize photo bar to fit window
 function resizePhotoBar(){   
     var currentCount = $('#photorow img').length;
-    var pics = Math.floor( $(window).width() / 100 ) + 5 - currentCount;    
+    var pics = Math.floor( $(window).width() / 100 ) + 60 - currentCount;    
     for (var i=0; i< pics; i++)
         $('#photorow').prepend('<img style="display:none" src="/photorow/' + randPhoto() + '.png" />');
 }
 
 //slide out photos animation
 function slideOutPhotos(){
+    //add seven photos behind container
     $('#photorow img').slice(0, 3).show();  
-    $('#photorow img').slice(-4, -1).show();  
-    slideNextPhoto();
-    getSocialMedia();
-}
+    $('#photorow img').slice(-4, -1).show(); 
 
-//recursive helper function
-function slideNextPhoto(){
-    if (Math.random() > .5 )
-        var p = $('#photorow img:hidden').first();
-    else 
-        var p = $('#photorow img:hidden').last();
+    //slide out photos
+    var i=0;
+    do {
+        if (Math.random() > .5 )
+            var p = $('#photorow img:hidden').first();
+        else 
+            var p = $('#photorow img:hidden').last();
         
-    if (p.length === 0 ){
+         p.css('width', '0px').show().delay(i*2).animate({ 'width' : '100px'}, 1000);
+        
+        i++;
+    } while (p.length !== 0 );
+
+    //wait to fade in social media
+    setTimeout(function(){
         $('#social_block').hide().css('top', '7px').fadeIn(2400);
-        return;
-    }
-             
-    p.css('width', '0px').show().animate({ 'width' : '100px'}, 20, slideNextPhoto);
+    }, 1000);
 }
 
 //load social media links asynchronously

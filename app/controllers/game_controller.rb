@@ -132,7 +132,7 @@ class GameController < ApplicationController
     	@current_user.friend_count ||=  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")
     	
     	#computer user scores
-    	@my_score = ((@correct_attempts.length.to_f / (@correct_attempts.length + @incorrect_attempts.length)) * 1000.0).round / 10.0
+    	@my_score = ((@correct_attempts.length.to_f / (@correct_attempts.length + @incorrect_attempts.length)) * 1000.0).round / 10.0 rescue 0
     	@my_agg_score = ((@attempts.select{|a| a.correct}.length.to_f / (@attempts.length)) * 1000.0).round / 10.0
         @fof_count =  (@current_user.friend_count * 130 * 0.5).round
         
