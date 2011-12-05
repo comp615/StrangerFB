@@ -1,14 +1,14 @@
 <div id="nav_bar">
     <a href="/">Home</a> | <a href="/about">About</a>
-    <span style='float:right; margin-right:30px'>[ fb + twitter ]</span>
+    <span style='float:right; margin-right:30px'><a href="/logout" class="thin">Logout</a></span>
 </div>
 
 <div id="full_results">
     
     <!-- individual stats -->
-    <% if @current_user %>
-        <h1>You scored <span class="score"><%= ((@correct_attempts.length.to_f / (@correct_attempts.length + @incorrect_attempts.length)) * 1000.0).round / 10.0 %>%</span></h1>
-        <h1>Your overall score is <span class="score"><%= ((@attempts.select{|a| a.correct}.length.to_f / (@attempts.length)) * 1000.0).round / 10.0 %>%</span></h1>
+    <% if @current_user && !@current_user.attempts.blank? %>
+        <h1>You scored <span class="score"><%= @my_score %>%</span></h1>
+        <h1>Your overall score is <span class="score"><%= @my_agg_score %>%</span></h1>
  
         <h4>You could not name the following friends:</h4>
         <% @incorrect_attempts.each do |f| %>
@@ -20,39 +20,32 @@
             </a>
         <% end %>
         <div class="clearfix">&nbsp;</div>
+    
+        <!-- Suggestive stats -->
+        Have you checked your default sharing levels yet?<br /><br />
+    
+        Things you share with all your friends are distributed to about:<br />
+        <%= @current_user.friend_count %> people <br /><br />
+    
+        		Did you know? That friends can give <em>your</em> personal information to applications? 
+        		Do you trust all <%= @current_user.friend_count %> of them to make good decisions. Stay in control of your data and uncheck XXXXXXXXXX<br /><br />
+    
+        Things you share with friends of friends are distributed to around:<br />
+        <%= @fof_count %> people<br /><br />
+    
+        In addition, you are in the following networks:
+        <% @my_affiliations.each do |a| %>
+            <%= a[:name] + " - " + a[:accuracy] + "%" %> accuracy in this network (<%= a[:attempts] %> attempts)<br />
+        <% end %>
+        <br />
+        But those networks are MUCH larger than the number of friends in them, do you really want to be sharing information with everyone?
+        <br /><br />
+    
+        And finally, data shared with anyone on Facebook goes out to:
+        800,000,000,000 people...
+        <br /><br />
+    
     <% end %>
-    
-    
-    
-    
-    <!-- Suggestive stats -->
-    Have you checked your default sharing levels yet?<br /><br />
-    
-    Things you share with all your friends are distributed to about:<br />
-    <%= @current_user.friend_count %> people <br /><br />
-    
-    		Did you know? That friends can give <em>your</em> personal information to applications? 
-    		Do you trust all <%= @current_user.friend_count %> of them to make good decisions. Stay in control of your data and uncheck XXXXXXXXXX<br /><br />
-    
-    Things you share with friends of friends are distributed to around:<br />
-    <%= (@current_user.friend_count * @avg_friend_count * 0.5).round %> people<br /><br />
-    
-    In addition, you are in the following networks:
-    <% @my_affiliations.each do |a|
-    	
-    	affil_attempts = @attempts.select{|att| att.affils.include?(a["nid"].to_i)}
-    	ac = affil_attempts.select{|att| att.correct} %>
-    <%= a["name"]%> - <%= affil_attempts.length == 0 ? 0 : ((ac.length.to_f / (affil_attempts.length)) * 1000.0).round / 10.0 %>% accuracy in this network (<%=affil_attempts.length %> attempts)<br />
-    <% end %>
-    <br />
-    But those networks are MUCH larger than the number of friends in them, do you really want to be sharing information with everyone?
-    <br /><br />
-    
-    And finally, data shared with anyone on Facebook goes out to:
-    800,000,000,000 people...
-    <br /><br />
-    
-    
     
     
     <!--  Aggregate Stats -->

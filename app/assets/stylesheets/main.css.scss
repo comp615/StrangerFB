@@ -94,6 +94,10 @@ body {
         padding-right: 10px;
         padding-left: 10px;
         font-weight: bold;
+        &.thin{
+            font-weight:normal;
+            font-size:12px;
+        }
     }
 }
 

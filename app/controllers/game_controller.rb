@@ -82,37 +82,53 @@ class GameController < ApplicationController
     end
     
     def results
+        #render a full page container in layout
         @fullPageFlag = true
+        
+        #calculate aggregate stats
+    	@overall_correct_pct = ((Attempt.where(:correct => true).count.to_f  / Attempt.count.to_f) * 1000.0).round / 10.0
+        
+        
+        #return here if not signed in
+        return if !@current_user || @current_user.attempts.blank?
+            
         
         #Expect a ts if coming from a game, otherwise use all
         if(params[:ts])
         	time = Time.at(params[:ts].to_i / 1000) #comes in in milliseconds, to seconds
-        	time_range = (time - 90.seconds)..(time + 10.seconds)
-			@attempts = @current_user.attempts.where(:created_at => time_range)
-			@correct_attempts = @attempts.select{|a| a.correct}
-			@incorrect_attempts = @attempts.select{|a| !a.correct}
-			@attempts = @current_user.attempts
+        	time_range = (time - 95.seconds)..Time.now
+			@curr_attempts = @current_user.attempts.where(:created_at => time_range)
         else
-			@attempts = @current_user.attempts
-			@correct_attempts = @attempts.select{|a| a.correct}
-			@incorrect_attempts = @attempts.select{|a| !a.correct}
+			@curr_attempts = @current_user.attempts
         end
-        
+    	@correct_attempts = @curr_attempts.select{|a| a.correct}
+		@incorrect_attempts = @curr_attempts.select{|a| !a.correct}		
+		@attempts = @current_user.attempts #aggregate 
+    		
+    	# add friend count if missing
+    	@current_user.friend_count ||=  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")
     	
-    	#Update their friend count if inaccurate (also affiliations for reporting that)
-    	friends = @fb_graph.fql_query("SELECT uid2 FROM friend WHERE uid1 = me()")
-    	if (@current_user.friend_count != friends.length)
-    		@current_user.friend_count = friends.length
-    		@current_user.save! 
-    	end
-       
-    	#additional user data needed to process everything
+    	#computer user scores
+    	@my_score = ((@correct_attempts.length.to_f / (@correct_attempts.length + @incorrect_attempts.length)) * 1000.0).round / 10.0
+    	@my_agg_score = ((@attempts.select{|a| a.correct}.length.to_f / (@attempts.length)) * 1000.0).round / 10.0
+        @fof_count =  (@current_user.friend_count * 130 * 0.5).round
+        
+    	#grab affiliations
     	@my_affiliations = @fb_graph.fql_query("SELECT affiliations FROM user WHERE uid = me()").first["affiliations"]
-    	
-    	#Aggregate stuff
-    	@overall_correct_pct = ((Attempt.where(:correct => true).count.to_f  / Attempt.count.to_f) * 1000.0).round / 10.0
-        @avg_friend_count = User.connection.select_value("SELECT AVG(`friend_count`) FROM `users`")
+    	@my_affiliations.map!{ |affil|
+    	    affil_attempts = @attempts.select{ |att| att.affils.include?( affil["nid"].to_i ) }
+    	    affil_correct = affil_attempts.select{|att| att.correct}
+    	    affil_accuracy = ( (affil_correct.length.to_f / affil_attempts.length ) * 1000.0).round / 10.0 rescue 0
+    	    {
+    	        :name => affil['name'],
+    	        :attempts => affil_attempts.length.to_s,
+    	        :correct => affil_correct.length.to_s,
+    	        :accuracy => affil_accuracy.to_s
+    	    }
+        }
+      
+
         
-        @attempts.each{|a|  puts a.affils.include?(33572843)}
+        
     end
 end
