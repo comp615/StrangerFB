@@ -55,12 +55,28 @@ class GameController < ApplicationController
         #Load photos onto each user
         fql_query_hash = {}
         friends.each do |f|
-        	fql_query_hash[f["uid"]] = "SELECT src_big from photo where pid in (SELECT pid from photo_tag where subject =" + f["uid"].to_s + " order by rand() limit 3)"
+        	fql_query_hash[f["uid"]] = "SELECT xcoord,ycoord,pid from photo_tag where subject =" + f["uid"].to_s + " order by rand()  limit 5"
         end 
+        s = Time.now
         results = @fb_graph.fql_multiquery(fql_query_hash)
+        puts ((Time.now - s) / 5 ).to_s
+        
+        #Get the photo URLs
+        pids = results.map{|uid,data| data.map{|pt| pt["pid"].to_i}}
+        s = Time.now
+        src_results = @fb_graph.fql_query("SELECT pid,src_big from photo where pid IN (" + pids.flatten.join(",") + ")")
+        puts (Time.now - s).to_s
+        
+        #Attach URLs to tags
+        results.each do |uid,data|
+        	data.each do |p|
+        		pic = src_results.detect{|r| r["pid"].to_i == p["pid"].to_i}
+        		p["src"] = pic["src_big"] if(pic)
+        	end
+        end
         
  		#Finally attach them to the friends object to be sent back
-        friends.each{|f| f["photos"] = results[f["uid"].to_i].map{|p| p["src_big"]}}
+        friends.each{|f| f["photos"] = results[f["uid"].to_i]}
 
         #format friend objects for javascript
         friends = friends.map{|f| 

@@ -42,7 +42,7 @@ The Login Splash
 #splash #fb_login .button-text {
   display: block;
   padding: 15px 7px 17px 5px;
-  background: transparent url('/images/facebook-lg-r.png?1312231098') no-repeat top right;
+  background: transparent url('/images/facebook-lg-r.png?1322944760') no-repeat top right;
   color: #f2f2f2;
 }
 /* line 42, ../../app/assets/stylesheets/game.css.scss */
@@ -186,18 +186,36 @@ The Game Page
   margin-top: 4px;
 }
 
+/* line 155, ../../app/assets/stylesheets/game.css.scss */
+#hover_img {
+  display: none;
+  padding: 15px;
+  -webkit-border-radius: 6px 6px;
+  -moz-border-radius: 6px / 6px;
+  -o-border-radius: 6px / 6px;
+  -ms-border-radius: 6px / 6px;
+  -khtml-border-radius: 6px / 6px;
+  border-radius: 6px;
+  position: absolute;
+}
+/* line 161, ../../app/assets/stylesheets/game.css.scss */
+#hover_img .tag_box {
+  border: 2px solid red;
+  position: absolute;
+}
+
 /*-----------------------------------------
 The Results Link Page
 ------------------------------------------*/
-/* line 157, ../../app/assets/stylesheets/game.css.scss */
+/* line 169, ../../app/assets/stylesheets/game.css.scss */
 #results {
   padding: 160px 0px 0px 205px !important;
 }
-/* line 159, ../../app/assets/stylesheets/game.css.scss */
+/* line 171, ../../app/assets/stylesheets/game.css.scss */
 #results h4 {
   margin-bottom: 10px;
 }
-/* line 162, ../../app/assets/stylesheets/game.css.scss */
+/* line 174, ../../app/assets/stylesheets/game.css.scss */
 #results #results_button {
   margin-top: 15px;
   margin-left: 180px;
@@ -206,17 +224,25 @@ The Results Link Page
 /*-----------------------------------------
 The Actual Results Page
 ------------------------------------------*/
+<<<<<<< HEAD
 /* line 171, ../../app/assets/stylesheets/game.css.scss */
 #full_results p {
   font-size: 14px;
 }
 /* line 174, ../../app/assets/stylesheets/game.css.scss */
+=======
+/* line 183, ../../app/assets/stylesheets/game.css.scss */
+>>>>>>> 9eb9c1c030e4960cb70494c51c058fda6c3f54ca
 #full_results .score {
   color: #3e86ce;
   font-weight: bold;
   text-shadow: 0px -1px 0px #f2f2f2;
 }
+<<<<<<< HEAD
 /* line 179, ../../app/assets/stylesheets/game.css.scss */
+=======
+/* line 188, ../../app/assets/stylesheets/game.css.scss */
+>>>>>>> 9eb9c1c030e4960cb70494c51c058fda6c3f54ca
 #full_results .friend_box {
   display: block;
   float: left;
@@ -232,7 +258,11 @@ The Actual Results Page
   -khtml-border-radius: 3px / 3px;
   border-radius: 3px;
 }
+<<<<<<< HEAD
 /* line 188, ../../app/assets/stylesheets/game.css.scss */
+=======
+/* line 197, ../../app/assets/stylesheets/game.css.scss */
+>>>>>>> 9eb9c1c030e4960cb70494c51c058fda6c3f54ca
 #full_results .friend_box .image_crop {
   height: 80px;
   width: 100px;
@@ -241,15 +271,24 @@ The Actual Results Page
   margin-left: auto;
   margin-right: auto;
 }
+<<<<<<< HEAD
 /* line 196, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box a {
   font-size: 14px;
 }
 /* line 199, ../../app/assets/stylesheets/game.css.scss */
+=======
+/* line 205, ../../app/assets/stylesheets/game.css.scss */
+#full_results .friend_box a {
+  font-size: 14px;
+}
+/* line 208, ../../app/assets/stylesheets/game.css.scss */
+>>>>>>> 9eb9c1c030e4960cb70494c51c058fda6c3f54ca
 #full_results .friend_box:hover {
   background-color: #fff;
   border: 1px solid #ddd;
 }
+<<<<<<< HEAD
 /* line 204, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 {
   margin-top: 60px;
@@ -260,6 +299,13 @@ The Actual Results Page
   left: 496px;
 }
 /* line 211, ../../app/assets/stylesheets/game.css.scss */
+=======
+/* line 213, ../../app/assets/stylesheets/game.css.scss */
+#full_results h1 {
+  margin-top: 60px;
+}
+/* line 216, ../../app/assets/stylesheets/game.css.scss */
+>>>>>>> 9eb9c1c030e4960cb70494c51c058fda6c3f54ca
 #full_results h4 {
   margin-top: 30px;
 }

@@ -151,6 +151,18 @@ The Game Page
         }
     }
 }
+
+#hover_img{
+	display: none;
+	padding: 15px;
+	@include rounded_corners(6px);
+	position: absolute;
+	
+	.tag_box {
+		border: 2px solid red;
+		position: absolute;
+	}
+}
 /*-----------------------------------------
 The Results Link Page
 ------------------------------------------*/
