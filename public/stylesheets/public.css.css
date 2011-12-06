@@ -21,3 +21,20 @@
   color: #3e86ce;
   font-weight: bold;
 }
+
+/* line 25, ../../app/assets/stylesheets/public.css.scss */
+#mit-click {
+  font-weight: bold;
+  cursor: pointer;
+}
+/* line 28, ../../app/assets/stylesheets/public.css.scss */
+#mit-click:hover {
+  color: #3E86CE;
+}
+
+/* line 33, ../../app/assets/stylesheets/public.css.scss */
+#mit {
+  margin: 10px 30px 10px 30px;
+  display: none;
+  font-size: 10px;
+}

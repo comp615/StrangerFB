@@ -21,3 +21,17 @@
         font-weight:bold;
     }
 }
+
+#mit-click {
+	font-weight: bold;
+	cursor: pointer;
+	&:hover {
+		color: #3E86CE;
+	}
+}
+
+#mit {
+	margin: 10px 30px 10px 30px;	
+	display: none;
+	font-size: 10px;
+}
