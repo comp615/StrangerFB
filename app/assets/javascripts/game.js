@@ -5,6 +5,7 @@ var Friends = [];
 var CurrFriend = null; //currenlty show friend
 var requestActive = false;
 var game_end_ts = null;
+var timeout;
 /* 
     friend = {
         :uid
@@ -69,17 +70,14 @@ function ajaxLoadFriends(count, newRound){
 }
 
 function preload(arrayOfImages) {
-    $(arrayOfImages).each(function(){
-	    if(this["src"] != undefined)
-	    	$('<img/>')[0].src = this["src"];
-        else
-        	$('<img/>')[0].src = this;
-        // Alternatively you could use:
-        // (new Image()).src = this;
-    });
+    if (arrayOfImages instanceof Array) {
+	    $(arrayOfImages).each(function(){
+		    $('<img/>').attr("src",this["src"]);
+	    });
+    } else {
+	 	$('<img/>').attr("src",this);   
+    }
 }
-
-
 
 /*----------------------------------------------------------------------------------------
 Splash Page
@@ -134,9 +132,9 @@ $(document).ready( function() {
    $('#start_button').click(function(){
        $('#game').show();
        var h = $('#instructions').outerHeight();
-       showNextFriend();
        $('#instructions').animate({ marginTop: h*-1 }, 800, function(){
-           $('#instructions').hide();
+           showNextFriend();
+			$('#instructions').hide();
            startTimer();
            $('#guess').focus();
        });
@@ -145,6 +143,16 @@ $(document).ready( function() {
    $('#left_block').delegate('img.small','hover',function(event) {
 	   if( event.type === 'mouseenter' ) {
 		   $("#hover_img img")[0].src = $(this).attr('src');
+		   timeout = setTimeout(addRedBox(this),200);
+	   } else {
+		   clearTimeout(timeout);
+		   $("#hover_img").hide();
+	   }
+   });
+});
+
+function addRedBox(data_obj) {
+	return function() {
 		   $("#hover_img").css("left", 5);
 		   $("#hover_img").css("top", 5);
 		   $("#hover_img").show();
@@ -152,15 +160,11 @@ $(document).ready( function() {
 		   var w = $("#hover_img img").width();
 		   var h = $("#hover_img img").height();
 		   var wh = Math.max(w/8,h/8);
-		   $("#hover_img .tag_box").css("left", $("#hover_img img").offset().left + w * $(this).data("x") / 100 - wh/2);
-		   $("#hover_img .tag_box").css("top", $("#hover_img img").offset().top + h * $(this).data("y") / 100 - wh/2);
+		   $("#hover_img .tag_box").css("left", $("#hover_img img").offset().left + w * $(data_obj).data("x") / 100 - wh/2);
+		   $("#hover_img .tag_box").css("top", $("#hover_img img").offset().top + h * $(data_obj).data("y") / 100 - wh/2);
 		   $("#hover_img .tag_box").width(wh).height(wh);
-		   
-	   } else {
-		   $("#hover_img").hide();
-	   }
-   });
-});
+	   };	
+}
 
 //called once ten friends are loaded
 function showPlayButton(){
@@ -182,6 +186,7 @@ $(document).ready( function() {
 function showNextFriend(){
 
     //reset 
+    $("#hover_img").hide();
     $('#guess').val("").removeClass('invalid').focus();
     $('#left_block img.small').remove();
     $('#ibig').attr('src', "/images/loading_prof_pic.png");
@@ -210,28 +215,14 @@ function showNextFriend(){
     $.each( CurrFriend.photos, function(i,p){
         $('#ibig').after('<img class="small" src="' + p["src"] + '" data-x="' + p["xcoord"] + '" data-y="' + p["ycoord"] + '"/>');
         //TODO: Add a target box?
-        
-        //on last photo set resize hook
-        if (i === CurrFriend.photos.length-1 )
-            var itotal = $('#game img').length;
-            var icount=0;
-            $('#game img').load(function(){
-                
-                icount+=1;      
-                if ( icount !== itotal )
-                    return;
-                
-                icount = 1;    
-                //smooth resize container if necessary
-                var h = $('#game').outerHeight();
-                h = ( h < 400 ) ? 400 : h;
-                $('#container').animate({'height' : h + 'px'}, 300);
-            });
     });
     
-
-
-
+	setTimeout(function() {
+		//smooth resize container if necessary
+		var h = $('#game').outerHeight();
+		h = ( h < 400 ) ? 400 : h;
+		$('#container').animate({'height' : h + 'px'}, 300);
+	}, 350);
 }   
 
 function checkName(){
