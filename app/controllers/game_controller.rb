@@ -10,7 +10,7 @@ class GameController < ApplicationController
         # params :fb_id, :name => guess, :success
     	    
     	#get user data	
-		result = @fb_graph.fql_query("SELECT uid,name,sex,birthday,affiliations FROM user WHERE uid = " + params[:fb_id].to_s)   		
+		result = @fb_graph.fql_query("SELECT uid,name,sex,birthday_date,affiliations FROM user WHERE uid = " + params[:fb_id].to_s)   		
 	
 		#fail if bad user
 		if !result[0]["uid"]
@@ -25,7 +25,7 @@ class GameController < ApplicationController
 										:actual_name => result[0]["name"],
 										:affiliations => ActiveSupport::JSON.encode(result[0]["affiliations"].map{|a| a["nid"].to_i}),
 										:gender => result[0]["sex"], 
-										:age => User.age_from_bday_string( result[0]["birthday"] )
+										:age => User.age_from_bday_string( result[0]["birthday_date"] )
 									 })
         #return success
     	render :json => {}, :status => :ok
