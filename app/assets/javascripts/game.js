@@ -310,4 +310,17 @@ $(document).ready( function() {
         document.location.href= "/results?ts=" + game_end_ts;
     });
     
+    $('#share_on_facebook').click(function(){
+        var score = $('.score').first().text();
+        var msg = "I know " + String(score) + " of my FB friends! Time for some unfriendin'..."
+        FB.ui({ 
+            method: 'feed',
+            name: 'Whatsherface',
+            link: 'http://www.whatsherface-book.com',
+            picture: 'http://whatsherface-book.com/fb_logo.png',
+            caption: 'Whatsherface-book.com',
+            description: msg
+        });
+    });
+    
 });

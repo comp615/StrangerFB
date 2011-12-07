@@ -24,26 +24,6 @@ The Login Splash
         margin-right: auto;
         margin-top: 30px;
     }
-    #fb_login {
-        height: 46px;
-        width:160px;
-        display: block;
-        background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
-        padding-left: 48px;
-        cursor: pointer;
-
-        .button-text {
-            display: block;
-            padding: 15px 7px 17px 5px;
-            background: transparent image-url("/images/facebook-lg-r.png") no-repeat top right;
-            color: $grey;
-        }
-
-        &.active {
-            margin-top: 1px; // Class needs to be applied via JS since this is a div	
-        }
-    }
-
     #privacy_info {
         color: $sec_text;
         font-size: 11px;
@@ -180,6 +160,7 @@ The Results Link Page
 The Actual Results Page
 ------------------------------------------*/
 #full_results{
+    padding-top:20px;
     p{
         font-size:14px;
     }
@@ -215,15 +196,62 @@ The Actual Results Page
     }
     h1{
         margin-top:60px;
+        &.no-top-space{
+            margin-top:0px;
+        }
         .button{
             top:-9px;
             left:496px;
+            &.bottom{
+                left:382px;
+            }
         }
+    }
+    #share_line{
+        margin-top:24px;
+        padding-left:26px;
+        .giant_hand{
+            font-size:64px;
+            vertical-align:middle;
+        }
+        .facebook-button{
+            display:inline-block;
+            font-size: 16px;
+            margin-left: 18px;
+        }
+        margin-bottom:40px
     }
     h4{
         margin-top:30px;
+        padding-left:22px;
+        padding-bottom:8px;
+    }
+    #missed_friends{
+        padding-left:22px;
+    }
+    p{
+        font-size:14px;
+        line-height:1.36em;
+        padding-left:22px;
     }
     #next_steps{
         font-size:16px;
+        #social_links{
+            >div {
+                display:inline-block;
+                padding-left:8px;
+                iframe{
+                    border:none; 
+                    overflow:hidden; 
+                    width:106px !important; 
+                    height:24px !important; 
+                    vertical-align: middle;
+                }
+            }
+
+        }
+    }
+    #bottom_spacer{
+        height:30px;
     }
 }
