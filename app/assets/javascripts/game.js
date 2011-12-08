@@ -178,7 +178,7 @@ $(document).ready( function() {
     
  $('#guess').keyup( checkName );
  
- $('#idk').click( giveUp );
+ $('#idk, #unfair').click( giveUp );
       
 });
 
@@ -211,11 +211,19 @@ function showNextFriend(){
     }
         
     //add new pictures    
-    $('#ibig').attr('src', CurrFriend['big_path']);
+    $('#ibig').attr('src', CurrFriend['big_path']);    
     $.each( CurrFriend.photos, function(i,p){
         $('#ibig').after('<img class="small" src="' + p["src"] + '" data-x="' + p["xcoord"] + '" data-y="' + p["ycoord"] + '"/>');
         //TODO: Add a target box?
     });
+    
+    //Show the unfair button if it might be, hide otherwise
+    if(CurrFriend.photos.length <= 1) {
+    	$("#unfair").show();
+	} else {
+		$("#unfair").hide();
+	}
+    
     
 	setTimeout(function() {
 		//smooth resize container if necessary
@@ -256,7 +264,15 @@ function showAnswer(name){
     }, 900);
 }
 
-function giveUp(){  sendAnswer('', false); }
+function giveUp(){
+	//Ready for the best,literal programming ever seen?
+	if($(this).is("#unfair")) {
+		//Heh heh, don't worry, nothing could have prepared you for that
+		sendAnswer('unfair', false); 
+	} else {
+		sendAnswer('', false); 
+	}
+}
 
 function sendAnswer(guess, success){
     

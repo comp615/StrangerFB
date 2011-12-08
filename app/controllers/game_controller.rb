@@ -17,6 +17,12 @@ class GameController < ApplicationController
 		    render :json => {}, :status => :bad_request
 		    return
 	    end
+	    
+	    if(params[:name] == "unfair")
+	       	#TODO: What do we want to do about it? Ignore maybe? Log it somewhere?
+	       	render :json => {}, :status => :ok
+	       	return
+	    end
 	
 		# save attempt to DB 
 		@current_user.attempts.create({ :target_facebook_id => result[0]["uid"],
@@ -109,10 +115,10 @@ class GameController < ApplicationController
         @fullPageFlag = true
         
         #calculate aggregate stats
-    	@overall_correct_pct = Attempt.connection.select_value("SELECT AVG(`correct`) FROM `attempts`")
+    	@overall_correct_pct = Attempt.connection.select_value("SELECT AVG(`correct`) FROM `attempts` WHERE `guessed_name` != 'unfair'")
         
     	#break it down by age and genders
-    	@breakdown = Attempt.connection.select_all("SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,`gender`,`age` FROM `attempts` GROUP BY `gender`,`age` ORDER BY `age` ASC, `gender`;")
+    	@breakdown = Attempt.connection.select_all("SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,`gender`,`age` FROM `attempts` WHERE `guessed_name` != 'unfair' GROUP BY `gender`,`age` ORDER BY `age` ASC, `gender`;")
         
         #return here if not signed in
         return if !@current_user || @current_user.attempts.blank?
@@ -128,7 +134,7 @@ class GameController < ApplicationController
         end
     	@correct_attempts = @curr_attempts.select{|a| a.correct}
 		@incorrect_attempts = @curr_attempts.select{|a| !a.correct}		
-		@attempts = @current_user.attempts #aggregate 
+		@attempts = @current_user.attempts.where("`guessed_name` != 'unfair'") #aggregate 
     		
     	# add friend count if missing
     	@current_user.friend_count ||=  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")
