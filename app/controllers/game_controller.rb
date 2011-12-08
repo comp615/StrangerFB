@@ -109,8 +109,10 @@ class GameController < ApplicationController
         @fullPageFlag = true
         
         #calculate aggregate stats
-    	@overall_correct_pct = ((Attempt.where(:correct => true).count.to_f  / Attempt.count.to_f) * 1000.0).round / 10.0
+    	@overall_correct_pct = Attempt.connection.select_value("SELECT AVG(`correct`) FROM `attempts`")
         
+    	#break it down by age and genders
+    	@breakdown = Attempt.connection.select_all("SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,`gender`,`age` FROM `attempts` GROUP BY `gender`,`age` ORDER BY `age` ASC, `gender`;")
         
         #return here if not signed in
         return if !@current_user || @current_user.attempts.blank?
@@ -132,8 +134,8 @@ class GameController < ApplicationController
     	@current_user.friend_count ||=  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")
     	
     	#computer user scores
-    	@my_score = ((@correct_attempts.length.to_f / (@correct_attempts.length + @incorrect_attempts.length)) * 1000.0).round / 10.0 rescue 0
-    	@my_agg_score = ((@attempts.select{|a| a.correct}.length.to_f / (@attempts.length)) * 1000.0).round / 10.0
+    	@my_score = @correct_attempts.length.to_f / (@correct_attempts.length + @incorrect_attempts.length) rescue 0
+    	@my_agg_score = @attempts.select{|a| a.correct}.length.to_f / (@attempts.length)
         @fof_count =  (@current_user.friend_count * 130 * 0.5).round
         
     	#grab affiliations
@@ -141,7 +143,7 @@ class GameController < ApplicationController
     	@my_affiliations.map!{ |affil|
     	    affil_attempts = @attempts.select{ |att| att.affils.include?( affil["nid"].to_i ) }
     	    affil_correct = affil_attempts.select{|att| att.correct}
-    	    affil_accuracy = ( (affil_correct.length.to_f / affil_attempts.length ) * 1000.0).round / 10.0 rescue 0
+    	    affil_accuracy = (affil_correct.length.to_f / affil_attempts.length ) rescue 0
     	    {
     	        :name => affil['name'],
     	        :attempts => affil_attempts.length.to_s,

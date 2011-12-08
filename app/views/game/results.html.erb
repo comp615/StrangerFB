@@ -9,13 +9,13 @@
     <% if @current_user && !@current_user.attempts.blank? %>
         <% if params[:ts] %> 
             <h1 id="this_time_score">You scored 
-                <span class="score"><%= @my_score %>%</span>
+                <span class="score"><%= to_pct_with_places(@my_score,1) %></span>
                 <a href="/" class="button round green arrow snice">Play Again</a>
             </h1> 
         <% end %>
         <% if @my_score != @my_agg_score || !params[:ts]%> 
             <h1 class="no-top-space">Your overall score is 
-                <span class="score"><%= @my_agg_score %>%</span>
+                <span class="score"><%= to_pct_with_places(@my_agg_score,1) %></span>
             </h1>
         <% end %>
         
@@ -60,7 +60,7 @@
         <p>
             And you are in the following <strong>networks</strong>:
             <% @my_affiliations.each do |a| %>
-                <br />&nbsp;&nbsp;&nbsp;&nbsp;<%= a[:name] + " - where you knew "+ a[:accuracy] + "% of your friends presented" %>
+                <br />&nbsp;&nbsp;&nbsp;&nbsp;<%= a[:name] + " - where you knew "+ to_pct_with_places(a[:accuracy],1) + " of your friends presented" %>
             <% end %>
             <br />
             But those networks are FAR larger than your immediate friend group.
@@ -78,8 +78,24 @@
     
     
     <!--  Aggregate Stats -->
-    <h1>The average Facebook user <br />knows <span class="score"><%= @overall_correct_pct %>%</span> of their friends.</h1>
-    [ graph ]
+    <h1>The average Facebook user <br />knows <span class="score"><%= to_pct_with_places(@overall_correct_pct,1) %>%</span> of their friends.</h1>
+    
+    <!-- [graph] - this is obviously a placeholder -->
+    <table>
+    <tr><th>Age</th><th>Male</th><th>Female</th><th> Overall </th></tr>
+    <% @breakdown.group_by{|d| d["age"]}.each do |age,data| %>
+    	<% next if(age.nil?) %>
+    	<tr>
+	    	<td><%= age %></td>
+	    	<td><%= tally_data(data,"male") %></td>
+	    	<td><%= tally_data(data,"female") %></td>
+	    	<td><%= tally_data(data,"all") %></td>
+    	</tr>
+    <% end %>
+    <tr><td>Overall</td><td><%= tally_data(@breakdown,"male") %></td><td><%= tally_data(@breakdown,"female") %></td><td><%= tally_data(@breakdown,"all") %></td></tr>
+    </table>
+    
+    
     [ interesting commentary.. ]
     <br />
     
