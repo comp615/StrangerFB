@@ -19,7 +19,7 @@ module ApplicationHelper
 	end
 	
 	def to_pct_with_places(val,places)
-		return val.to_s if(places < 0 || (!val.is_a?(Numeric) && val =~ /^[\d]+(\.[\d]+){0,1}$/))
+		return val.to_s if(places < 0 || (!val.is_a?(Numeric) && val !=~ /^[\d]+(\.[\d]+){0,1}$/))
 		return ((val.to_f * 10 ** (places.to_i + 2)).round / (10 ** (places.to_i).to_f)).to_s + "%"
 	end
 end
