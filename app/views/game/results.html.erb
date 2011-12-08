@@ -8,20 +8,27 @@
     <!-- individual stats -->
     <% if @current_user && !@current_user.attempts.blank? %>
         <% if params[:ts] %> 
-            <h1>You scored 
+            <h1 id="this_time_score">You scored 
                 <span class="score"><%= @my_score %>%</span>
                 <a href="/" class="button round green arrow snice">Play Again</a>
             </h1> 
         <% end %>
         <% if @my_score != @my_agg_score || !params[:ts]%> 
-            <h1>Your overall score is 
+            <h1 class="no-top-space">Your overall score is 
                 <span class="score"><%= @my_agg_score %>%</span>
             </h1>
         <% end %>
         
-        [ fb share buttons w/ badge?   get at me virality.]
+        <!-- FB share button --> 
+        <div id="share_line">
+             <span class="giant_hand">☞</span>
+            <div id='share_on_facebook' class='facebook-button large'><span class='button-text'>Share my score!</span></div>
+        </div>
         
+        
+        <!-- Un-named Friends --> 
         <h4>You could not name the following friends:</h4>
+        <div id="missed_friends">
         <% @incorrect_attempts.each do |f| %>
             <a href="http://facebook.com/<%= f.target_facebook_id %>/" target="_blank" class="friend_box">
                 <div class="image_crop">
@@ -31,41 +38,42 @@
             </a>
         <% end %>
         <div class="clearfix">&nbsp;</div>
+        </div>
         
         
         <!-- Suggestive stats -->
         <h4 class="section">Have you adjusted your default privacy settings?</h4> 
         <p>
             Remember, information you share with your friends is distributed to:
-            <strong><%= @current_user.friend_count %> people</strong>.
+            <strong><%= number_with_delimiter(@current_user.friend_count.to_s) %> people</strong>.
         </p>   
         <p>
             Did you know that your friends can give up <em>your</em> personal 
-            information to 3rd party applications with a single click? 
-            Do you trust <strong>all <%= @current_user.friend_count %></strong> 
-            of them to always make good decisions?
+            information to 3rd party applications with a single click? <br />
+            Do you trust <strong>all <%= @current_user.friend_count / 100 %>-hundred</strong> 
+            of them to consistently make good decisions?
         </p>
         <p>
-            What's more: information you share with 'friends of friends' 
-            is distributed to around:<strong> <%= @fof_count %> people<strong>.
+            What's more: the information you share with 'friends of friends' 
+            is distributed to around:<strong> <%= number_with_delimiter(@fof_count.to_s) %> people</strong>.
         </p>
         <p>
             And you are in the following <strong>networks</strong>:
             <% @my_affiliations.each do |a| %>
-                <%= a[:name] + " - where you knew "+ a[:accuracy] + "% of the friends presented" %>
+                <br />&nbsp;&nbsp;&nbsp;&nbsp;<%= a[:name] + " - where you knew "+ a[:accuracy] + "% of your friends presented" %>
             <% end %>
             <br />
             But those networks are FAR larger than your immediate friend group.
         </p>
         <p>
-            Finally, data shared publicly on Facebook goes out to:
+            Finally, recall that data shared publicly on Facebook goes out to:
             <strong>800,000,000,000 people...</strong>  
         </p>
         <p>
-            <br />What's the <a href="http://www.takethislollipop.com/">worst</a> that could happen?
+            But you're probably fine... <br />What's the <a href="http://www.takethislollipop.com/">worst</a> that could happen?
         </p>
-            
-    
+        <br /><br />
+        <hr />
     <% end %>
     
     
@@ -77,11 +85,33 @@
     
     
     <!-- Call to action -->
-    <h4>What can I do?</h4>
-    <ol>
-        <li>[guide to remove friends]</li>
-        <li>[guide to create friend lists]</li>
-        <li>[guide to set privacy settings so other apps cant grab your info]</li>
+    <h1>Okay, so what should I do? 
+        <% if !@current_user || @current_user.attempts.blank? %>
+         <a href="/" class="button round green arrow snice bottom">Test yourself</a>
+        <%end %>
+     </h1>
+    <ol id="next_steps">
+        <li>Get <a href="https://www.facebook.com/help/?faq=172936839431357#How-do-I-unfriend-or-delete-a-friend?">un-friendin'</a></li>
+        <li>Create layered
+            <a href="https://www.facebook.com/help/?faq=190416214359937#How-do-I-create-and-edit-lists?">
+            friend lists</a> with different privacy settings to
+             more accurately represent and control your relationships.
+        </li>
+        <li>
+            <a href="https://www.facebook.com/help/?faq=117646641653775#Why-aren’t-all-of-my-friends-visible-while-using-a-certain-app?">
+                Restrict</a> what (if any) of your personal information 
+                your friends can share with 3rd party apps.
+        </li>
+        <li id="social_links">
+            Spread the word!
+            <div>
+                <a href="http://www.whatsherface-book.com" class="twitter-share-button" data-url="www.whatsherface-book.com" data-text="WhatsHerFace-book.com - Do you even know all your FB friends anymore!?! Methinks its time to do a little unfriendin'... #FB" data-count="horizontal" data-related="baygross:charliecroom" data-via="baygross">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+            </div>
+            <div>
+                <iframe src="//www.facebook.com/plugins/like.php?href=http://www.facebook.com/pages/WhatsHerFacebook/195383003882500&amp;send=false&amp;layout=button_count&amp;width=62&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=71" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+            </div>
+        </li>
     </ol>
     
+    <div id="bottom_spacer">&nbsp;</div>
 </div>
