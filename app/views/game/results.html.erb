@@ -19,13 +19,13 @@
     <!-- individual stats -->
     <% if @current_user && !@current_user.attempts.blank? %>
         <% if params[:ts] %> 
-            <h1 id="this_time_score">You scored 
+            <h1 id="this_time_score" class="top-title">You scored 
                 <span class="score"><%= to_pct_with_places(@my_score,1) %></span>
                 <a href="/" class="button round green arrow snice">Play Again</a>
             </h1> 
         <% end %>
         <% if @my_score != @my_agg_score || !params[:ts]%> 
-            <h1 class="no-top-space">Your overall score is 
+            <h1 class="top-title">Your overall score is 
                 <span class="score"><%= to_pct_with_places(@my_agg_score,1) %></span>
             </h1>
         <% end %>
@@ -36,6 +36,13 @@
             <div id='share_on_facebook' class='facebook-button large'><span class='button-text'>Share my score!</span></div>
         </div>
         
+        <!-- [ pie chart]  -->
+        <%= render :partial => '/charts/pie', :locals => {
+                :id => 'indiv', 
+                :known => @correct_attempts.count, 
+                :unknown => @incorrect_attempts.count, 
+                :ctitle => "You knew #{@correct_attempts.count} of #{@curr_attempts.count} friends presented." 
+        }%>
         
         <!-- Un-named Friends --> 
         <h4>You could not name the following friends:</h4>
@@ -50,7 +57,7 @@
         <% end %>
         <div class="clearfix">&nbsp;</div>
         </div>
-        
+        <div class="clearfix">&nbsp;</div>
         
         <!-- Suggestive stats -->
         <h4 class="section">Have you adjusted your default privacy settings?</h4> 
@@ -91,7 +98,9 @@
     <!--  Aggregate Stats -->
     <h1>The average Facebook user <br />knows <span class="score"><%= to_pct_with_places(@overall_correct_pct,1) %></span> of their friends.</h1>
     
-    <!-- [graph] - this is obviously a placeholder -->
+    <!-- [ pie chart]  -->
+
+        
     <table>
     <tr><th>Age</th><th>Male</th><th>Female</th><th> Total </th></tr>
     <% @breakdown.group_by{|d| d["age"]}.each do |age,data| %>

@@ -163,9 +163,11 @@ The Actual Results Page
     #photo_pile{
         width:220px;
         height:200px;
-        position:relative;
-        float:right;
+        position:absolute;
+        top: 64px;
+        left: 784px;
         img{
+            @include dropShadow(0px, 1px, 3px, rgba(0, 0, 0, .4) ) ;
             position:absolute;
             width:100px;
             border:3px solid #fff;
@@ -255,7 +257,7 @@ The Actual Results Page
     }
     h1{
         margin-top:80px;
-        &.no-top-space{
+        &.top-title :nth-child(2){
             margin-top:0px;
         }
         .button{
@@ -278,7 +280,7 @@ The Actual Results Page
             font-size: 16px;
             margin-left: 18px;
         }
-        margin-bottom:40px
+        margin-bottom:60px
     }
     table{
         width:600px;
@@ -286,6 +288,7 @@ The Actual Results Page
         margin-top:30px;
         margin-bottom:8px;
         margin-left:10px;
+         border:1px solid #eee;
         th{
             font-weight:bold;
             padding-top: 6px;
@@ -300,6 +303,21 @@ The Actual Results Page
         margin-left:10px;
         width:600px;
         text-align:center;
+    }
+    .chart{
+        border:1px solid #eee;
+        width:320px;
+        &.large{
+            width:600px;
+        }
+    }
+    #chart_indiv{
+        float: right;
+        height: 462px;
+        margin-bottom: 7px;
+        margin-right: 142px;
+        margin-top: 43px;
+        width: 322px;
     }
     h4{
         margin-top:30px;
