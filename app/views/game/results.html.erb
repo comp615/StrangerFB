@@ -105,8 +105,8 @@
             :ytitle => "Percent known",
             :xops => ['<18', '18-20', '21-23', '23-25', '25+'], 
             :tt_desc => " this.x + ' year-old ' + this.series.name.toLowerCase()  + ' knew ' + this.y + '% of their friends.' ",
-            :men_data => [45, 23, 39, 10, 5],
-            :women_data => [23, 90, 58, 29, 14]
+            :men_data => [0.45, 0.23, 0.39, 0.10, 0.05],
+            :women_data => [0.23, 0.90, 0.58, 0.29, 0.14]
     }%>
     <!-- and its table --> 
     <table>
@@ -133,8 +133,8 @@
             :ytitle => "Percent known",
             :xops => ['Male Friends', 'Female Friends'], 
             :tt_desc => "this.series.name + ' knew ' + this.y + '% of their ' + this.x.toLowerCase() + '.' ",
-            :men_data => [45, 23],
-            :women_data => [23, 90]
+            :men_data => [tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "male"},"male",false), tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "male"},"female",false)],
+            :women_data => [tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "female"},"male",false), tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "female"},"female",false)]
     }%>
     <!-- and its table --> 
     <table>
