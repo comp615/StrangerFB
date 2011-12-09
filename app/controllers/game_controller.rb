@@ -138,8 +138,9 @@ class GameController < ApplicationController
 		@attempts = @current_user.attempts.where("`guessed_name` != 'unfair'") #aggregate 
     		
     	# add friend count if missing
-        if @current_user.friend_count < 10 
-             @current_user.friend_count =  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")
+        if @current_user.friend_count.nil? || @current_user.friend_count < 10 
+             @current_user.friend_count =  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")[0]["friend_count"]
+             @current_user.save!
         end
     
     	#computer user scores
