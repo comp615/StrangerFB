@@ -6,6 +6,7 @@ var CurrFriend = null; //currenlty show friend
 var requestActive = false;
 var game_end_ts = null;
 var timeout;
+var old_ids = [];
 
 //CONSTANTS FOR LOADING
 var initial_load = 15;
@@ -38,7 +39,7 @@ function ajaxLoadFriends(count, newRound){
 		return;
     requestActive = true;
     //collect current friend list
-    existing_friends = [];
+    existing_friends = old_ids;
     $.each(Friends, function(i, f){
        existing_friends.push(f.fb_id); 
     });
@@ -212,6 +213,8 @@ function showNextFriend(){
     
     //get next friend
     CurrFriend = Friends.shift();
+    if(CurrFriend)
+    	old_ids.push(CurrFriend["id"]);
     
     //preload the second to next
     if(Friends.length > 1) {
