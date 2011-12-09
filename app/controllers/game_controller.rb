@@ -57,32 +57,25 @@ class GameController < ApplicationController
         
         #reduce down to the number we want
         friends = friends.sample( params[:limit] )
-        
-        #Load photos onto each user
-        fql_query_hash = {}
-        friends.each do |f|
-        	fql_query_hash[f["uid"]] = "SELECT xcoord,ycoord,pid from photo_tag where subject =" + f["uid"].to_s + " order by rand()  limit 5"
-        end 
+
         s = Time.now
-        results = @fb_graph.fql_multiquery(fql_query_hash)
-        puts ((Time.now - s) / 5 ).to_s
-        
-        #Get the photo URLs
-        pids = results.map{|uid,data| data.map{|pt| pt["pid"].to_i}}
-        s = Time.now
-        src_results = @fb_graph.fql_query("SELECT pid,src_big from photo where pid IN (" + pids.flatten.join(",") + ")")
+        #User a batched graph API to get the photos in one swoop, don't use random photos I guess?
+        results = @fb_graph.batch do |batch_api|
+        	friends.each do |f|
+        		batch_api.get_connections(f['uid'], "photos?limit=15")	#Grab 15, end up with 3 so we get some randomness not just newest 3
+        	end
+		end
         puts (Time.now - s).to_s
         
-        #Attach URLs to tags
-        results.each do |uid,data|
-        	data.each do |p|
-        		pic = src_results.detect{|r| r["pid"].to_i == p["pid"].to_i}
-        		p["src"] = pic["src_big"] if(pic)
-        	end
-        end
-        
  		#Finally attach them to the friends object to be sent back
-        friends.each{|f| f["photos"] = results[f["uid"].to_i]}
+        #friends.each{|f| f["photos"] = results[f["uid"].to_i]}
+        results.each_with_index do |r_arr,idx|
+        	photos = r_arr.map do |r|
+        		tag = r["tags"]["data"].detect{|t| t["id"].to_i == friends[idx]["uid"].to_i}
+        		{:xcoord => tag["x"],:ycoord => tag["y"],:src => r["source"]}
+        	end
+        	friends[idx]["photos"] = photos.sample(3)
+        end
 
         #format friend objects for javascript
         friends = friends.map{|f| 
@@ -95,10 +88,11 @@ class GameController < ApplicationController
         }
         
         #if we can limit to just friends with good photos easily, do so
-        friends_with_pics = friends.select{ |f| f[:photos].count > 1 }
-        if friends_with_pics.count > params[:limit]*0.75
-            friends = friends_with_pics
-        end
+        #NOTE: This kills efficency and needs to be done in JS by moving friends without photos to the end of the array
+        #friends_with_pics = friends.select{ |f| f[:photos].length > 1 }
+        #if friends_with_pics.count > params[:limit]*0.75
+        #    friends = friends_with_pics
+        #end
             
         
         #Update play count if needed

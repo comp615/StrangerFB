@@ -6,6 +6,12 @@ var CurrFriend = null; //currenlty show friend
 var requestActive = false;
 var game_end_ts = null;
 var timeout;
+
+//CONSTANTS FOR LOADING
+var initial_load = 15;
+var load_increment = 8;
+var load_threshold = 16; //higher than initial load so it immediately triggers another set
+
 /* 
     friend = {
         :uid
@@ -15,6 +21,10 @@ var timeout;
     }
    
 */
+function picSort(a,b)
+{
+return b["photos"].length - a["photos"].length;
+}
 
 //batch load friends
 function ajaxLoadFriends(count, newRound){
@@ -43,6 +53,9 @@ function ajaxLoadFriends(count, newRound){
              Friends.push(f);
          });
          
+         //Reorder the array so people without pics come last
+         Friends.sort(picSort);
+         
          //load play button
          if ( CurrFriend === null )
             showPlayButton();
@@ -55,6 +68,9 @@ function ajaxLoadFriends(count, newRound){
 	      	preload(Friends[1].photos);   
 	      	preload(Friends[1]['big_path']);
          }
+         
+         if(Friends.length < load_threshold)
+         	ajaxLoadFriends(load_increment);
          
       }, 
       // problem with ajax, just show a nice error message and hide the game
@@ -94,7 +110,7 @@ function loginSuccess() {
     var h = $('#splash').outerHeight();
     $('#splash').animate({ marginTop: h*-1 }, 800, function(){
         $('#splash').hide();
-        ajaxLoadFriends(10, true); //preload during instructions view
+        ajaxLoadFriends(initial_load, true); //preload during instructions view
     });
 }
 
@@ -204,8 +220,8 @@ function showNextFriend(){
 	}
 
     //check if we need more friends
-    if(Friends.length < 8)
-    	ajaxLoadFriends(8); //may have to fudge this in production
+    if(Friends.length < load_threshold)
+    	ajaxLoadFriends(load_increment); //may have to fudge this in production
     
     //if no friends, wait 1sec and try again (ajax will return)
     if ( CurrFriend === undefined ){
