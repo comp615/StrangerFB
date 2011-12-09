@@ -76,7 +76,7 @@ class GameController < ApplicationController
         		tag = r["tags"]["data"].detect{|t| t["id"].to_i == friends[idx]["uid"].to_i}
         		{:xcoord => tag["x"],:ycoord => tag["y"],:src => r["source"]}
         	end
-        	friends[idx]["photos"] = photos.sample(3)
+        	friends[idx]["photos"] = photos.sample(5)
         end
 
         #format friend objects for javascript
