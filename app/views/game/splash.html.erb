@@ -53,7 +53,7 @@
     <p>
     Good luck!
     </p>
-    <div id="loading_wait"><img src="/images/spinner.gif" /> Loading...</div>
+    <div id="loading_wait"><%= image_tag("spinner.gif") %> Loading...</div>
     <div style="display:none" id="start_button" class="button round green right nice arrow">Let's Go</div>
     <div class="clearfix">&nbsp;</div>
 </div>
@@ -62,7 +62,7 @@
 <div id='game' style='display:none'>
     <div id="timer">90</div>
     <div id="left_block">
-		<img id="ibig" class="big" src="/images/loading_prof_pic.png" />
+    	<%= image_tag("loading_prof_pic.png", :class => "big", :id => "ibig" %>
 		<div id="unfair" class="button round nice white full-width" style="display: none">Not Fair!</div>
 		<div class="clearfix">&nbsp;</div>
     </div>
