@@ -441,7 +441,7 @@ The Actual Results Page
   width: 600px;
 }
 /* line 315, ../../app/assets/stylesheets/game.css.scss */
-#full_results #chart_indiv {
+#full_results #chart_indiv_pie {
   float: right;
   height: 462px;
   margin-bottom: 7px;
