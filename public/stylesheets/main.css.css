@@ -165,12 +165,12 @@ body {
 }
 /* line 133, ../../app/assets/stylesheets/main.css.scss */
 .button.green.arrow {
-  background: url("../images/white-button-arrow.png") no-repeat right center #53bb2a;
+  background: url('/images/white-button-arrow.png?1322944760') no-repeat right center #53bb2a;
   padding-right: 32px;
 }
 /* line 137, ../../app/assets/stylesheets/main.css.scss */
 .button.green:hover {
-  background: url("../images/white-button-arrow.png") no-repeat right center #4fad2a;
+  background: url('/images/white-button-arrow.png?1322944760') no-repeat right center #4fad2a;
 }
 
 /* line 144, ../../app/assets/stylesheets/main.css.scss */
@@ -178,7 +178,7 @@ body {
   height: 46px;
   width: 160px;
   display: block;
-  background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
+  background: transparent url('/images/facebook-lg-f.png?1322944760') no-repeat top left;
   padding-left: 48px;
   cursor: pointer;
 }
@@ -186,7 +186,7 @@ body {
 .facebook-button .button-text {
   display: block;
   padding: 15px 7px 17px 5px;
-  background: transparent url('/images/facebook-lg-r.png?1312231098') no-repeat top right;
+  background: transparent url('/images/facebook-lg-r.png?1322944760') no-repeat top right;
   color: #f2f2f2;
 }
 /* line 159, ../../app/assets/stylesheets/main.css.scss */
