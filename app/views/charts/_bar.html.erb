@@ -38,10 +38,10 @@ $(document).ready(function() {
         },
 
          series: [{
-           name: 'Men',
+           name: '<%= yops[0] %>',
            data: [<%= men_data.map{|d| d * 100}.join(', ') %>],
         }, {
-           name: 'Women',
+           name: '<%= yops[1] %>',
            data: [<%= women_data.map{|d| d * 100}.join(', ') %>],
         }]
      });

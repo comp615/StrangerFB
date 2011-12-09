@@ -129,6 +129,10 @@ The Game Page
         #idk{
             margin-top:4px;  
         }
+        #unfair{
+            width:170px;
+            margin-right:200px;
+        }
     }
 }
 
@@ -259,12 +263,12 @@ The Actual Results Page
     h1{
         margin-top:80px;
         margin-bottom:40px;
-        &.top-title :nth-child(2){
+        &.top-title:nth-child(3){
             margin-top:0px;
         }
         .button{
             top:-9px;
-            left:496px;
+            left:54px;
             &.bottom{
                 left:292px;
             }
@@ -285,11 +289,12 @@ The Actual Results Page
         margin-bottom:60px
     }
     table{
-        width:600px;
+        float:left;
+        width:400px;
         padding:15px;
-        margin-top:30px;
+        margin-top:160px;
         margin-bottom:8px;
-        margin-left:10px;
+        margin-left:24px;
          border:1px solid #eee;
         th{
             font-weight:bold;
@@ -302,11 +307,14 @@ The Actual Results Page
         }
     }
     .caption{
-        margin-left:10px;
-        width:600px;
+        margin-left:50px;
+        width:350px;
         text-align:center;
+        float:left;
     }
     .chart{
+        margin-top:30px;
+        float:left;
         border:1px solid #eee;
         width:320px;
         &.large{

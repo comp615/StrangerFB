@@ -165,8 +165,13 @@ The Game Page
 #game #right_block #idk {
   margin-top: 4px;
 }
+/* line 132, ../../app/assets/stylesheets/game.css.scss */
+#game #right_block #unfair {
+  width: 170px;
+  margin-right: 200px;
+}
 
-/* line 135, ../../app/assets/stylesheets/game.css.scss */
+/* line 139, ../../app/assets/stylesheets/game.css.scss */
 #hover_img {
   display: none;
   padding: 15px;
@@ -178,7 +183,7 @@ The Game Page
   border-radius: 6px;
   position: absolute;
 }
-/* line 141, ../../app/assets/stylesheets/game.css.scss */
+/* line 145, ../../app/assets/stylesheets/game.css.scss */
 #hover_img .tag_box {
   border: 2px solid red;
   position: absolute;
@@ -187,15 +192,15 @@ The Game Page
 /*-----------------------------------------
 The Results Link Page
 ------------------------------------------*/
-/* line 149, ../../app/assets/stylesheets/game.css.scss */
+/* line 153, ../../app/assets/stylesheets/game.css.scss */
 #results {
   padding: 160px 0px 0px 205px !important;
 }
-/* line 151, ../../app/assets/stylesheets/game.css.scss */
+/* line 155, ../../app/assets/stylesheets/game.css.scss */
 #results h4 {
   margin-bottom: 10px;
 }
-/* line 154, ../../app/assets/stylesheets/game.css.scss */
+/* line 158, ../../app/assets/stylesheets/game.css.scss */
 #results #results_button {
   margin-top: 15px;
   margin-left: 180px;
@@ -204,11 +209,11 @@ The Results Link Page
 /*-----------------------------------------
 The Actual Results Page
 ------------------------------------------*/
-/* line 162, ../../app/assets/stylesheets/game.css.scss */
+/* line 166, ../../app/assets/stylesheets/game.css.scss */
 #full_results {
   position: relative;
 }
-/* line 164, ../../app/assets/stylesheets/game.css.scss */
+/* line 168, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile {
   width: 220px;
   height: 200px;
@@ -216,7 +221,7 @@ The Actual Results Page
   top: -16px;
   left: 689px;
 }
-/* line 170, ../../app/assets/stylesheets/game.css.scss */
+/* line 174, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img {
   -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
@@ -231,7 +236,7 @@ The Actual Results Page
   -khtml-border-radius: 2px / 2px;
   border-radius: 2px;
 }
-/* line 176, ../../app/assets/stylesheets/game.css.scss */
+/* line 180, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(1) {
   top: 50px;
   left: 0px;
@@ -243,7 +248,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 1;
 }
-/* line 182, ../../app/assets/stylesheets/game.css.scss */
+/* line 186, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(2) {
   top: 0px;
   left: 0px;
@@ -255,7 +260,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 2;
 }
-/* line 188, ../../app/assets/stylesheets/game.css.scss */
+/* line 192, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(3) {
   top: 30px;
   left: 78px;
@@ -267,7 +272,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 50;
 }
-/* line 194, ../../app/assets/stylesheets/game.css.scss */
+/* line 198, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(4) {
   top: 10px;
   left: 22px;
@@ -279,7 +284,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 4;
 }
-/* line 200, ../../app/assets/stylesheets/game.css.scss */
+/* line 204, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(5) {
   top: 15px;
   left: 94px;
@@ -291,7 +296,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 5;
 }
-/* line 206, ../../app/assets/stylesheets/game.css.scss */
+/* line 210, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(6) {
   top: 70;
   left: 60px;
@@ -303,7 +308,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 6;
 }
-/* line 212, ../../app/assets/stylesheets/game.css.scss */
+/* line 216, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(7) {
   top: 75px;
   left: 55px;
@@ -315,7 +320,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 7;
 }
-/* line 218, ../../app/assets/stylesheets/game.css.scss */
+/* line 222, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(8) {
   top: 50px;
   left: 50px;
@@ -327,17 +332,17 @@ The Actual Results Page
   zoom: 1;
   z-index: 100;
 }
-/* line 226, ../../app/assets/stylesheets/game.css.scss */
+/* line 230, ../../app/assets/stylesheets/game.css.scss */
 #full_results p {
   font-size: 14px;
 }
-/* line 229, ../../app/assets/stylesheets/game.css.scss */
+/* line 233, ../../app/assets/stylesheets/game.css.scss */
 #full_results .score {
   color: #3e86ce;
   font-weight: bold;
   text-shadow: 0px -1px 0px #f2f2f2;
 }
-/* line 234, ../../app/assets/stylesheets/game.css.scss */
+/* line 238, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box {
   display: block;
   float: left;
@@ -353,7 +358,7 @@ The Actual Results Page
   -khtml-border-radius: 3px / 3px;
   border-radius: 3px;
 }
-/* line 243, ../../app/assets/stylesheets/game.css.scss */
+/* line 247, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box .image_crop {
   height: 80px;
   width: 100px;
@@ -362,89 +367,93 @@ The Actual Results Page
   margin-left: auto;
   margin-right: auto;
 }
-/* line 251, ../../app/assets/stylesheets/game.css.scss */
+/* line 255, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box a {
   font-size: 14px;
 }
-/* line 254, ../../app/assets/stylesheets/game.css.scss */
+/* line 258, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box:hover {
   background-color: #fff;
   border: 1px solid #ddd;
 }
-/* line 259, ../../app/assets/stylesheets/game.css.scss */
+/* line 263, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 {
   margin-top: 80px;
   margin-bottom: 40px;
 }
-/* line 262, ../../app/assets/stylesheets/game.css.scss */
-#full_results h1.top-title :nth-child(2) {
+/* line 266, ../../app/assets/stylesheets/game.css.scss */
+#full_results h1.top-title:nth-child(3) {
   margin-top: 0px;
 }
-/* line 265, ../../app/assets/stylesheets/game.css.scss */
+/* line 269, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 .button {
   top: -9px;
-  left: 496px;
+  left: 54px;
 }
-/* line 268, ../../app/assets/stylesheets/game.css.scss */
+/* line 272, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 .button.bottom {
   left: 292px;
 }
-/* line 273, ../../app/assets/stylesheets/game.css.scss */
+/* line 277, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line {
   margin-top: 24px;
   padding-left: 26px;
   margin-bottom: 60px;
 }
-/* line 276, ../../app/assets/stylesheets/game.css.scss */
+/* line 280, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line .giant_hand {
   font-size: 64px;
   vertical-align: middle;
 }
-/* line 280, ../../app/assets/stylesheets/game.css.scss */
+/* line 284, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line .facebook-button {
   display: inline-block;
   font-size: 16px;
   margin-left: 18px;
 }
-/* line 287, ../../app/assets/stylesheets/game.css.scss */
+/* line 291, ../../app/assets/stylesheets/game.css.scss */
 #full_results table {
-  width: 600px;
+  float: left;
+  width: 400px;
   padding: 15px;
-  margin-top: 30px;
+  margin-top: 160px;
   margin-bottom: 8px;
-  margin-left: 10px;
+  margin-left: 24px;
   border: 1px solid #eee;
 }
-/* line 294, ../../app/assets/stylesheets/game.css.scss */
+/* line 299, ../../app/assets/stylesheets/game.css.scss */
 #full_results table th {
   font-weight: bold;
   padding-top: 6px;
   padding-bottom: 6px;
 }
-/* line 299, ../../app/assets/stylesheets/game.css.scss */
+/* line 304, ../../app/assets/stylesheets/game.css.scss */
 #full_results table .title {
   font-weight: bold;
 }
-/* line 300, ../../app/assets/stylesheets/game.css.scss */
+/* line 305, ../../app/assets/stylesheets/game.css.scss */
 #full_results table td {
   text-align: center;
 }
-/* line 304, ../../app/assets/stylesheets/game.css.scss */
-#full_results .caption {
-  margin-left: 10px;
-  width: 600px;
-  text-align: center;
-}
 /* line 309, ../../app/assets/stylesheets/game.css.scss */
+#full_results .caption {
+  margin-left: 50px;
+  width: 350px;
+  text-align: center;
+  float: left;
+}
+/* line 315, ../../app/assets/stylesheets/game.css.scss */
 #full_results .chart {
+  margin-top: 30px;
+  float: left;
   border: 1px solid #eee;
   width: 320px;
 }
-/* line 312, ../../app/assets/stylesheets/game.css.scss */
+/* line 320, ../../app/assets/stylesheets/game.css.scss */
 #full_results .chart.large {
   width: 600px;
 }
-/* line 316, ../../app/assets/stylesheets/game.css.scss */
+/* line 324, ../../app/assets/stylesheets/game.css.scss */
 #full_results #chart_indiv_pie {
   float: right;
   height: 462px;
@@ -453,37 +462,37 @@ The Actual Results Page
   margin-top: 43px;
   width: 322px;
 }
-/* line 324, ../../app/assets/stylesheets/game.css.scss */
+/* line 332, ../../app/assets/stylesheets/game.css.scss */
 #full_results h4 {
   margin-top: 30px;
   padding-left: 22px;
   padding-bottom: 8px;
 }
-/* line 329, ../../app/assets/stylesheets/game.css.scss */
+/* line 337, ../../app/assets/stylesheets/game.css.scss */
 #full_results #missed_friends {
   padding-left: 22px;
 }
-/* line 332, ../../app/assets/stylesheets/game.css.scss */
+/* line 340, ../../app/assets/stylesheets/game.css.scss */
 #full_results p {
   font-size: 14px;
   line-height: 1.36em;
   padding-left: 22px;
 }
-/* line 337, ../../app/assets/stylesheets/game.css.scss */
+/* line 345, ../../app/assets/stylesheets/game.css.scss */
 #full_results #next_steps {
   font-size: 16px;
 }
-/* line 340, ../../app/assets/stylesheets/game.css.scss */
+/* line 348, ../../app/assets/stylesheets/game.css.scss */
 #full_results #bottom_spacer {
   height: 30px;
 }
 
-/* line 345, ../../app/assets/stylesheets/game.css.scss */
+/* line 353, ../../app/assets/stylesheets/game.css.scss */
 .social_links > div {
   display: inline-block;
   padding-left: 8px;
 }
-/* line 348, ../../app/assets/stylesheets/game.css.scss */
+/* line 356, ../../app/assets/stylesheets/game.css.scss */
 .social_links > div iframe {
   border: none;
   overflow: hidden;

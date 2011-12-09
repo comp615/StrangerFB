@@ -115,6 +115,7 @@
             :ctitle => "Percent of friends known, by user age and gender",
             :ytitle => "Percent known",
             :xops => ['<18', '18-21', '21-23', '23-25', '25+'], 
+            :yops => ['Men', 'Women'],
             :tt_desc => " this.x + ' year-old ' + this.series.name.toLowerCase()  + ' knew ' + this.y + '% of their friends.' ",
             :men_data => [tally_data(@breakdown.select{|d| (1..17).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (18..20).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (21..22).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (23..24).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (25..100).include? d["age"]},"male",false)],
             :women_data => [tally_data(@breakdown.select{|d| (1..17).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (18..20).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (21..22).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (23..24).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (25..100).include? d["age"]},"female",false)]
@@ -142,10 +143,11 @@
             :id => 'agg_gender', 
             :ctitle => "Are guys more likely to friend girls on a whim?",
             :ytitle => "Percent known",
-            :xops => ['Male Friends', 'Female Friends'], 
-            :tt_desc => "this.series.name + ' knew ' + this.y + '% of their ' + this.x.toLowerCase() + '.' ",
-            :men_data => [tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "male"},"male",false), tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "male"},"female",false)],
-            :women_data => [tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "female"},"male",false), tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "female"},"female",false)]
+            :xops => ['Men', 'Women'], 
+            :yops => ['Male Friends', 'Female Friends'],
+            :tt_desc => "this.x + ' knew ' + this.y + '% of their ' + this.series.name.toLowerCase() + '.' ",
+            :men_data => [tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "male"},"male",false), tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "female"},"male",false)],
+            :women_data => [tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "male"},"female",false), tally_data(@gender_gender_breakdown.select{|r| r["user_gender"] == "female"},"female",false)]
     }%>
     <!-- and its table --> 
     <table>
@@ -161,9 +163,10 @@
       	</tr>
       <% end %>
       </table>
-      <div class="caption">Above: Are guys more likely to friend girls on a whim?</div>
+      <div class="caption">Above: the percentage of 'friends known' is graphed for gender-gender correlations.</div>
       <br />
     
+    <div class="clearfix">&nbsp;</div>
     
     <!-- Call to action -->
     <h1>Okay, so what should I do? 
