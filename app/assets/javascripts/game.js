@@ -142,6 +142,10 @@ $(document).ready( function() {
    
    $('#left_block').delegate('img.small','hover',function(event) {
 	   if( event.type === 'mouseenter' ) {
+		   var w = $(this).offset().left - 45;
+		   $("#hover_img img").css("max-width",w);
+		   var t = Math.round($(this).offset().top - 300);
+		   $("#hover_img").css("top",Math.max(t,5));
 		   $("#hover_img img")[0].src = $(this).attr('src');
 		   timeout = setTimeout(addRedBox(this),200);
 	   } else {
@@ -154,14 +158,13 @@ $(document).ready( function() {
 function addRedBox(data_obj) {
 	return function() {
 		   $("#hover_img").css("left", 5);
-		   $("#hover_img").css("top", 5);
 		   $("#hover_img").show();
 		   
 		   var w = $("#hover_img img").width();
 		   var h = $("#hover_img img").height();
 		   var wh = Math.max(w/8,h/8);
-		   $("#hover_img .tag_box").css("left", $("#hover_img img").offset().left + w * $(data_obj).data("x") / 100 - wh/2);
-		   $("#hover_img .tag_box").css("top", $("#hover_img img").offset().top + h * $(data_obj).data("y") / 100 - wh/2);
+		   $("#hover_img .tag_box").css("left", w * $(data_obj).data("x") / 100 - wh/2);
+		   $("#hover_img .tag_box").css("top", h * $(data_obj).data("y") / 100 - wh/2);
 		   $("#hover_img .tag_box").width(wh).height(wh);
 	   };	
 }
