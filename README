@@ -1,4 +1,33 @@
 Yale University
 CPSC 183 Final Project
 
-Details Coming Soon
+Authors:
+Bay Gross (@baygross)
+Charlie Croom (@charliecroom)
+
+StrangerFB (launched as whatsherface-book.com) is a quick, personalized game where you are challenged
+to name several of your Facebook friends in succession while racing the clock. 
+
+Though fun, we also intend this game to help Facebook users consider their privacy exposure 
+online. Most consumers now know not to make their personal information public, but after years of social networking 
+(and hundreds or even thousands of connections) it is clear that many of our online 'friendships' 
+are simply (and sadly) no longer entact. 
+It is worth questioning whether these 'friendships' should remain privy to the same level of online confidence they once held?
+
+
+Technical Details
+
+Powered by Ruby on Rails and Heroku. This application 
+is hosted publicly on GitHub and provided under the MIT License (MIT).
+
+
+Terms and Conditions & Privacy
+
+Only the information required to provide this service is stored on our servers. 
+As with all Facebook applications, your password and email are never visible to us. 
+Your information will never be sold or used outside the context of this project.
+
+All source code is avilable on Github 
+The program is licensed under the MIT License.
+So if you find any part of our code useful, please feel free to use it and maybe send us a note 
+(We'd love to hear about it!).

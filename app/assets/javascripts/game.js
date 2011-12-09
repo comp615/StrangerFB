@@ -147,10 +147,10 @@ $(document).ready( function() {
     
    $('#start_button').click(function(){
        $('#game').show();
+       showNextFriend();
        var h = $('#instructions').outerHeight();
        $('#instructions').animate({ marginTop: h*-1 }, 800, function(){
-           showNextFriend();
-			$('#instructions').hide();
+		   $('#instructions').hide();
            startTimer();
            $('#guess').focus();
        });
@@ -207,8 +207,8 @@ function showNextFriend(){
     //reset 
     $("#hover_img").hide();
     $('#guess').val("").removeClass('invalid').focus();
+    $('#ibig').attr('src', "/images/large_blank_placeholder.png");
     $('#left_block img.small').remove();
-    $('#ibig').attr('src', "/images/loading_prof_pic.png");
     
     //get next friend
     CurrFriend = Friends.shift();
@@ -225,6 +225,7 @@ function showNextFriend(){
     
     //if no friends, wait 1sec and try again (ajax will return)
     if ( CurrFriend === undefined ){
+        $('#ibig').attr('src', "/images/loading_prof_pic.png");
         setTimeout(showNextFriend, 1000);
         return
     }
@@ -346,8 +347,8 @@ $(document).ready( function() {
     });
     
     $('#share_on_facebook').click(function(){
-        var score = $('.score').first().text();
-        var msg = "I know " + String(score) + " of my FB friends! Time for some unfriendin'..."
+        var score = $('.score').last().text();
+        var msg = "I know " + String(score) + " of my FB friends! Time for some unfriendin'... Think you can do better!?"
         FB.ui({ 
             method: 'feed',
             name: 'Whatsherface',

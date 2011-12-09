@@ -37,6 +37,8 @@ class GameController < ApplicationController
     	render :json => {}, :status => :ok
     end
     
+    
+    
     def grab_friends
 
         #set defaults (if necessary) and convert to ints
