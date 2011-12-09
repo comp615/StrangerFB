@@ -103,10 +103,10 @@
             :id => 'agg_age', 
             :ctitle => "Percent of friends known, by user age and gender",
             :ytitle => "Percent known",
-            :xops => ['<18', '18-20', '21-23', '23-25', '25+'], 
+            :xops => ['<18', '18-21', '21-23', '23-25', '25+'], 
             :tt_desc => " this.x + ' year-old ' + this.series.name.toLowerCase()  + ' knew ' + this.y + '% of their friends.' ",
-            :men_data => [0.45, 0.23, 0.39, 0.10, 0.05],
-            :women_data => [0.23, 0.90, 0.58, 0.29, 0.14]
+            :men_data => [tally_data(@breakdown.select{|d| (1..17).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (18..20).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (21..22).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (23..24).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (25..100).include? d["age"]},"male",false)],
+            :women_data => [tally_data(@breakdown.select{|d| (1..17).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (18..20).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (21..22).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (23..24).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (25..100).include? d["age"]},"female",false)]
     }%>
     <!-- and its table --> 
     <table>
