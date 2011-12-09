@@ -172,7 +172,9 @@
     <h1>Okay, so what should I do? 
         <% if !@current_user || @current_user.attempts.blank? %>
          <a href="/" class="button round green arrow snice bottom">Test yourself</a>
-        <%end %>
+        <% else %>
+         <a href="/" class="button round green arrow snice bottom">Play again</a>
+         <% end %>
      </h1>
     <ol id="next_steps">
         <li>Get <a href="https://www.facebook.com/help/?faq=172936839431357#How-do-I-unfriend-or-delete-a-friend?">un-friendin'</a></li>
