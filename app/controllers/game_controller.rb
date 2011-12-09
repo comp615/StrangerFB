@@ -74,9 +74,9 @@ class GameController < ApplicationController
         results.each_with_index do |r_arr,idx|
         	photos = r_arr.map do |r|
         		tag = r["tags"]["data"].detect{|t| t["id"].to_i == friends[idx]["uid"].to_i}
-        		{:xcoord => tag["x"],:ycoord => tag["y"],:src => r["source"]}
+        		{:xcoord => tag["x"],:ycoord => tag["y"],:src => r["source"],:total_tags => r["tags"]["data"].length}
         	end
-        	friends[idx]["photos"] = photos.sample(5)
+        	friends[idx]["photos"] = photos.sort_by(&:total_tags).first(8).sample(4)
         end
 
         #format friend objects for javascript
