@@ -1,6 +1,17 @@
 <div id="nav_bar">
     <a href="/">Home</a> | <a href="/about">About</a>
-    <span style='float:right; margin-right:30px'><a href="/logout" class="thin">Logout</a></span>
+     <% if @current_user  %>
+        <span style='float:right; margin-right:30px'><a href="/logout" class="thin">Logout</a></span>
+     <% else %>
+        <div class="social_links" style="float:right">
+             <div>
+                 <a href="http://www.whatsherface-book.com" class="twitter-share-button" data-url="www.whatsherface-book.com" data-text="WhatsHerFace-book.com - Do you even know all your FB friends anymore!?! Methinks its time to do a little unfriendin'... #FB" data-count="horizontal" data-related="baygross:charliecroom" data-via="baygross">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+             </div>
+             <div>
+                 <iframe src="//www.facebook.com/plugins/like.php?href=http://www.facebook.com/pages/WhatsHerFacebook/195383003882500&amp;send=false&amp;layout=button_count&amp;width=62&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=71" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+             </div>
+        </div>
+     <% end %>
 </div>
 
 <div id="full_results">
@@ -172,7 +183,7 @@
             friend lists</a> with different privacy settings to
              more accurately represent and control your relationships.
         </li>
-        <li id="social_links">
+        <li class="social_links">
             Spread the word!
             <div>
                 <a href="http://www.whatsherface-book.com" class="twitter-share-button" data-url="www.whatsherface-book.com" data-text="WhatsHerFace-book.com - Do you even know all your FB friends anymore!?! Methinks its time to do a little unfriendin'... #FB" data-count="horizontal" data-related="baygross:charliecroom" data-via="baygross">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>

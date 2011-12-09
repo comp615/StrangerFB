@@ -160,12 +160,13 @@ The Results Link Page
 The Actual Results Page
 ------------------------------------------*/
 #full_results{
+    position:relative;
     #photo_pile{
         width:220px;
         height:200px;
         position:absolute;
-        top: 64px;
-        left: 784px;
+        top: -16px;
+        left: 689px;
         img{
             @include dropShadow(0px, 1px, 3px, rgba(0, 0, 0, .4) ) ;
             position:absolute;
@@ -335,22 +336,22 @@ The Actual Results Page
     }
     #next_steps{
         font-size:16px;
-        #social_links{
-            >div {
-                display:inline-block;
-                padding-left:8px;
-                iframe{
-                    border:none; 
-                    overflow:hidden; 
-                    width:92px !important; 
-                    height:24px !important; 
-                    vertical-align: middle;
-                }
-            }
-
-        }
     }
     #bottom_spacer{
         height:30px;
     }
+}
+.social_links{
+    >div {
+        display:inline-block;
+        padding-left:8px;
+        iframe{
+            border:none; 
+            overflow:hidden; 
+            width:92px !important; 
+            height:24px !important; 
+            vertical-align: middle;
+        }
+    }
+
 }

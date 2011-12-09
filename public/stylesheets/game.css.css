@@ -204,15 +204,19 @@ The Results Link Page
 /*-----------------------------------------
 The Actual Results Page
 ------------------------------------------*/
-/* line 163, ../../app/assets/stylesheets/game.css.scss */
+/* line 162, ../../app/assets/stylesheets/game.css.scss */
+#full_results {
+  position: relative;
+}
+/* line 164, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile {
   width: 220px;
   height: 200px;
   position: absolute;
-  top: 64px;
-  left: 784px;
+  top: -16px;
+  left: 689px;
 }
-/* line 169, ../../app/assets/stylesheets/game.css.scss */
+/* line 170, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img {
   -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
@@ -227,7 +231,7 @@ The Actual Results Page
   -khtml-border-radius: 2px / 2px;
   border-radius: 2px;
 }
-/* line 175, ../../app/assets/stylesheets/game.css.scss */
+/* line 176, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(1) {
   top: 50px;
   left: 0px;
@@ -239,7 +243,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 1;
 }
-/* line 181, ../../app/assets/stylesheets/game.css.scss */
+/* line 182, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(2) {
   top: 0px;
   left: 0px;
@@ -251,7 +255,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 2;
 }
-/* line 187, ../../app/assets/stylesheets/game.css.scss */
+/* line 188, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(3) {
   top: 30px;
   left: 78px;
@@ -263,7 +267,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 50;
 }
-/* line 193, ../../app/assets/stylesheets/game.css.scss */
+/* line 194, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(4) {
   top: 10px;
   left: 22px;
@@ -275,7 +279,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 4;
 }
-/* line 199, ../../app/assets/stylesheets/game.css.scss */
+/* line 200, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(5) {
   top: 15px;
   left: 94px;
@@ -287,7 +291,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 5;
 }
-/* line 205, ../../app/assets/stylesheets/game.css.scss */
+/* line 206, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(6) {
   top: 70;
   left: 60px;
@@ -299,7 +303,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 6;
 }
-/* line 211, ../../app/assets/stylesheets/game.css.scss */
+/* line 212, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(7) {
   top: 75px;
   left: 55px;
@@ -311,7 +315,7 @@ The Actual Results Page
   zoom: 1;
   z-index: 7;
 }
-/* line 217, ../../app/assets/stylesheets/game.css.scss */
+/* line 218, ../../app/assets/stylesheets/game.css.scss */
 #full_results #photo_pile img:nth-child(8) {
   top: 50px;
   left: 50px;
@@ -323,17 +327,17 @@ The Actual Results Page
   zoom: 1;
   z-index: 100;
 }
-/* line 225, ../../app/assets/stylesheets/game.css.scss */
+/* line 226, ../../app/assets/stylesheets/game.css.scss */
 #full_results p {
   font-size: 14px;
 }
-/* line 228, ../../app/assets/stylesheets/game.css.scss */
+/* line 229, ../../app/assets/stylesheets/game.css.scss */
 #full_results .score {
   color: #3e86ce;
   font-weight: bold;
   text-shadow: 0px -1px 0px #f2f2f2;
 }
-/* line 233, ../../app/assets/stylesheets/game.css.scss */
+/* line 234, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box {
   display: block;
   float: left;
@@ -349,7 +353,7 @@ The Actual Results Page
   -khtml-border-radius: 3px / 3px;
   border-radius: 3px;
 }
-/* line 242, ../../app/assets/stylesheets/game.css.scss */
+/* line 243, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box .image_crop {
   height: 80px;
   width: 100px;
@@ -358,51 +362,51 @@ The Actual Results Page
   margin-left: auto;
   margin-right: auto;
 }
-/* line 250, ../../app/assets/stylesheets/game.css.scss */
+/* line 251, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box a {
   font-size: 14px;
 }
-/* line 253, ../../app/assets/stylesheets/game.css.scss */
+/* line 254, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box:hover {
   background-color: #fff;
   border: 1px solid #ddd;
 }
-/* line 258, ../../app/assets/stylesheets/game.css.scss */
+/* line 259, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 {
   margin-top: 80px;
   margin-bottom: 40px;
 }
-/* line 261, ../../app/assets/stylesheets/game.css.scss */
+/* line 262, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1.top-title :nth-child(2) {
   margin-top: 0px;
 }
-/* line 264, ../../app/assets/stylesheets/game.css.scss */
+/* line 265, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 .button {
   top: -9px;
   left: 496px;
 }
-/* line 267, ../../app/assets/stylesheets/game.css.scss */
+/* line 268, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 .button.bottom {
   left: 292px;
 }
-/* line 272, ../../app/assets/stylesheets/game.css.scss */
+/* line 273, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line {
   margin-top: 24px;
   padding-left: 26px;
   margin-bottom: 60px;
 }
-/* line 275, ../../app/assets/stylesheets/game.css.scss */
+/* line 276, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line .giant_hand {
   font-size: 64px;
   vertical-align: middle;
 }
-/* line 279, ../../app/assets/stylesheets/game.css.scss */
+/* line 280, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line .facebook-button {
   display: inline-block;
   font-size: 16px;
   margin-left: 18px;
 }
-/* line 286, ../../app/assets/stylesheets/game.css.scss */
+/* line 287, ../../app/assets/stylesheets/game.css.scss */
 #full_results table {
   width: 600px;
   padding: 15px;
@@ -411,36 +415,36 @@ The Actual Results Page
   margin-left: 10px;
   border: 1px solid #eee;
 }
-/* line 293, ../../app/assets/stylesheets/game.css.scss */
+/* line 294, ../../app/assets/stylesheets/game.css.scss */
 #full_results table th {
   font-weight: bold;
   padding-top: 6px;
   padding-bottom: 6px;
 }
-/* line 298, ../../app/assets/stylesheets/game.css.scss */
+/* line 299, ../../app/assets/stylesheets/game.css.scss */
 #full_results table .title {
   font-weight: bold;
 }
-/* line 299, ../../app/assets/stylesheets/game.css.scss */
+/* line 300, ../../app/assets/stylesheets/game.css.scss */
 #full_results table td {
   text-align: center;
 }
-/* line 303, ../../app/assets/stylesheets/game.css.scss */
+/* line 304, ../../app/assets/stylesheets/game.css.scss */
 #full_results .caption {
   margin-left: 10px;
   width: 600px;
   text-align: center;
 }
-/* line 308, ../../app/assets/stylesheets/game.css.scss */
+/* line 309, ../../app/assets/stylesheets/game.css.scss */
 #full_results .chart {
   border: 1px solid #eee;
   width: 320px;
 }
-/* line 311, ../../app/assets/stylesheets/game.css.scss */
+/* line 312, ../../app/assets/stylesheets/game.css.scss */
 #full_results .chart.large {
   width: 600px;
 }
-/* line 315, ../../app/assets/stylesheets/game.css.scss */
+/* line 316, ../../app/assets/stylesheets/game.css.scss */
 #full_results #chart_indiv_pie {
   float: right;
   height: 462px;
@@ -449,40 +453,41 @@ The Actual Results Page
   margin-top: 43px;
   width: 322px;
 }
-/* line 323, ../../app/assets/stylesheets/game.css.scss */
+/* line 324, ../../app/assets/stylesheets/game.css.scss */
 #full_results h4 {
   margin-top: 30px;
   padding-left: 22px;
   padding-bottom: 8px;
 }
-/* line 328, ../../app/assets/stylesheets/game.css.scss */
+/* line 329, ../../app/assets/stylesheets/game.css.scss */
 #full_results #missed_friends {
   padding-left: 22px;
 }
-/* line 331, ../../app/assets/stylesheets/game.css.scss */
+/* line 332, ../../app/assets/stylesheets/game.css.scss */
 #full_results p {
   font-size: 14px;
   line-height: 1.36em;
   padding-left: 22px;
 }
-/* line 336, ../../app/assets/stylesheets/game.css.scss */
+/* line 337, ../../app/assets/stylesheets/game.css.scss */
 #full_results #next_steps {
   font-size: 16px;
 }
-/* line 339, ../../app/assets/stylesheets/game.css.scss */
-#full_results #next_steps #social_links > div {
+/* line 340, ../../app/assets/stylesheets/game.css.scss */
+#full_results #bottom_spacer {
+  height: 30px;
+}
+
+/* line 345, ../../app/assets/stylesheets/game.css.scss */
+.social_links > div {
   display: inline-block;
   padding-left: 8px;
 }
-/* line 342, ../../app/assets/stylesheets/game.css.scss */
-#full_results #next_steps #social_links > div iframe {
+/* line 348, ../../app/assets/stylesheets/game.css.scss */
+.social_links > div iframe {
   border: none;
   overflow: hidden;
   width: 92px !important;
   height: 24px !important;
   vertical-align: middle;
-}
-/* line 353, ../../app/assets/stylesheets/game.css.scss */
-#full_results #bottom_spacer {
-  height: 30px;
 }
