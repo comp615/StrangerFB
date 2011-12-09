@@ -5,6 +5,17 @@
 
 <div id="full_results">
     
+    <div id="photo_pile">
+        <img src="/photorow/0.png" />
+        <img src="/photorow/12.png" />
+        <img src="/photorow/15.png" />
+        <img src="/photorow/19.png" />
+        <img src="/photorow/3.png" />
+        <img src="/photorow/6.png" />
+        <img src="/photorow/5.png" />
+        <img src="/photorow/blank.png" />
+    </div>
+    
     <!-- individual stats -->
     <% if @current_user && !@current_user.attempts.blank? %>
         <% if params[:ts] %> 
@@ -60,7 +71,7 @@
         <p>
             And you are in the following <strong>networks</strong>:
             <% @my_affiliations.each do |a| %>
-                <br />&nbsp;&nbsp;&nbsp;&nbsp;<%= a[:name] + " - where you knew "+ to_pct_with_places(a[:accuracy],1) + " of your friends presented" %>
+                <br />&nbsp;&nbsp;&nbsp;&nbsp;<%= a[:name] + " - where you knew "+ to_pct_with_places(a[:accuracy].to_f ,1) + " of your friends presented" %>
             <% end %>
             <br />
             But those networks are FAR larger than your immediate friend group.
@@ -78,26 +89,33 @@
     
     
     <!--  Aggregate Stats -->
-    <h1>The average Facebook user <br />knows <span class="score"><%= to_pct_with_places(@overall_correct_pct,1) %>%</span> of their friends.</h1>
+    <h1>The average Facebook user <br />knows <span class="score"><%= to_pct_with_places(@overall_correct_pct,1) %></span> of their friends.</h1>
     
     <!-- [graph] - this is obviously a placeholder -->
     <table>
-    <tr><th>Age</th><th>Male</th><th>Female</th><th> Overall </th></tr>
+    <tr><th>Age</th><th>Male</th><th>Female</th><th> Total </th></tr>
     <% @breakdown.group_by{|d| d["age"]}.each do |age,data| %>
     	<% next if(age.nil?) %>
     	<tr>
-	    	<td><%= age %></td>
+	    	<td class="title"><%= age %></td>
 	    	<td><%= tally_data(data,"male") %></td>
 	    	<td><%= tally_data(data,"female") %></td>
 	    	<td><%= tally_data(data,"all") %></td>
     	</tr>
     <% end %>
-    <tr><td>Overall</td><td><%= tally_data(@breakdown,"male") %></td><td><%= tally_data(@breakdown,"female") %></td><td><%= tally_data(@breakdown,"all") %></td></tr>
+    <tr><td class='title'>Totals</td><td><%= tally_data(@breakdown,"male") %></td><td><%= tally_data(@breakdown,"female") %></td><td><%= tally_data(@breakdown,"all") %></td></tr>
     </table>
-    
-    
-    [ interesting commentary.. ]
+    <div class="caption">Above: the percentage of 'friends known' is broken down by age and gender.</div>
     <br />
+    
+    
+    <table>
+      <tr><th></th><th>Male Friends</th><th>Female Friends</th><th>Total</th></tr>
+      <tr><td class='title'>Male User</td><td>80%</td><td>55%</td><td>75%</td></tr>
+      <tr><td class='title'>Female User</td><td>60%</td><td>90%</td><td>79%</td></tr>
+      </table>
+      <div class="caption">Above: Are guys more likely to friend girls on a whim?</div>
+      <br />
     
     
     <!-- Call to action -->

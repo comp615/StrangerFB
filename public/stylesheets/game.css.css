@@ -204,21 +204,132 @@ The Results Link Page
 /*-----------------------------------------
 The Actual Results Page
 ------------------------------------------*/
-/* line 162, ../../app/assets/stylesheets/game.css.scss */
-#full_results {
-  padding-top: 20px;
+/* line 163, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile {
+  width: 220px;
+  height: 200px;
+  position: relative;
+  float: right;
 }
-/* line 164, ../../app/assets/stylesheets/game.css.scss */
+/* line 168, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img {
+  position: absolute;
+  width: 100px;
+  border: 3px solid #fff;
+  -webkit-border-radius: 2px 2px;
+  -moz-border-radius: 2px / 2px;
+  -o-border-radius: 2px / 2px;
+  -ms-border-radius: 2px / 2px;
+  -khtml-border-radius: 2px / 2px;
+  border-radius: 2px;
+}
+/* line 173, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img:nth-child(1) {
+  top: 50px;
+  left: 0px;
+  -moz-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  -webkit-transform: rotate(-30deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.966, M12=--0.259, M21=-0.259, M22=0.966);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.966, M12=--0.259, M21=-0.259, M22=0.966)";
+  zoom: 1;
+  z-index: 1;
+}
+/* line 179, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img:nth-child(2) {
+  top: 0px;
+  left: 0px;
+  -moz-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  -webkit-transform: rotate(-10deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.996, M12=--0.087, M21=-0.087, M22=0.996);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.996, M12=--0.087, M21=-0.087, M22=0.996)";
+  zoom: 1;
+  z-index: 2;
+}
+/* line 185, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img:nth-child(3) {
+  top: 30px;
+  left: 78px;
+  -moz-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  -webkit-transform: rotate(-10deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.996, M12=--0.087, M21=-0.087, M22=0.996);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.996, M12=--0.087, M21=-0.087, M22=0.996)";
+  zoom: 1;
+  z-index: 50;
+}
+/* line 191, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img:nth-child(4) {
+  top: 10px;
+  left: 22px;
+  -moz-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.985, M12=-0.174, M21=0.174, M22=0.985);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.985, M12=-0.174, M21=0.174, M22=0.985)";
+  zoom: 1;
+  z-index: 4;
+}
+/* line 197, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img:nth-child(5) {
+  top: 15px;
+  left: 94px;
+  -moz-transform: rotate(15deg);
+  -o-transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.991, M12=-0.131, M21=0.131, M22=0.991);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.991, M12=-0.131, M21=0.131, M22=0.991)";
+  zoom: 1;
+  z-index: 5;
+}
+/* line 203, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img:nth-child(6) {
+  top: 70;
+  left: 60px;
+  -moz-transform: rotate(-20deg);
+  -o-transform: rotate(-20deg);
+  -webkit-transform: rotate(-20deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.985, M12=--0.174, M21=-0.174, M22=0.985);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.985, M12=--0.174, M21=-0.174, M22=0.985)";
+  zoom: 1;
+  z-index: 6;
+}
+/* line 209, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img:nth-child(7) {
+  top: 75px;
+  left: 55px;
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.924, M12=-0.383, M21=0.383, M22=0.924);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.924, M12=-0.383, M21=0.383, M22=0.924)";
+  zoom: 1;
+  z-index: 7;
+}
+/* line 215, ../../app/assets/stylesheets/game.css.scss */
+#full_results #photo_pile img:nth-child(8) {
+  top: 50px;
+  left: 50px;
+  -moz-transform: rotate(-5deg);
+  -o-transform: rotate(-5deg);
+  -webkit-transform: rotate(-5deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.999, M12=--0.044, M21=-0.044, M22=0.999);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.999, M12=--0.044, M21=-0.044, M22=0.999)";
+  zoom: 1;
+  z-index: 100;
+}
+/* line 223, ../../app/assets/stylesheets/game.css.scss */
 #full_results p {
   font-size: 14px;
 }
-/* line 167, ../../app/assets/stylesheets/game.css.scss */
+/* line 226, ../../app/assets/stylesheets/game.css.scss */
 #full_results .score {
   color: #3e86ce;
   font-weight: bold;
   text-shadow: 0px -1px 0px #f2f2f2;
 }
-/* line 172, ../../app/assets/stylesheets/game.css.scss */
+/* line 231, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box {
   display: block;
   float: left;
@@ -234,7 +345,7 @@ The Actual Results Page
   -khtml-border-radius: 3px / 3px;
   border-radius: 3px;
 }
-/* line 181, ../../app/assets/stylesheets/game.css.scss */
+/* line 240, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box .image_crop {
   height: 80px;
   width: 100px;
@@ -243,83 +354,111 @@ The Actual Results Page
   margin-left: auto;
   margin-right: auto;
 }
-/* line 189, ../../app/assets/stylesheets/game.css.scss */
+/* line 248, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box a {
   font-size: 14px;
 }
-/* line 192, ../../app/assets/stylesheets/game.css.scss */
+/* line 251, ../../app/assets/stylesheets/game.css.scss */
 #full_results .friend_box:hover {
   background-color: #fff;
   border: 1px solid #ddd;
 }
-/* line 197, ../../app/assets/stylesheets/game.css.scss */
+/* line 256, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 {
-  margin-top: 60px;
+  margin-top: 80px;
 }
-/* line 199, ../../app/assets/stylesheets/game.css.scss */
+/* line 258, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1.no-top-space {
   margin-top: 0px;
 }
-/* line 202, ../../app/assets/stylesheets/game.css.scss */
+/* line 261, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 .button {
   top: -9px;
   left: 496px;
 }
-/* line 205, ../../app/assets/stylesheets/game.css.scss */
+/* line 264, ../../app/assets/stylesheets/game.css.scss */
 #full_results h1 .button.bottom {
-  left: 382px;
+  left: 292px;
 }
-/* line 210, ../../app/assets/stylesheets/game.css.scss */
+/* line 269, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line {
   margin-top: 24px;
   padding-left: 26px;
   margin-bottom: 40px;
 }
-/* line 213, ../../app/assets/stylesheets/game.css.scss */
+/* line 272, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line .giant_hand {
   font-size: 64px;
   vertical-align: middle;
 }
-/* line 217, ../../app/assets/stylesheets/game.css.scss */
+/* line 276, ../../app/assets/stylesheets/game.css.scss */
 #full_results #share_line .facebook-button {
   display: inline-block;
   font-size: 16px;
   margin-left: 18px;
 }
-/* line 224, ../../app/assets/stylesheets/game.css.scss */
+/* line 283, ../../app/assets/stylesheets/game.css.scss */
+#full_results table {
+  width: 600px;
+  padding: 15px;
+  margin-top: 30px;
+  margin-bottom: 8px;
+  margin-left: 10px;
+}
+/* line 289, ../../app/assets/stylesheets/game.css.scss */
+#full_results table th {
+  font-weight: bold;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+/* line 294, ../../app/assets/stylesheets/game.css.scss */
+#full_results table .title {
+  font-weight: bold;
+}
+/* line 295, ../../app/assets/stylesheets/game.css.scss */
+#full_results table td {
+  text-align: center;
+}
+/* line 299, ../../app/assets/stylesheets/game.css.scss */
+#full_results .caption {
+  margin-left: 10px;
+  width: 600px;
+  text-align: center;
+}
+/* line 304, ../../app/assets/stylesheets/game.css.scss */
 #full_results h4 {
   margin-top: 30px;
   padding-left: 22px;
   padding-bottom: 8px;
 }
-/* line 229, ../../app/assets/stylesheets/game.css.scss */
+/* line 309, ../../app/assets/stylesheets/game.css.scss */
 #full_results #missed_friends {
   padding-left: 22px;
 }
-/* line 232, ../../app/assets/stylesheets/game.css.scss */
+/* line 312, ../../app/assets/stylesheets/game.css.scss */
 #full_results p {
   font-size: 14px;
   line-height: 1.36em;
   padding-left: 22px;
 }
-/* line 237, ../../app/assets/stylesheets/game.css.scss */
+/* line 317, ../../app/assets/stylesheets/game.css.scss */
 #full_results #next_steps {
   font-size: 16px;
 }
-/* line 240, ../../app/assets/stylesheets/game.css.scss */
+/* line 320, ../../app/assets/stylesheets/game.css.scss */
 #full_results #next_steps #social_links > div {
   display: inline-block;
   padding-left: 8px;
 }
-/* line 243, ../../app/assets/stylesheets/game.css.scss */
+/* line 323, ../../app/assets/stylesheets/game.css.scss */
 #full_results #next_steps #social_links > div iframe {
   border: none;
   overflow: hidden;
-  width: 106px !important;
+  width: 92px !important;
   height: 24px !important;
   vertical-align: middle;
 }
-/* line 254, ../../app/assets/stylesheets/game.css.scss */
+/* line 334, ../../app/assets/stylesheets/game.css.scss */
 #full_results #bottom_spacer {
   height: 30px;
 }

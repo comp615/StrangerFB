@@ -44,6 +44,15 @@ $red: #BD1E1E;
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$a * 100})";
 }
 
+@mixin rotate($degrees) {
+   -moz-transform: rotate($degrees);  
+     -o-transform: rotate($degrees);  
+-webkit-transform: rotate($degrees);
+           filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)});
+       -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})";
+             zoom: 1;
+}
+
 @mixin dropShadow($a, $b, $c, $d){ //eg: 2px 2px 4px #000
 	-moz-box-shadow: $a $b $c $d;
 	-webkit-box-shadow: $a $b $c $d;

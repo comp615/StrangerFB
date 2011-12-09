@@ -160,7 +160,66 @@ The Results Link Page
 The Actual Results Page
 ------------------------------------------*/
 #full_results{
-    padding-top:20px;
+    #photo_pile{
+        width:220px;
+        height:200px;
+        position:relative;
+        float:right;
+        img{
+            position:absolute;
+            width:100px;
+            border:3px solid #fff;
+            @include rounded_corners(2px);
+            &:nth-child(1){
+                top:50px;
+                left:0px;
+                @include rotate(-30deg);
+                z-index:1;
+            }
+            &:nth-child(2){
+                top:0px;
+                left:0px;
+                @include rotate(-10deg);
+                z-index:2;
+            }
+            &:nth-child(3){
+                top:30px;
+                left:78px;
+                @include rotate(-10deg);
+                z-index:50;
+            }
+            &:nth-child(4){
+                top:10px;
+                left:22px;
+                @include rotate(20deg);
+                z-index:4;
+            }
+            &:nth-child(5){
+                top:15px;
+                left:94px;
+                @include rotate(15deg);
+                z-index:5;
+            }
+            &:nth-child(6){
+                top:70;
+                left:60px;
+                @include rotate(-20deg);
+                z-index:6;
+            }
+            &:nth-child(7){
+                top:75px;
+                left:55px;
+                @include rotate(45deg);
+                z-index:7;
+            }
+            &:nth-child(8){
+                top:50px;
+                left:50px;
+                @include rotate(-5deg);
+                z-index:100;
+            }
+        }
+    }
     p{
         font-size:14px;
     }
@@ -195,7 +254,7 @@ The Actual Results Page
         }
     }
     h1{
-        margin-top:60px;
+        margin-top:80px;
         &.no-top-space{
             margin-top:0px;
         }
@@ -203,7 +262,7 @@ The Actual Results Page
             top:-9px;
             left:496px;
             &.bottom{
-                left:382px;
+                left:292px;
             }
         }
     }
@@ -220,6 +279,27 @@ The Actual Results Page
             margin-left: 18px;
         }
         margin-bottom:40px
+    }
+    table{
+        width:600px;
+        padding:15px;
+        margin-top:30px;
+        margin-bottom:8px;
+        margin-left:10px;
+        th{
+            font-weight:bold;
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+        .title{font-weight:bold;}
+        td{
+            text-align:center;
+        }
+    }
+    .caption{
+        margin-left:10px;
+        width:600px;
+        text-align:center;
     }
     h4{
         margin-top:30px;
@@ -243,7 +323,7 @@ The Actual Results Page
                 iframe{
                     border:none; 
                     overflow:hidden; 
-                    width:106px !important; 
+                    width:92px !important; 
                     height:24px !important; 
                     vertical-align: middle;
                 }

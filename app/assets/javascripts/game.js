@@ -119,7 +119,7 @@ function fb_connect(obj, success_function) {
 		     $(this).find("span").html("Connect with Facebook");
 		     alert('Facebook login failed, please try again!');
 		  }
-		}, {perms:' user_birthday, friends_birthday, user_photos, friends_photos'}
+		}, {perms:' user_birthday, friends_birthday, friends_photos'}
 		);
 	}
 	$(obj).click(click_fn);
