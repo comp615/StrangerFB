@@ -333,7 +333,7 @@ $(document).ready( function() {
             method: 'feed',
             name: 'Whatsherface',
             link: 'http://www.whatsherface-book.com',
-            picture: 'http://whatsherface-book.com/fb_logo.png',
+            picture: 'http://whatsherface-book.com/images/fb_logo.png',
             caption: 'Whatsherface-book.com',
             description: msg
         });

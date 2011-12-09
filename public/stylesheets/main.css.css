@@ -90,6 +90,8 @@ body {
 /* line 72, ../../app/assets/stylesheets/main.css.scss */
 #container_full {
   width: 1032px;
+  padding-left: 20px;
+  padding-right: 20px;
   min-height: 600px;
   margin-top: 40px;
   margin-left: auto;
@@ -97,7 +99,7 @@ body {
   margin-bottom: 50px;
 }
 
-/* line 81, ../../app/assets/stylesheets/main.css.scss */
+/* line 83, ../../app/assets/stylesheets/main.css.scss */
 #nav_bar {
   position: fixed;
   top: 0px;
@@ -113,20 +115,20 @@ body {
   padding-top: 8px;
   padding-left: 20px;
 }
-/* line 93, ../../app/assets/stylesheets/main.css.scss */
+/* line 95, ../../app/assets/stylesheets/main.css.scss */
 #nav_bar a {
   font-size: 14px;
   padding-right: 10px;
   padding-left: 10px;
   font-weight: bold;
 }
-/* line 98, ../../app/assets/stylesheets/main.css.scss */
+/* line 100, ../../app/assets/stylesheets/main.css.scss */
 #nav_bar a.thin {
   font-weight: normal;
   font-size: 12px;
 }
 
-/* line 105, ../../app/assets/stylesheets/main.css.scss */
+/* line 107, ../../app/assets/stylesheets/main.css.scss */
 #footer {
   width: 500px;
   text-align: center;
@@ -136,42 +138,42 @@ body {
   font-size: 11px;
   text-shadow: 0px 1px 0px #fff;
 }
-/* line 113, ../../app/assets/stylesheets/main.css.scss */
+/* line 115, ../../app/assets/stylesheets/main.css.scss */
 #footer a {
   text-decoration: none;
   color: #555;
   padding-top: 5px;
   padding-bottom: 5px;
 }
-/* line 118, ../../app/assets/stylesheets/main.css.scss */
+/* line 120, ../../app/assets/stylesheets/main.css.scss */
 #footer a:hover {
   font-weight: bold;
 }
 
-/* line 124, ../../app/assets/stylesheets/main.css.scss */
+/* line 126, ../../app/assets/stylesheets/main.css.scss */
 .button {
   font-size: 14px;
   padding: 9px 14px;
 }
-/* line 128, ../../app/assets/stylesheets/main.css.scss */
+/* line 130, ../../app/assets/stylesheets/main.css.scss */
 .button.green {
   background-color: #53bb2a;
 }
-/* line 130, ../../app/assets/stylesheets/main.css.scss */
+/* line 132, ../../app/assets/stylesheets/main.css.scss */
 .button.green.nice {
   border: 1px solid #3e8e1e;
 }
-/* line 133, ../../app/assets/stylesheets/main.css.scss */
+/* line 135, ../../app/assets/stylesheets/main.css.scss */
 .button.green.arrow {
   background: url("../images/white-button-arrow.png") no-repeat right center #53bb2a;
   padding-right: 32px;
 }
-/* line 137, ../../app/assets/stylesheets/main.css.scss */
+/* line 139, ../../app/assets/stylesheets/main.css.scss */
 .button.green:hover {
   background: url("../images/white-button-arrow.png") no-repeat right center #4fad2a;
 }
 
-/* line 144, ../../app/assets/stylesheets/main.css.scss */
+/* line 146, ../../app/assets/stylesheets/main.css.scss */
 .facebook-button {
   height: 46px;
   width: 160px;
@@ -180,14 +182,14 @@ body {
   padding-left: 48px;
   cursor: pointer;
 }
-/* line 152, ../../app/assets/stylesheets/main.css.scss */
+/* line 154, ../../app/assets/stylesheets/main.css.scss */
 .facebook-button .button-text {
   display: block;
   padding: 15px 7px 17px 5px;
   background: transparent url("/images/facebook-lg-r.png") no-repeat top right;
   color: #f2f2f2;
 }
-/* line 159, ../../app/assets/stylesheets/main.css.scss */
+/* line 161, ../../app/assets/stylesheets/main.css.scss */
 .facebook-button.active {
   margin-top: 1px;
 }
