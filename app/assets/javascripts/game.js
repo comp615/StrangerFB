@@ -334,11 +334,12 @@ function dropTime(){
 function gameOver(){
     $("#game").css('paddingTop', '40px');
     $('#results').show();
-     var h = $('#game').outerHeight();
-	   $('#game').animate({ marginTop: h*-1 }, 800, function(){
-	       $('#game').hide();
-	   });
-	 game_end_ts = new Date().getTime();
+    var h = $('#game').outerHeight();
+	  $('#game').animate({ marginTop: h*-1 }, 800, function(){
+	      $('#game').hide();
+	  });
+ 		$('#container').animate({'height' : '400px'}, 800);
+	  game_end_ts = new Date().getTime();
 }
 /*----------------------------------------------------------------------------------------
 Results Page
