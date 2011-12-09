@@ -220,7 +220,7 @@ function showNextFriend(){
     if(Friends.length > 1) {
     	preload(Friends[1].photos);
     	preload(Friends[1]['big_path']);
-	}
+	  }
 
     //check if we need more friends
     if(Friends.length < load_threshold)
