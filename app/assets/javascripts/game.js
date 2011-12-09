@@ -191,8 +191,8 @@ function showNextFriend(){
     //reset 
     $("#hover_img").hide();
     $('#guess').val("").removeClass('invalid').focus();
-    $('#left_block img.small').remove();
     $('#ibig').attr('src', "/images/large_blank_placeholder.png");
+    $('#left_block img.small').remove();
     
     //get next friend
     CurrFriend = Friends.shift();
