@@ -3,7 +3,8 @@
 
 <% content_for :bottom do%>
 <script type="text/javascript">
-
+<% puts men_data %>
+<% puts women_data %>
 var chart_<%= id %>;
 $(document).ready(function() {
     
@@ -38,10 +39,10 @@ $(document).ready(function() {
 
          series: [{
            name: 'Men',
-           data: [<%= men_data.join(', ') %>],
+           data: [<%= men_data.map{|d| d * 100}.join(', ') %>],
         }, {
            name: 'Women',
-           data: [<%= women_data.join(', ') %>],
+           data: [<%= women_data.map{|d| d * 100}.join(', ') %>],
         }]
      });
     

@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def tally_data(copy,gender)		
+	def tally_data(copy,gender,string = true)		
 		data = copy.select{|d| d["gender"] == gender || gender == "all"}
 		
 		total_count = 0
@@ -11,11 +11,16 @@ module ApplicationHelper
 		end
 		
 		if(total_count == 0)
-			pct = "N/A"
+			pct = "N/A" if(string)
+			pct = 0 if(!string)
 		else
 			pct = sum / total_count
 		end
-		return to_pct_with_places(pct,1)		
+		
+		#String or raw value?
+		pct = to_pct_with_places(pct,1) if(string)
+		
+		return 	pct
 	end
 	
 	def to_pct_with_places(val,places)
