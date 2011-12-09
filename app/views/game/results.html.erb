@@ -120,8 +120,16 @@
     
     <table>
       <tr><th></th><th>Male Friends</th><th>Female Friends</th><th>Total</th></tr>
-      <tr><td class='title'>Male User</td><td>80%</td><td>55%</td><td>75%</td></tr>
-      <tr><td class='title'>Female User</td><td>60%</td><td>90%</td><td>79%</td></tr>
+      
+      <% @gender_gender_breakdown.group_by{|d| d["user_gender"]}.each do |gender,data| %>
+    	<% next if(gender.nil?) %>
+    	<tr>
+			<td class='title'><%= gender.capitalize %> User</td>
+			<td><%= tally_data(data,"male") %></td>
+			<td><%= tally_data(data,"female") %></td>
+			<td><%= tally_data(data,"all") %></td>
+      	</tr>
+      <% end %>
       </table>
       <div class="caption">Above: Are guys more likely to friend girls on a whim?</div>
       <br />
