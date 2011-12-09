@@ -119,7 +119,8 @@ class GameController < ApplicationController
         
     	#break it down by age and genders
     	@breakdown = Attempt.connection.select_all("SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,`gender`,`age` FROM `attempts` WHERE `guessed_name` != 'unfair' GROUP BY `gender`,`age` ORDER BY `age` ASC, `gender`;")
-        
+        @gender_gender_breakdown = Attempt.connection.select_all("SELECT u.`gender` as `user_gender`,a.`gender` as `gender`,AVG(`correct`) as `pct`, COUNT(*) as `count` FROM `StrangerFB_production`.`attempts` a INNER JOIN `users` u ON u.`id` = a.`user_id` WHERE `guessed_name` != 'unfair' GROUP BY u.`gender`,a.`gender` ORDER BY u.`gender` DESC,a.`gender` DESC;")
+    	
         #return here if not signed in
         return if !@current_user || @current_user.attempts.blank?
             
