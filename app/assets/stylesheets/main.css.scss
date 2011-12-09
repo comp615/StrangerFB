@@ -131,11 +131,11 @@ body {
 			border: 1px solid #3e8e1e;
 		}
 		&.arrow{
-    	    background: image-url("white-button-arrow.png") no-repeat right center #53bb2a;
+    	    background: url("../images/white-button-arrow.png") no-repeat right center #53bb2a;
     	    padding-right:32px;
     	}
 		&:hover {
-		    background: image-url("white-button-arrow.png") no-repeat right center #4fad2a;
+		    background: url("../images/white-button-arrow.png") no-repeat right center #4fad2a;
 		}
 	}
 
@@ -145,14 +145,14 @@ body {
        height: 46px;
        width:160px;
        display: block;
-       background: transparent image-url("facebook-lg-f.png") no-repeat top left;
+       background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
        padding-left: 48px;
        cursor: pointer;
 
        .button-text {
            display: block;
            padding: 15px 7px 17px 5px;
-           background: transparent image-url("facebook-lg-r.png") no-repeat top right;
+           background: transparent image-url("/images/facebook-lg-r.png") no-repeat top right;
            color: $grey;
        }
 

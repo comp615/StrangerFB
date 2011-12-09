@@ -189,7 +189,7 @@ function showNextFriend(){
     $("#hover_img").hide();
     $('#guess').val("").removeClass('invalid').focus();
     $('#left_block img.small').remove();
-    $('#ibig').attr('src', "<%= asset_path('loading_prof_pic.png') %>");
+    $('#ibig').attr('src', "/images/loading_prof_pic.png");
     
     //get next friend
     CurrFriend = Friends.shift();
