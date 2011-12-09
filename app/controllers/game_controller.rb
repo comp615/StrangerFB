@@ -137,12 +137,14 @@ class GameController < ApplicationController
 		@attempts = @current_user.attempts.where("`guessed_name` != 'unfair'") #aggregate 
     		
     	# add friend count if missing
-    	@current_user.friend_count ||=  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")
-    	
+        if @current_user.friend_count < 10 
+             @current_user.friend_count =  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")
+        end
+    
     	#computer user scores
     	@my_score = @correct_attempts.length.to_f / (@correct_attempts.length + @incorrect_attempts.length) rescue 0
     	@my_agg_score = @attempts.select{|a| a.correct}.length.to_f / (@attempts.length)
-        @fof_count =  (@current_user.friend_count * 130 * 0.5).round
+        @fof_count =  (@current_user.friend_count * 880 * 0.5).round
         
     	#grab affiliations
     	@my_affiliations = @fb_graph.fql_query("SELECT affiliations FROM user WHERE uid = me()").first["affiliations"]

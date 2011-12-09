@@ -38,7 +38,7 @@
         
         <!-- [ pie chart]  -->
         <%= render :partial => '/charts/pie', :locals => {
-                :id => 'indiv', 
+                :id => 'indiv_pie', 
                 :known => @correct_attempts.count, 
                 :unknown => @incorrect_attempts.count, 
                 :ctitle => "You knew #{@correct_attempts.count} of #{@curr_attempts.count} friends presented." 
@@ -68,7 +68,7 @@
         <p>
             Did you know that your friends can give up <em>your</em> personal 
             information to 3rd party applications with a single click? <br />
-            Do you trust <strong>all <%= @current_user.friend_count / 100 %>-hundred</strong> 
+            Do you trust <strong>all <%= @current_user.friend_count > 100 ? (@current_user.friend_count / 100 ).to_s + "-hundred" : @current_user.friend_count  %></strong> 
             of them to consistently make good decisions?
         </p>
         <p>
@@ -99,8 +99,16 @@
     <h1>The average Facebook user <br />knows <span class="score"><%= to_pct_with_places(@overall_correct_pct,1) %></span> of their friends.</h1>
     
     <!-- [ pie chart]  -->
-
-        
+    <%= render :partial => '/charts/bar', :locals => {
+            :id => 'agg_age', 
+            :ctitle => "Percent of friends known, by user age and gender",
+            :ytitle => "Percent known",
+            :xops => ['<18', '18-20', '21-23', '23-25', '25+'], 
+            :tt_desc => " this.x + ' year-old ' + this.series.name.toLowerCase()  + ' knew ' + this.y + '% of their friends.' ",
+            :men_data => [45, 23, 39, 10, 5],
+            :women_data => [23, 90, 58, 29, 14]
+    }%>
+    <!-- and its table --> 
     <table>
     <tr><th>Age</th><th>Male</th><th>Female</th><th> Total </th></tr>
     <% @breakdown.group_by{|d| d["age"]}.each do |age,data| %>
@@ -118,6 +126,17 @@
     <br />
     
     
+    <!-- [ pie chart]  -->
+    <%= render :partial => '/charts/bar', :locals => {
+            :id => 'agg_gender', 
+            :ctitle => "Are guys more likely to friend girls on a whim?",
+            :ytitle => "Percent known",
+            :xops => ['Male Friends', 'Female Friends'], 
+            :tt_desc => "this.series.name + ' knew ' + this.y + '% of their ' + this.x.toLowerCase() + '.' ",
+            :men_data => [45, 23],
+            :women_data => [23, 90]
+    }%>
+    <!-- and its table --> 
     <table>
       <tr><th></th><th>Male Friends</th><th>Female Friends</th><th>Total</th></tr>
       <tr><td class='title'>Male User</td><td>80%</td><td>55%</td><td>75%</td></tr>
@@ -135,15 +154,15 @@
      </h1>
     <ol id="next_steps">
         <li>Get <a href="https://www.facebook.com/help/?faq=172936839431357#How-do-I-unfriend-or-delete-a-friend?">un-friendin'</a></li>
-        <li>Create layered
-            <a href="https://www.facebook.com/help/?faq=190416214359937#How-do-I-create-and-edit-lists?">
-            friend lists</a> with different privacy settings to
-             more accurately represent and control your relationships.
-        </li>
         <li>
             <a href="https://www.facebook.com/help/?faq=117646641653775#Why-aren’t-all-of-my-friends-visible-while-using-a-certain-app?">
                 Restrict</a> what (if any) of your personal information 
                 your friends can share with 3rd party apps.
+        </li>
+        <li>Create layered
+            <a href="https://www.facebook.com/help/?faq=190416214359937#How-do-I-create-and-edit-lists?">
+            friend lists</a> with different privacy settings to
+             more accurately represent and control your relationships.
         </li>
         <li id="social_links">
             Spread the word!

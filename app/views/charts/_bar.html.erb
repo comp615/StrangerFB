@@ -1,0 +1,53 @@
+<div id="chart_<%= id %>" class="chart large"></div>
+
+
+<% content_for :bottom do%>
+<script type="text/javascript">
+
+var chart_<%= id %>;
+$(document).ready(function() {
+    
+    chart = new Highcharts.Chart({
+
+        chart: {
+           renderTo: 'chart_<%= id %>',
+           defaultSeriesType: 'column'
+        },
+
+        title: {
+           text: '<%= ctitle %>'
+        },
+
+        xAxis: {
+           categories: [ '<%= xops.join("', '") %>' ]
+        },
+
+        yAxis: {
+           allowDecimals: false,
+           min: 0,
+           title: {
+              text: '<%= ytitle %>'
+           }
+        },
+
+        tooltip: {
+           formatter: function() {
+              return <%= tt_desc %>;
+           }
+        },
+
+         series: [{
+           name: 'Men',
+           data: [<%= men_data.join(', ') %>],
+        }, {
+           name: 'Women',
+           data: [<%= women_data.join(', ') %>],
+        }]
+     });
+    
+    
+   //fix wierd border bug
+  $('#chart_<%= id %>').delay(1000).css('padding', '2px');
+});
+</script>
+<% end %>
