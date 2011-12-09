@@ -37,3 +37,8 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+#Add a JS Runtime for the servers
+group :production do
+  gem 'therubyracer'
+end
