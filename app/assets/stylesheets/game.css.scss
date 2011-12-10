@@ -122,10 +122,22 @@ The Game Page
                 }
             }
         }
+        #pause_block{
+          margin-top: 30px;
+          font-size: 12px;
+          padding-left: 46px;
+          text-align: right;
+          width: 158px;
+          display:none;
+          input{
+            display: inline;
+            width: 12px;
+            margin-right: 6px;
+          }
+        }
         #answer{
             color:#5AA732;
             margin-top:2px;
-            margin-bottom:40px;
             padding-left:6px;
             font-size:14px;
             height:16px;

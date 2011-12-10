@@ -155,6 +155,7 @@ $(document).ready( function() {
 		   $('#instructions').hide();
            startTimer();
            $('#guess').focus();
+           startPauseFade();
        });
    });  
    
@@ -173,20 +174,6 @@ $(document).ready( function() {
    });
 });
 
-function addRedBox(data_obj) {
-	return function() {
-		   $("#hover_img").css("left", 5);
-		   $("#hover_img").show();
-		   
-		   var w = $("#hover_img img").width();
-		   var h = $("#hover_img img").height();
-		   var wh = Math.max(w/8,h/8);
-		   $("#hover_img .tag_box").css("left", w * $(data_obj).data("x") / 100 - wh/2);
-		   $("#hover_img .tag_box").css("top", h * $(data_obj).data("y") / 100 - wh/2);
-		   $("#hover_img .tag_box").width(wh).height(wh);
-	   };	
-}
-
 //called once 15 friends are loaded
 function showPlayButton(){
     $("#loading_wait").hide();
@@ -200,9 +187,12 @@ $(document).ready( function() {
  $('#guess').keyup( checkName );
  
  $('#idk, #unfair').click( giveUp );
+ 
+ $('#pause').click( togglePause );
       
 });
 
+//every 400ms check for resize of container due to new photos
 function startResizeInterval(){
   setInterval(function(){
     if ( $('#game').outerHeight() === $('#container').height() )
@@ -213,6 +203,14 @@ function startResizeInterval(){
   }, 400);
 }
 
+//15 seconds into the game, fade in the pause button!
+function startPauseFade(){
+  setTimeout(function(){
+   $('#pause_block').fadeIn();
+  }, 15000);
+}
+
+//show the next friend, after guess/skip
 function showNextFriend(){
 
     //reset 
@@ -259,6 +257,22 @@ function showNextFriend(){
 
 }   
 
+//show red boxes around the tagged face
+function addRedBox(data_obj) {
+	return function() {
+		   $("#hover_img").css("left", 5);
+		   $("#hover_img").show();
+		   
+		   var w = $("#hover_img img").width();
+		   var h = $("#hover_img img").height();
+		   var wh = Math.max(w/8,h/8);
+		   $("#hover_img .tag_box").css("left", w * $(data_obj).data("x") / 100 - wh/2);
+		   $("#hover_img .tag_box").css("top", h * $(data_obj).data("y") / 100 - wh/2);
+		   $("#hover_img .tag_box").width(wh).height(wh);
+	   };	
+}
+
+//verify guess against answer
 function checkName(){
     var guess = $('#guess').val();
     
@@ -316,6 +330,7 @@ function sendAnswer(guess, success){
 }
 
 //Timer Code
+var PauseGameFlag = false;
 function startTimer(){
     //delay timer start by 1.5 seconds
     setTimeout(function(){
@@ -325,12 +340,18 @@ function startTimer(){
     
 }
 function dropTime(){
+    if ( PauseGameFlag )
+      return;
+      
     t = Number( $("#timer").text() );
     t = t -1;
     $("#timer").text( t );
     
     if ( t===0 )
         gameOver();
+}
+function togglePause(){
+  PauseGameFlag = !PauseGameFlag;
 }
 
 //called by timer when game is up
