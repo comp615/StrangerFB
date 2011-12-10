@@ -92,7 +92,7 @@ function preload(arrayOfImages) {
 		    $('<img/>').attr("src",this["src"]);
 	    });
     } else {
-	 	$('<img/>').attr("src",this);   
+	 	$('<img/>').attr("src",arrayOfImages);   
     }
 }
 
