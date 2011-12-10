@@ -116,9 +116,10 @@ class GameController < ApplicationController
       @overall_correct_pct = Attempt.connection.select_value("SELECT AVG(`correct`) FROM `attempts` WHERE `guessed_name` != 'unfair'")
 
       #break it down by age and genders
-      @breakdown = Attempt.connection.select_all("SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,u.`gender`,u.`age` FROM `attempts` a INNER JOIN `users` u ON `u`.`id` = `a`.`user_id` WHERE `guessed_name` != 'unfair' GROUP BY `u`.`age`,`u`.`gender` ORDER BY `age` ASC;")
+      @gender_age_breakdown = Attempt.connection.select_all("SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,u.`gender`,u.`age` FROM `attempts` a INNER JOIN `users` u ON `u`.`id` = `a`.`user_id` WHERE `guessed_name` != 'unfair' GROUP BY `u`.`age`,`u`.`gender` ORDER BY `age` ASC;")
       @gender_gender_breakdown = Attempt.connection.select_all("SELECT u.`gender` as `user_gender`,a.`gender` as `gender`,AVG(`correct`) as `pct`, COUNT(*) as `count` FROM `attempts` a INNER JOIN `users` u ON u.`id` = a.`user_id` WHERE `guessed_name` != 'unfair' GROUP BY u.`gender`,a.`gender` ORDER BY u.`gender` DESC,a.`gender` DESC;")
-
+       
+      
       #return here if not signed in
       return if !@current_user || @current_user.attempts.blank?
 

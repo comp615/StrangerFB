@@ -109,30 +109,39 @@
     <!--  Aggregate Stats -->
     <h1>The average Facebook user <br />knows <span class="score"><%= to_pct_with_places(@overall_correct_pct,1) %></span> of their friends.</h1>
     
+    <!-- this is awful, gotta switch that helper out to a private controller action and run server-side -->
+    <%
+        @gender_age_hash = {
+            :ages => ['<18', '18-21', '21-23', '23-25', '25+'],
+            :male => [tally_data(@gender_age_breakdown.select{|d| (1..17).include? d["age"]},"male",false), tally_data(@gender_age_breakdown.select{|d| (18..20).include? d["age"]},"male",false), tally_data(@gender_age_breakdown.select{|d| (21..22).include? d["age"]},"male",false), tally_data(@gender_age_breakdown.select{|d| (23..24).include? d["age"]},"male",false), tally_data(@gender_age_breakdown.select{|d| (25..100).include? d["age"]},"male",false)],
+            :female => [tally_data(@gender_age_breakdown.select{|d| (1..17).include? d["age"]},"female",false), tally_data(@gender_age_breakdown.select{|d| (18..20).include? d["age"]},"female",false), tally_data(@gender_age_breakdown.select{|d| (21..22).include? d["age"]},"female",false), tally_data(@gender_age_breakdown.select{|d| (23..24).include? d["age"]},"female",false), tally_data(@gender_age_breakdown.select{|d| (25..100).include? d["age"]},"female",false)],
+            :total => [tally_data(@gender_age_breakdown.select{|d| (1..17).include? d["age"]},"all",false), tally_data(@gender_age_breakdown.select{|d| (18..20).include? d["age"]},"all",false), tally_data(@gender_age_breakdown.select{|d| (21..22).include? d["age"]},"all",false), tally_data(@gender_age_breakdown.select{|d| (23..24).include? d["age"]},"all",false), tally_data(@gender_age_breakdown.select{|d| (25..100).include? d["age"]},"all",false)]
+        }
+    %>
+    
     <!-- [ pie chart]  -->
     <%= render :partial => '/charts/bar', :locals => {
             :id => 'agg_age', 
             :ctitle => "Percent of friends known, by user age and gender",
             :ytitle => "Percent known",
-            :xops => ['<18', '18-21', '21-23', '23-25', '25+'], 
+            :xops => @gender_age_hash[:ages],
             :yops => ['Men', 'Women'],
             :tt_desc => " this.x + ' year-old ' + this.series.name.toLowerCase()  + ' knew ' + this.y + '% of their friends.' ",
-            :men_data => [tally_data(@breakdown.select{|d| (1..17).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (18..20).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (21..22).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (23..24).include? d["age"]},"male",false), tally_data(@breakdown.select{|d| (25..100).include? d["age"]},"male",false)],
-            :women_data => [tally_data(@breakdown.select{|d| (1..17).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (18..20).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (21..22).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (23..24).include? d["age"]},"female",false), tally_data(@breakdown.select{|d| (25..100).include? d["age"]},"female",false)]
+            :men_data =>  @gender_age_hash[:male],
+            :women_data => @gender_age_hash[:female]
     }%>
     <!-- and its table --> 
     <table>
     <tr><th>Age</th><th>Male</th><th>Female</th><th> Total </th></tr>
-    <% @breakdown.group_by{|d| d["age"]}.each do |age,data| %>
-    	<% next if(age.nil?) %>
+    <% (0..4).each do |i| %>
     	<tr>
-	    	<td class="title"><%= age %></td>
-	    	<td><%= tally_data(data,"male") %></td>
-	    	<td><%= tally_data(data,"female") %></td>
-	    	<td><%= tally_data(data,"all") %></td>
+	    	<td class="title"><%= @gender_age_hash[:ages][i] %></td>
+	    	<td><%= to_pct_with_places(@gender_age_hash[:male][i], 2)  %></td>
+	    	<td><%= to_pct_with_places(@gender_age_hash[:female][i], 2)  %></td>
+	    	<td><%= to_pct_with_places(@gender_age_hash[:total][i], 2)  %></td>
     	</tr>
     <% end %>
-    <tr><td class='title'>Totals</td><td><%= tally_data(@breakdown,"male") %></td><td><%= tally_data(@breakdown,"female") %></td><td><%= tally_data(@breakdown,"all") %></td></tr>
+    <tr><td class='title'>Totals</td><td><%= tally_data(@gender_age_breakdown,"male") %></td><td><%= tally_data(@gender_age_breakdown,"female") %></td><td><%= tally_data(@gender_age_breakdown,"all") %></td></tr>
     </table>
     <div class="caption">Above: the percentage of 'friends known' is broken down by age and gender.</div>
     <br />
@@ -191,7 +200,7 @@
         <li class="social_links">
             Spread the word!
             <div>
-                <a href="http://www.whatsherface-book.com" class="twitter-share-button" data-url="www.whatsherface-book.com" data-text="WhatsHerFace-book.com - Do you even know all your FB friends anymore!?! Methinks its time to do a little unfriendin'... #FB" data-count="horizontal" data-related="baygross:charliecroom" data-via="baygross">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+                <a href="http://WhatsHerFace-book.com" class="twitter-share-button" data-url="http://WhatsHerFace-book.com" data-text="WhatsHerFace-book.com - Do you even know all your FB friends anymore!?! Methinks its time to do a little unfriendin'... #FB" data-count="horizontal" data-related="baygross:charliecroom" data-via="baygross">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
             </div>
             <div>
                 <iframe src="//www.facebook.com/plugins/like.php?href=http://www.facebook.com/pages/WhatsHerFacebook/195383003882500&amp;send=false&amp;layout=button_count&amp;width=62&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=71" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
