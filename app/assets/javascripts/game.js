@@ -335,7 +335,7 @@ var PauseGameFlag = false;
 function startTimer(){
     //delay timer start by 1.5 seconds
     setTimeout(function(){
-        $("#timer").text('10');
+        $("#timer").text('90');
         var timerHandle = window.setInterval("dropTime()",1000);
     }, 1500);
     
