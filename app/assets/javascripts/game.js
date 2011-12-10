@@ -193,8 +193,9 @@ $(document).ready( function() {
 });
 
 //every 400ms check for resize of container due to new photos
+var resizeIntervalHandle;
 function startResizeInterval(){
-  setInterval(function(){
+  resizeIntervalHandle = setInterval(function(){
     if ( $('#game').outerHeight() === $('#container').height() )
       return;
     var h = $('#game').outerHeight();
@@ -334,7 +335,7 @@ var PauseGameFlag = false;
 function startTimer(){
     //delay timer start by 1.5 seconds
     setTimeout(function(){
-        $("#timer").text('90');
+        $("#timer").text('10');
         var timerHandle = window.setInterval("dropTime()",1000);
     }, 1500);
     
@@ -359,7 +360,8 @@ function gameOver(){
     $("#game").css('paddingTop', '40px');
     $('#results').show();
     var h = $('#game').outerHeight();
-	  $('#game').animate({ marginTop: h*-1 }, 800, function(){
+    clearInterval( resizeIntervalHandle );
+	  $('#game').animate({ 'marginTop': h*-1}, 800, function(){
 	      $('#game').hide();
 	  });
  		$('#container').animate({'height' : '400px'}, 800);
