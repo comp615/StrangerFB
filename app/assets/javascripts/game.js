@@ -150,6 +150,7 @@ $(document).ready( function() {
        $('#game').show();
        showNextFriend();
        var h = $('#instructions').outerHeight();
+       startResizeInterval();
        $('#instructions').animate({ marginTop: h*-1 }, 800, function(){
 		   $('#instructions').hide();
            startTimer();
@@ -186,7 +187,7 @@ function addRedBox(data_obj) {
 	   };	
 }
 
-//called once ten friends are loaded
+//called once 15 friends are loaded
 function showPlayButton(){
     $("#loading_wait").hide();
     $('#start_button').show(); 
@@ -202,6 +203,15 @@ $(document).ready( function() {
       
 });
 
+function startResizeInterval(){
+  setInterval(function(){
+    if ( $('#game').outerHeight() === $('#container').height() )
+      return;
+    var h = $('#game').outerHeight();
+		h = ( h < 400 ) ? 400 : h;
+		$('#container').animate({'height' : h + 'px'}, 300);
+  }, 400);
+}
 
 function showNextFriend(){
 
@@ -246,14 +256,7 @@ function showNextFriend(){
 	} else {
 		$("#unfair").hide();
 	}
-    
-    
-	setTimeout(function() {
-		//smooth resize container if necessary
-		var h = $('#game').outerHeight();
-		h = ( h < 400 ) ? 400 : h;
-		$('#container').animate({'height' : h + 'px'}, 300);
-	}, 350);
+
 }   
 
 function checkName(){
@@ -316,7 +319,7 @@ function sendAnswer(guess, success){
 function startTimer(){
     //delay timer start by 1.5 seconds
     setTimeout(function(){
-        $("#timer").text('90');
+        $("#timer").text('9000');
         var timerHandle = window.setInterval("dropTime()",1000);
     }, 1500);
     
