@@ -3,11 +3,14 @@ function match_names(input,target) {
 	target = target.toLowerCase().split(" ");
 	
 	if(input.length > 1)
-		input[1] = input.slice(1,input.length).join(" ")
-	if(target.length > 1)
-		target[1] = target.slice(1,target.length).join(" ")
-	
-	if(levenshtein(input[0],target[0]) <= 1 || (levenshtein(input[0],target[1]) <= 1) || (levenshtein(input[0],target[0]) <= 3 && levenshtein(input[1],target[1]) <= 3))
+		input[1] = input.slice(1,input.length).join(" ");
+	if(target.length == 3) {
+		target[1] = target[2];	//Cut out the middle name?
+	} else if(target.length > 1) {
+		target[1] = target.slice(1,target.length).join(" ");	//for de la Bru, etc.
+	}
+		//	First name with 1 letter miss			// Long Last Name with one letter miss							//Short Last name exact match			//Very fuzzy full name match
+	if(levenshtein(input[0],target[0]) <= 1 || (levenshtein(input[0],target[1]) <= 1 && target[1].length > 3 ) || levenshtein(input[0],target[1]) == 0 || (levenshtein(input[0],target[0]) <= 3 && levenshtein(input[1],target[1]) <= 3))
 		return true;
 	return false;
 }
