@@ -140,6 +140,10 @@ class GameController < ApplicationController
       if @current_user.friend_count.nil? || @current_user.friend_count < 10 
         @current_user.friend_count =  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")[0]["friend_count"]
         @current_user.save!
+      else
+      	#Update the friend change so we can track...DO NOT UPDATE THE ORIGINAL NUMBERS!
+      	@current_user.friend_change = @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")[0]["friend_count"].to_i - @current_user.friend_count
+      	@current_user.save!      
       end
 
       #computer user scores
