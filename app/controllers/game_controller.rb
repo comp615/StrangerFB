@@ -113,11 +113,38 @@ class GameController < ApplicationController
       @fullPageFlag = true
 
       #calculate aggregate stats
-      @overall_correct_pct = Attempt.connection.select_value("SELECT AVG(`correct`) FROM `attempts` WHERE `guessed_name` != 'unfair'")
+      @overall_correct_pct = Attempt.connection.select_value("
+      	SELECT AVG(`correct`) 
+      	FROM 
+      	(SELECT `user_id`, AVG(`correct`) as `correct`, COUNT(*) as `count`
+		        FROM `attempts` a
+		        WHERE `guessed_name` != 'unfair'
+		        GROUP BY `user_id`
+		    ) `s`
+      ")
 
       #break it down by age and genders
-      @gender_age_breakdown = Attempt.connection.select_all("SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,u.`gender`,u.`age` FROM `attempts` a INNER JOIN `users` u ON `u`.`id` = `a`.`user_id` WHERE `guessed_name` != 'unfair' GROUP BY `u`.`age`,`u`.`gender` ORDER BY `age` ASC;")
-      @gender_gender_breakdown = Attempt.connection.select_all("SELECT u.`gender` as `user_gender`,a.`gender` as `gender`,AVG(`correct`) as `pct`, COUNT(*) as `count` FROM `attempts` a INNER JOIN `users` u ON u.`id` = a.`user_id` WHERE `guessed_name` != 'unfair' GROUP BY u.`gender`,a.`gender` ORDER BY u.`gender` DESC,a.`gender` DESC;")
+      @gender_age_breakdown = Attempt.connection.select_all("
+	      SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,SUM(`count`) as `attempts`, s.`gender`,s.`age` 
+			FROM 
+			    (SELECT `user_id`, AVG(`correct`) as `correct`, COUNT(*) as `count`,u.`gender`,u.`age` 
+			        FROM `attempts` a INNER JOIN `users` u ON `u`.`id` = `a`.`user_id` 
+			        WHERE `guessed_name` != 'unfair'
+			        GROUP BY `user_id`
+			    ) `s` 
+			GROUP BY `s`.`age`,`s`.`gender` 
+			ORDER BY `age` ASC")
+		
+      @gender_gender_breakdown = Attempt.connection.select_all("
+	      SELECT `user_gender`, s.`gender` as `gender`, AVG(`correct`) as `pct`, SUM(`count`) as `count` 
+	      FROM 
+			    (SELECT `user_id`, AVG(`correct`) as `correct`, COUNT(*) as `count`, u.`gender` as `user_gender`, a.`gender`, u.`age` 
+			        FROM `attempts` a INNER JOIN `users` u ON `u`.`id` = `a`.`user_id` 
+			        WHERE `guessed_name` != 'unfair'
+			        GROUP BY `user_id`, a.`gender`
+			    ) `s`
+	      GROUP BY `user_gender`, `gender` 
+	      ORDER BY `user_gender` DESC, s.`gender` DESC")
        
       
       #return here if not signed in
