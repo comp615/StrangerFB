@@ -506,21 +506,22 @@ The Actual Results Page
   margin-top: -100px;
   padding-right: 70px;
   font-size: 26px;
-  line-height: 1.2em;
+  line-height: 30px;
 }
 /* line 369, ../../app/assets/stylesheets/game.css.scss */
 #full_results #player_count .big_num {
   font-size: 56px;
+  line-height: 42px;
   font-weight: bold;
   text-shadow: 0px 1px 0px #333333, 0px -1px 0px white;
 }
 
-/* line 377, ../../app/assets/stylesheets/game.css.scss */
+/* line 378, ../../app/assets/stylesheets/game.css.scss */
 .social_links > div {
   display: inline-block;
   padding-left: 8px;
 }
-/* line 380, ../../app/assets/stylesheets/game.css.scss */
+/* line 381, ../../app/assets/stylesheets/game.css.scss */
 .social_links > div iframe {
   border: none;
   overflow: hidden;
