@@ -503,8 +503,8 @@ The Actual Results Page
 /* line 363, ../../app/assets/stylesheets/game.css.scss */
 #full_results #player_count {
   float: right;
-  margin-top: -100px;
-  padding-right: 70px;
+  margin-top: -139px;
+  padding-right: 25px;
   font-size: 26px;
   line-height: 30px;
 }
