@@ -108,7 +108,12 @@
     
     <!--  Aggregate Stats -->
     <h1>The average Facebook user <br />knows <span class="score"><%= to_pct_with_places(@overall_correct_pct,1) %></span> of their friends.</h1>
-    
+    <div id="player_count">
+        based on<br />
+        <span class="big_num"><%= User.count %></span> players<br />
+        naming<br />
+        <span class="big_num"><%= Attempt.count / 1000 %>,000+</span> friends<br />
+    </div>
     <!-- this is awful, gotta switch that helper out to a private controller action and run server-side -->
     <%
         @gender_age_hash = {
