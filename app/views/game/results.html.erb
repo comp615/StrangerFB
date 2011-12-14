@@ -86,6 +86,7 @@
             What's more: the information you share with 'friends of friends' 
             is distributed to around:<strong> <%= number_with_delimiter(@fof_count.to_s) %> people</strong>.
         </p>
+        <% if @my_affiliations %>
         <p>
             And you are in the following <strong>networks</strong>:
             <% @my_affiliations.each do |a| %>
@@ -94,6 +95,7 @@
             <br />
             But those networks are FAR larger than your immediate friend group.
         </p>
+        <% end %>
         <p>
             Finally, recall that data shared publicly on Facebook goes out to:
             <strong>800,000,000 people...</strong>  
