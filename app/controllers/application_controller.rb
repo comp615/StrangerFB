@@ -45,6 +45,7 @@ class ApplicationController < ActionController::Base
 			@current_user.touch
 		rescue Koala::Facebook::APIError
 			#User cookie is stale, so don't act like they are logged in
+			#session.clear
 		end
     end
     

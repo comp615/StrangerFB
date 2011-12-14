@@ -164,14 +164,18 @@ class GameController < ApplicationController
       @attempts = @current_user.attempts.where("`guessed_name` != 'unfair'") #aggregate 
 
       # add friend count if missing
-      if @current_user.friend_count.nil? || @current_user.friend_count < 10 
-        @current_user.friend_count =  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")[0]["friend_count"]
-        @current_user.save!
-      else
-      	#Update the friend change so we can track...DO NOT UPDATE THE ORIGINAL NUMBERS!
-      	@current_user.friend_change = @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")[0]["friend_count"].to_i - @current_user.friend_count
-      	@current_user.save!      
-      end
+      begin
+	      if @current_user.friend_count.nil? || @current_user.friend_count < 10 
+	        @current_user.friend_count =  @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")[0]["friend_count"]
+	        @current_user.save!
+	      else
+	      	#Update the friend change so we can track...DO NOT UPDATE THE ORIGINAL NUMBERS!
+	      	@current_user.friend_change = @fb_graph.fql_query("SELECT friend_count FROM user WHERE uid = me()")[0]["friend_count"].to_i - @current_user.friend_count
+	      	@current_user.save!      
+	      end
+	  rescue
+	  	
+	  end
 
       #computer user scores
       @my_score = @correct_attempts.length.to_f / (@correct_attempts.length + @incorrect_attempts.length) rescue 0
@@ -181,18 +185,22 @@ class GameController < ApplicationController
       @fof_count =  (@current_user.friend_count * 880 * 0.5).round
 
       #grab affiliations
-      @my_affiliations = @fb_graph.fql_query("SELECT affiliations FROM user WHERE uid = me()").first["affiliations"]
-      @my_affiliations.map!{ |affil|
-        affil_attempts = @attempts.select{ |att| att.affils.include?( affil["nid"].to_i ) }
-        affil_correct = affil_attempts.select{|att| att.correct}
-        affil_accuracy = (affil_correct.length.to_f / affil_attempts.length ) rescue 0
-        {
-          :name => affil['name'],
-          :attempts => affil_attempts.length.to_s,
-          :correct => affil_correct.length.to_s,
-          :accuracy => affil_accuracy.to_s
-        }
-      }
+      begin
+	      @my_affiliations = @fb_graph.fql_query("SELECT affiliations FROM user WHERE uid = me()").first["affiliations"]
+	      @my_affiliations.map!{ |affil|
+	        affil_attempts = @attempts.select{ |att| att.affils.include?( affil["nid"].to_i ) }
+	        affil_correct = affil_attempts.select{|att| att.correct}
+	        affil_accuracy = (affil_correct.length.to_f / affil_attempts.length ) rescue 0
+	        {
+	          :name => affil['name'],
+	          :attempts => affil_attempts.length.to_s,
+	          :correct => affil_correct.length.to_s,
+	          :accuracy => affil_accuracy.to_s
+	        }
+	      }
+	  rescue
+	  
+	  end
 
 
 
