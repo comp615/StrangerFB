@@ -289,10 +289,6 @@ The Actual Results Page
     #share_line{
         margin-top:24px;
         padding-left:26px;
-        .giant_hand{
-            font-size:64px;
-            vertical-align:middle;
-        }
         .facebook-button{
             display:inline-block;
             font-size: 16px;
@@ -373,6 +369,17 @@ The Actual Results Page
         text-shadow: 0px 1px 0px #333, 0px -1px 0px white;
       }
     }
+    #player_count_small{
+      margin-top: -24px;
+      .giant_hand{padding-right:4px;}
+      font-size: 15px;
+      .big_num{
+        font-size:24px;
+        line-height:24px;
+        font-weight:bold;
+        text-shadow: 0px 1px 0px #333, 0px -1px 0px white;
+      }
+    }
 }
 .social_links{
     >div {
@@ -387,4 +394,8 @@ The Actual Results Page
         }
     }
 
+}
+.giant_hand{
+    font-size:64px;
+    vertical-align:middle;
 }

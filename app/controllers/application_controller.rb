@@ -16,12 +16,18 @@ class ApplicationController < ActionController::Base
       @current_controller = controller_name
   end
   
-  def load_user   
+  def load_user  
+    puts "***************************" 
+    puts cookies.to_json
+    puts "***************************"
+    
     #set facebook + session vars
   	@fb_oauth = Koala::Facebook::OAuth.new  	
     @fb_graph = Koala::Facebook::API.new  # can only access public datam, temporary.
     session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
     
+    puts @fb_oauth.get_user_from_cookies(cookies)
+    puts "************************************"
     #if user is logged in
     if session[:fb_id]
     	
