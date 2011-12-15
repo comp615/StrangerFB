@@ -145,10 +145,10 @@ class GameController < ApplicationController
 			    ) `s`
 	      GROUP BY `user_gender`, `gender` 
 	      ORDER BY `user_gender` DESC, s.`gender` DESC")
-       
       
-      #return here if not signed in
-      return if !@current_user || @current_user.attempts.blank?
+      #return here if not signed in 
+      @indivFlag = ( @current_user && !@current_user.attempts.blank? )
+      return if !@indivFlag
 
 
       #Expect a ts if coming from a game, otherwise use all

@@ -28,7 +28,7 @@
     </div>
     
     <!-- individual stats -->
-    <% if @current_user && !@current_user.attempts.blank? %>
+    <% if @indivFlag %>
         <% if params[:ts] %> 
             <h1 id="this_time_score" class="top-title">You scored 
                 <span class="score"><%= to_pct_with_places(@my_score,1) %></span>
@@ -108,12 +108,19 @@
     
     <!--  Aggregate Stats -->
     <h1>The average Facebook user <br />knows <span class="score"><%= to_pct_with_places(@overall_correct_pct,1) %></span> of their friends.</h1>
-    <div id="player_count">
-        based on<br />
-        <span class="big_num"><%= User.count %></span> players<br />
-        naming<br />
-        <span class="big_num"><%= Attempt.count / 1000 %>,000+</span> friends<br />
-    </div>
+    <% if @indivFlag %>
+        <div id="player_count">
+            based on<br />
+            <span class="big_num"><%= User.count %></span> players<br />
+            naming<br />
+            <span class="big_num"><%= Attempt.count / 1000 %>,000+</span> friends<br />
+        </div>
+    <% else %>
+        <div id="player_count_small">
+            <span class="giant_hand">☞</span>
+            based on<span class="big_num"> <%= User.count %> </span>players naming<span class="big_num"> <%= Attempt.count / 1000 %>,000+ </span> friends
+        </div>
+    <% end %>
     <!-- this is awful, gotta switch that helper out to a private controller action and run server-side -->
     <%
         @gender_age_hash = {
@@ -184,7 +191,7 @@
     
     <!-- Call to action -->
     <h1>Okay, so what should I do? 
-        <% if !@current_user || @current_user.attempts.blank? %>
+        <% if !@indivFlag %>
          <a href="/" class="button round green arrow snice bottom">Test yourself</a>
         <% else %>
          <a href="/" class="button round green arrow snice bottom">Play again</a>
