@@ -26,13 +26,11 @@ class ApplicationController < ActionController::Base
     @fb_graph = Koala::Facebook::API.new  # can only access public datam, temporary.
     session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
     
-    puts @fb_oauth.get_user_from_cookies(cookies)
-    puts "************************************"
-    #if user is logged in
-    if session[:fb_id]
-    	
-    	#Grab their access token, and upgrade the graph object
-    	begin
+	begin
+	    #if user is logged in
+	    if session[:fb_id]
+	    	
+	    	#Grab their access token, and upgrade the graph object
 	    	if @fb_oauth.get_user_info_from_cookies(cookies)
 	    	    token = @fb_oauth.get_user_info_from_cookies(cookies)["access_token"]
 			    @fb_graph = Koala::Facebook::API.new( token )
@@ -49,11 +47,12 @@ class ApplicationController < ActionController::Base
 			
 			#Update the last use time just for reporting purposes
 			@current_user.touch
-		rescue Koala::Facebook::APIError
-			#User cookie is stale, so don't act like they are logged in
-			#session.clear
-		end
-    end
+	    end
+    
+    rescue Koala::Facebook::APIError
+		#User cookie is stale, so don't act like they are logged in
+		#session.clear
+	end
     
   end
   
