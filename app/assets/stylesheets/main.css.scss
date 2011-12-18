@@ -57,7 +57,7 @@ body {
     height:400px;
     overflow:hidden;
     border:1px solid #eee;
-    margin-top:-440px;  //animates to 130px
+    margin-top:-490px;  //animates to 130px
     margin-left:auto;
     margin-right:auto;
     margin-bottom:50px;
@@ -109,7 +109,7 @@ body {
     text-align:center;
     margin-left:auto;
     margin-right:auto;
-    margin-top:50px;
+    margin-top:40px;
     font-size:11px;
     text-shadow: 0px 1px 0px #fff;
     a{ 
@@ -144,24 +144,56 @@ body {
 }
 
 .facebook-button {
-       height: 46px;
-       width:160px;
-       display: block;
-       background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
-       padding-left: 48px;
-       cursor: pointer;
+     height: 46px;
+     width:160px;
+     display: block;
+     background: transparent url("/images/facebook-lg-f.png") no-repeat top left;
+     padding-left: 48px;
+     cursor: pointer;
 
-       .button-text {
-           display: block;
-           padding: 15px 7px 17px 5px;
-           background: transparent url("/images/facebook-lg-r.png") no-repeat top right;
-           color: $grey;
-       }
+     .button-text {
+         display: block;
+         padding: 15px 7px 17px 5px;
+         background: transparent url("/images/facebook-lg-r.png") no-repeat top right;
+         color: $grey;
+     }
 
-       &.active {
-           margin-top: 1px; // Class needs to be applied via JS since this is a div	
-       }
-   }
+     &.active {
+         margin-top: 1px; // Class needs to be applied via JS since this is a div	
+     }
+}
+
+#press_box{
+  width:720px;
+  margin-top:-36px;
+  margin-left:auto;
+  margin-right:auto;
+  height:60px;
+  a img{
+    float:left;
+    max-height:18px;
+    margin-right:8px;
+    @include opacity(0.74);
+    &:hover{
+      @include opacity(1);
+      text-decoration:none;
+    };
+  }
+  #cpsc{ 
+      float:right;
+      font-size:11px;
+      text-shadow: 0px 1px 0px #fff;
+      a{
+        text-decoration:none;
+        color:#666;
+        padding-top:5px;
+        padding-bottom:5px;
+        &:hover{
+            font-weight:bold;   
+        }
+      }
+  }
+}
 
 
 /*  
