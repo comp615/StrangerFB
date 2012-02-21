@@ -113,18 +113,28 @@ class GameController < ApplicationController
       @fullPageFlag = true
 
       #calculate aggregate stats
-      @overall_correct_pct = Attempt.connection.select_value("
-      	SELECT AVG(`correct`) 
-      	FROM 
-      	(SELECT `user_id`, AVG(`correct`) as `correct`, COUNT(*) as `count`
-		        FROM `attempts` a
-		        WHERE `guessed_name` != 'unfair'
-		        GROUP BY `user_id`
-		    ) `s`
-      ")
-
-      #break it down by age and genders
-      @gender_age_breakdown = Attempt.connection.select_all("
+      
+      obj = Rails.cache.read("overall")
+	  if(!obj || obj[:ts] < Time.now - 7.days)
+	      data = Attempt.connection.select_value("
+	      	SELECT AVG(`correct`) 
+	      	FROM 
+	      	(SELECT `user_id`, AVG(`correct`) as `correct`, COUNT(*) as `count`
+			        FROM `attempts` a
+			        WHERE `guessed_name` != 'unfair'
+			        GROUP BY `user_id`
+			    ) `s`
+	      ")
+	      obj = {:data => data, :ts => Time.now}
+		Rails.cache.write("overall",obj)
+	  end
+	  @overall_correct_pct = obj[:data]
+      
+	  obj = Rails.cache.read("gender_age")
+	  if(!obj || obj[:ts] < Time.now - 7.days)
+	  	#recache
+	  	#break it down by age and genders
+      	data = Attempt.connection.select_all("
 	      SELECT AVG(`correct`) as `pct`,COUNT(*) as `count`,SUM(`count`) as `attempts`, s.`gender`,s.`age` 
 			FROM 
 			    (SELECT `user_id`, AVG(`correct`) as `correct`, COUNT(*) as `count`,u.`gender`,u.`age` 
@@ -134,8 +144,14 @@ class GameController < ApplicationController
 			    ) `s` 
 			GROUP BY `s`.`age`,`s`.`gender` 
 			ORDER BY `age` ASC")
-		
-      @gender_gender_breakdown = Attempt.connection.select_all("
+		obj = {:data => data, :ts => Time.now}
+		Rails.cache.write("gender_age",obj)
+	  end
+	  @gender_age_breakdown = obj[:data]	
+	  
+	  obj = Rails.cache.read("gender_gender")
+	  if(!obj || obj[:ts] < Time.now - 7.days)
+      	data = Attempt.connection.select_all("
 	      SELECT `user_gender`, s.`gender` as `gender`, AVG(`correct`) as `pct`, SUM(`count`) as `count` 
 	      FROM 
 			    (SELECT `user_id`, AVG(`correct`) as `correct`, COUNT(*) as `count`, u.`gender` as `user_gender`, a.`gender`, u.`age` 
@@ -145,6 +161,10 @@ class GameController < ApplicationController
 			    ) `s`
 	      GROUP BY `user_gender`, `gender` 
 	      ORDER BY `user_gender` DESC, s.`gender` DESC")
+	    obj = {:data => data, :ts => Time.now}
+		Rails.cache.write("gender_gender",obj)
+	  end
+	   @gender_gender_breakdown = obj[:data]
       
       #return here if not signed in 
       @indivFlag = ( @current_user && !@current_user.attempts.blank? )
