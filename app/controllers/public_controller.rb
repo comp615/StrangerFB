@@ -1,5 +1,7 @@
 class PublicController < ApplicationController
-
+		caches_page :privacy
+		caches_page :about
+		
     def privacy
     end
     

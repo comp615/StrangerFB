@@ -1,5 +1,7 @@
 class GameController < ApplicationController
-
+	
+	caches_page :splash
+	
   def splash
     #run animation on splash page
     @animatePhotosFlag = true

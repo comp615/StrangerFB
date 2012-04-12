@@ -22,4 +22,4 @@ Koala::Facebook::OAuth.class_eval do
  alias_method_chain :initialize, :default_settings
 end
 
-Koala.http_service.ca_file = 'C:\sites\StrangerFB\cacert.pem'
+Koala.http_service.ca_file = 'C:\sites\StrangerFB\cacert.pem' if(RUBY_PLATFORM.downcase.include?("mswin") || RUBY_PLATFORM.downcase.include?("ming"))
