@@ -17,42 +17,48 @@ class ApplicationController < ActionController::Base
   end
   
   def load_user  
-    puts "***************************" 
-    puts cookies.to_json
-    puts "***************************"
     
     #set facebook + session vars
   	@fb_oauth = Koala::Facebook::OAuth.new  	
     @fb_graph = Koala::Facebook::API.new  # can only access public datam, temporary.
+    
+    #session[:fb_id] = "1343225522"
     session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
     
-	begin
-	    #if user is logged in
-	    if session[:fb_id]
-	    	
-	    	#Grab their access token, and upgrade the graph object
-	    	if @fb_oauth.get_user_info_from_cookies(cookies)
-	    	    token = @fb_oauth.get_user_info_from_cookies(cookies)["access_token"]
-			    @fb_graph = Koala::Facebook::API.new( token )
-			end
-    	
-			#load existing user from DB if possible
-			@current_user = User.find_by_facebook_id( session[:fb_id] )
-			
-			#otherwise create new user
-			if !@current_user
-			    fb_obj = @fb_graph.get_object( session[:fb_id] )
-			    @current_user = User.newFromFB( fb_obj )
-			end
-			
-			#Update the last use time just for reporting purposes
-			@current_user.touch
-	    end
     
+    puts "******* COOKIES************" 
+    p cookies.to_json
+    puts "******** FB DATA ***********" 
+    p @fb_oauth.get_user_info_from_cookies(cookies)
+    puts "***************************"
+    
+    begin
+      #if user is logged in
+      if session[:fb_id]
+
+        #Grab their access token, and upgrade the graph object
+        if @fb_oauth.get_user_info_from_cookies(cookies)
+          token = @fb_oauth.get_user_info_from_cookies(cookies)["access_token"]
+          @fb_graph = Koala::Facebook::API.new( token )
+        end
+
+        #load existing user from DB if possible
+        @current_user = User.find_by_facebook_id( session[:fb_id] )
+
+        #otherwise create new user
+        if !@current_user
+          fb_obj = @fb_graph.get_object( session[:fb_id] )
+          @current_user = User.newFromFB( fb_obj )
+        end
+
+        #Update the last use time just for reporting purposes
+        @current_user.touch
+      end
+
     rescue Koala::Facebook::APIError
-		#User cookie is stale, so don't act like they are logged in
-		#session.clear
-	end
+      #User cookie is stale, so don't act like they are logged in
+      #session.clear
+    end
     
   end
   

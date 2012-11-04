@@ -76,13 +76,43 @@ class GameController < ApplicationController
       puts "--Batch grab photos: " + (Time.now - s).to_s
 
 
-      #Finally attach them to the friends object to be sent back
+     
       s = Time.now
-      results.each_with_index do |r_arr,idx|
-        photos = r_arr.map do |r|
-          tag = r["tags"]["data"].detect{|t| t["id"].to_i == friends[idx]["uid"].to_i}
-          {:xcoord => tag["x"],:ycoord => tag["y"],:src => r["source"],:total_tags => r["tags"]["data"].length}
+      #loop over each friend block
+      results.each_with_index do |friend, idx|
+        
+        #for each friend, map over their photos, return new object with just necessary photo data
+        photos = friend.map do |p|
+          
+          #handle bug when no tags attachted for some reason
+          if !p["tags"]
+            x = 0
+            y = 0
+            src = p["source"]
+            tt = 100 #hackfix: we sort by lowest tags... but 1 tag is actually better than 0, so 0 => 100
+            
+          #normal procession
+          else
+          
+            all_tags = p["tags"]["data"]
+            friend_id = friends[idx]["uid"].to_i
+            tag = all_tags.detect{ |t| t["id"].to_i == friend_id}
+            
+            x = tag["x"],
+            y = tag["y"],
+            src = p["source"],
+            tt = p["tags"]["data"].length
+          end
+          
+            #result of map is new hash
+            { :xcoord =>x,
+              :ycoord => y,
+              :src => src,
+              :total_tags => tt
+            }
         end
+        
+        #sort by photos with fewest tags (most likely to be good face shot)
         friends[idx]["photos"] = photos.sort_by{|p| p[:total_tags]}.first(8).sample(4)
       end
       puts "--Sort Photos: " + (Time.now - s).to_s

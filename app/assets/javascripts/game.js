@@ -260,9 +260,14 @@ function startResizeInterval(){
         var w = $("#hover_img img").width();
         var h = $("#hover_img img").height();
         var wh = Math.max(w/8,h/8);
-        $("#hover_img .tag_box").css("left", w * $(data_obj).data("x") / 100 - wh/2);
-        $("#hover_img .tag_box").css("top", h * $(data_obj).data("y") / 100 - wh/2);
+
+				var x = w * $(data_obj).data("x") / 100 - wh/2;
+				var y = h * $(data_obj).data("y") / 100 - wh/2;
+				
+        $("#hover_img .tag_box").css("left", x);
+        $("#hover_img .tag_box").css("top", y);
         $("#hover_img .tag_box").width(wh).height(wh);
+					
       };	
     }
 
