@@ -41,6 +41,7 @@ end
 
 #Add a JS Runtime for the servers
 group :production do
-#  gem 'therubyracer'
+  gem 'therubyracer'
+  gem 'execjs'
 #  gem 'exception_notification_rails3', :require => 'exception_notifier' 
 end
