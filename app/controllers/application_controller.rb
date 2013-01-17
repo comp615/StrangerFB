@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
         #Grab their access token, and upgrade the graph object
         if fbdata
           logger.error "Trying to grab token"
-          token = @fb_oauth.get_user_info_from_cookies(cookies)["access_token"]
+          token = fbdata["access_token"]
           logger.error "Token found: " + token
           @fb_graph = Koala::Facebook::API.new( token )
           logger.error "Just upgraded graph object with token"
