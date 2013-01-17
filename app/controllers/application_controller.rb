@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def load_user  
     
     #set facebook + session vars
-  	@fb_oauth = Koala::Facebook::OAuth.new  	
+  	@fb_oauth = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET, Facebook::CALLBACK_URL) 
     @fb_graph = Koala::Facebook::API.new  # can only access public datam, temporary.
     
     #session[:fb_id] = "1343225522"
@@ -38,11 +38,14 @@ class ApplicationController < ActionController::Base
 
         #Grab their access token, and upgrade the graph object
         if @fb_oauth.get_user_info_from_cookies(cookies)
+          logger.error "Trying to grab token"
           token = @fb_oauth.get_user_info_from_cookies(cookies)["access_token"]
+          logger.error "Token found: " + token
           @fb_graph = Koala::Facebook::API.new( token )
           logger.error "Just upgraded graph object with token"
         end
-
+        
+        logger.error "Moving on to DB"
         #load existing user from DB if possible
         @current_user = User.find_by_facebook_id( session[:fb_id] )
 
