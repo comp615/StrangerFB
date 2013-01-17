@@ -6,5 +6,4 @@ tmp/*
 
 /config/*.yml
 .rvmrc
-*.lock
 *.DS_Store
