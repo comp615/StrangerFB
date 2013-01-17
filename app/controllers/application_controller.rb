@@ -27,9 +27,9 @@ class ApplicationController < ActionController::Base
     
     
     puts "******* COOKIES************" 
-    p cookies.to_json
+    logger.error cookies.to_json
     puts "******** FB DATA ***********" 
-    p @fb_oauth.get_user_info_from_cookies(cookies)
+    logger.error @fb_oauth.get_user_info_from_cookies(cookies)
     puts "***************************"
     
     begin
