@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	
+	<title>What'sHerFace</title>
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+	
+	<meta name="description" content="Race the clock to name your Facebook friends! Or do you even still know their names!?" />
+	<meta name="keywords" content="facebook, game, friend, unfriend, defriend, privacy, race, name, photos, sharing" />
+	<meta property="og:title" content="WhatsHerFace"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content="http://www.whatsherface-book.com"/>
+	<meta property="og:image" content="http://whatsherface-book.com/images/fb_logo.png"/>
+	<meta property="og:description" content="Race the clock to name your Facebook friends as they appear! Or do you even still know their names!?"/> 
+	<meta property="og:locale" content="en_US"/>
+	<meta property="fb:admins" content="1343225522, 1252230433">
+	<link rel="icon" href="/images/favicon.png" type="image/ico" />
+	
+	<meta content="authenticity_token" name="csrf-param" />
+<meta content="TwWssj11NythL9vEMjnNqCq/GWABDhwWGaeLonFpfjc=" name="csrf-token" />
+	<link href="/assets/application-e0b72b59c8e818a746b922973ba22c1d.css" media="screen" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="/assets/application-fc62dbc1cc7ad45b4e713e991381b95a.js" type="text/javascript"></script>
+	<script src="/assets/game-03ed9b26924fbe20db64115ebf9b8684.js" type="text/javascript"></script>
+	<link href="/assets/game-dac2528278487504dbc00d8896fddaed.css" media="screen" rel="stylesheet" type="text/css" />
+	
+	<!--[if lt IE 9]>
+		<link href="/assets/ie-3e2d521e465c3a252a2a9313c4e5fc4f.css" media="screen" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	    <script src="/assets/name_compare-4ef262d32255cc436a19c8467cfc45c3.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+
+	<div id="social_block" class="hide-on-phones">
+        <!-- filled with ajax call -->
+	</div>
+    
+        <div id="photorow_wrapper">
+    <div id="photorow">
+        <!--img class="backphoto" src="/photorow/blank.png" -->
+        <div class="clearfix">&nbsp;</div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+//main application hooks
+$(document).ready(function(){
+    
+    // add photos to fit screen size
+    resizePhotoBar();
+    
+    //add photos if necessary on screen resize
+    $(window).resize( function(){
+        resizePhotoBar();
+        $('#photorow img').show();
+    });
+    
+    //either run animation, or display static
+        $(window).load(function(){
+            $('#container').css('marginTop',  '-440px');
+            $('#container').animate({'marginTop' : '130px'}, 600, slideOutPhotos);
+            getSocialMedia(false);
+        });
+     
+});
+
+//make sure photos aren't repeated
+var totalPhotos = 28; //0 indexed
+var photos = [];
+function randPhoto(){
+    if (photos.length === 0){
+        for (var i=0; i< totalPhotos; i++)
+            photos.push(i);
+        photos.sort( function(x){return 0.5 - Math.random();} );
+    } 
+    return photos.pop();
+}
+
+//resize photo bar to fit window
+function resizePhotoBar(){   
+    var currentCount = $('#photorow img').length;
+    var pics = Math.floor( $(window).width() / 100 ) + 60 - currentCount;    
+    for (var i=0; i< pics; i++)
+        $('#photorow').prepend('<img style="display:none" src="/photorow/' + randPhoto() + '.png" />');
+}
+
+//slide out photos animation
+function slideOutPhotos(){
+    //add seven photos behind container
+    $('#photorow img').slice(0, 3).show();  
+    $('#photorow img').slice(-4, -1).show(); 
+
+    //slide out photos
+    var i=0;
+    do {
+        if (Math.random() > .5 )
+            var p = $('#photorow img:hidden').first();
+        else 
+            var p = $('#photorow img:hidden').last();
+        
+         p.css('width', '0px').show().delay(i*2).animate({ 'width' : '100px'}, 1000);
+        
+        i++;
+    } while (p.length !== 0 );
+
+    //wait to fade in social media
+    setTimeout(function(){
+        $('#social_block').hide().css('top', '7px').fadeIn(2400);
+    }, 1000);
+}
+
+//load social media links asynchronously
+function getSocialMedia(showImmediately){
+    if (showImmediately === true)
+        $('#social_block').load('/get_social_media');
+    else 
+        $('#social_block').css('top', '-200px').load('/get_social_media');
+}
+</script>  
+        <div id="container">
+    	    
+<div id='splash' style="adisplay:none">
+    <div id='introduction'>
+        <h4>How well do YOU know your Facebook Friends?</h4>
+        <p>
+        People are getting smarter about 
+        their <strong>privacy online</strong>.  
+        By now, we all know to restrict our profiles so that <strong>only friends</strong> can see 
+        our personal information.  But after 3, 4, 5+ <strong>years</strong> of social networking, do
+        you still even <strong><em>know</em></strong> all your friends? 
+        </p>
+        <p>
+        That guy from that other middle school in 8th grade? Whatsherface from the party junior year?
+        They may still be lurking around, and they can see everything that grandma can't!
+        </p>
+            
+        <p>
+        Login below to see how well you know your social network... Or 
+        <a href="/results">jump</a> straight to the results.
+        </p>
+        
+    </div>
+		<div id='fb_connect' class='login_box active'>
+			<div id='fb_login' class='facebook-button large'><span class='button-text'>I bet I know 'em all!</span></div>
+			<p id='privacy_info'>Questions? Read our <a href='/privacy'>Privacy Policy</a></p>
+		</div>
+</div>
+    
+    
+<div id='instructions' style='display:none'>
+    <h4>Instructions</h4>
+    <p>
+    When you hit 'Go' below, you will have <strong>90 seconds</strong> to name
+    as many of your Facebook friends as you can.  Friends will 
+    be selected randomly, and presented to you with their profile
+    pictures.
+    </p>
+    
+    <p>
+    You must type their first or last name (or both!), and once you 
+    have answered correctly the game will automatically move on. 
+    Don't worry about spelling too much, just get it mostly right.  
+    </p>
+    
+    <p>
+    If you don't know someone, hit "I don't know" to quickly move on without wasting too much time! 
+    <strong>Hint</strong>: Hover over the images for a larger photo.
+    </p>
+    
+    <p>
+    Good luck!
+    </p>
+    <div id="loading_wait"><img src="/images/spinner.gif" /> Loading...</div>
+    <div style="display:none" id="start_button" class="button round green right nice arrow">Let's Go</div>
+    <div class="clearfix">&nbsp;</div>
+</div>
+
+
+<div id='game' style='display:none'>
+    <div id="timer">90</div>
+    <div id="left_block">
+    	<img class="big" id="ibig" src="/images/loading_prof_pic.png" /> 
+		<div id="unfair" class="button round nice white" style="display: none">Not Fair!</div>
+		<div class="clearfix">&nbsp;</div>
+    </div>
+    <div id="right_block">
+        <h2>Game on!</h2>
+        <div class="helper">Oh, I know this person:</div>
+        <input id="guess"/>
+        <div id="answer"><span></span></div>
+        <div class="helper">Err, maybe not this one.</div>
+        <div id="idk" class="button round nice white full-width">I forget!</div>
+        <div id="pause_block">
+            <input id="pause" type="checkbox" />Stop the clock! <br /> I'm having too much fun!
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+</div>
+
+
+<div id='results' style='display:none'>
+    <h4>Time's up!</h4>
+    Click below to see a full summary of your results. 
+    <div id="results_button" class="button round nice green arrow">Let's go</div>
+    <div class="clearfix">&nbsp;</div>
+</div>
+
+    	</div>
+    	<div id='hover_img'>
+			<img />
+			<div class="tag_box"></div>
+		</div>
+		<div id='press_box'>
+		    <div id="cpsc">
+		        A <a href="http://www.yalelawtech.org/">CPSC183</a> project, 2011
+		    </div>
+            <a href="http://www.allfacebook.com/that%E2%80%99s-a-facebook-photo-of-%E2%80%A6-what%E2%80%99sherface-2011-12" title="All Facebook">
+                <img id="allfacebook" src="/images/allfacebook.png" />
+            </a>
+            <a href="http://www.dailymail.co.uk/sciencetech/article-2074554/Facebook-timeline-feature-Mixed-reaction-latest-changes.html" title="Daily Mail">
+                <img id="dailymail" src="/images/dailymail.png" />
+            </a>
+            <a href="http://www.forbes.com/sites/kashmirhill/2011/12/15/as-facebook-timeline-rolls-out-find-out-how-well-you-know-your-friends/" title="Forbes">
+                <img id="forbes" src="/images/forbes.png" />
+            </a>
+        </div>
+    
+	
+	<div id="footer">
+	    
+	</div>
+	
+	<!-- Page specific Javascript -->
+	
+	
+	<!-- FB partial settings -->
+	<div id="fb-root"></div>
+<!--  Facebook -->
+<script>
+ window.fbAsyncInit = function() {
+   FB.init({
+     appId  : '255111124548760',
+     status : true, // check login status
+     cookie : true, // enable cookies to allow the server to access the session
+     channelUrl : 'http://whatsherface-book.com/channel.html',
+     xfbml  : true  // parse XFBML
+   });
+   
+   // logout if FB flag is set
+   if ( typeof(FB_LOGOUT_FLAG) != 'undefined' )
+       FB.logout( function(response){ location.href = "/"; } );
+   
+   // Browser-specific hacks to make FB Connect more reliable
+   $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+   if ($.browser.chrome || $.browser.msie) {
+     FB.XD._origin = window.location.protocol + "//" + document.domain + "/" + FB.guid();
+     FB.XD.Flash.init();
+     FB.XD._transport = "flash";
+   } else if ($.browser.opera) {
+     FB.XD._transport = "fragment";
+     FB.XD.Fragment._channelUrl = window.location.protocol + "//" + window.location.host + "/";
+   }
+}; 
+  
+(function() {   
+    var e = document.createElement('script'); 
+    e.async = true;
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+
+}());
+
+</script>
+
+	
+	<!-- Gaug.es -->
+    <script type="text/javascript">
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4ee28db2613f5d2503000010');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+    
+  <!-- Google Analytics -->
+
+</body>
+</html>
