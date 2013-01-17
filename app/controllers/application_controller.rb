@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     
     #session[:fb_id] = "1343225522"
     session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
-    
+    logger.error "Just set user id to: " + session[:fb_id]
     
     puts "******* COOKIES************" 
     logger.error cookies.to_json
@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
         if @fb_oauth.get_user_info_from_cookies(cookies)
           token = @fb_oauth.get_user_info_from_cookies(cookies)["access_token"]
           @fb_graph = Koala::Facebook::API.new( token )
+          logger.error "Just upgraded graph object with token"
         end
 
         #load existing user from DB if possible
@@ -58,6 +59,7 @@ class ApplicationController < ActionController::Base
     rescue Koala::Facebook::APIError
       #User cookie is stale, so don't act like they are logged in
       #session.clear
+      logger.error "Koala API error"
     end
     
   end
