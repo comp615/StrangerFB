@@ -1,0 +1,11 @@
+development:
+  app_id: 158833497491756
+  secret_key: 9d5aec37637ac379132b29276cb97b8e
+  callback_url: http://localhost:3000/
+ 
+production:
+  app_id: 255111124548760
+  secret_key: 5f265d35dbbb1e0b8d5b6b97773669d1
+  callback_url: http://whatsherface-book.com
+  
+  
