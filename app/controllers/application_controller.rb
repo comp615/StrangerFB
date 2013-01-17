@@ -18,53 +18,65 @@ class ApplicationController < ActionController::Base
   
   def load_user  
     
-    #set facebook + session vars
+    #load fb_oauth object
   	@fb_oauth = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET, Facebook::CALLBACK_URL) 
-    @fb_graph = Koala::Facebook::API.new  # can only access public datam, temporary.
     
-    #session[:fb_id] = "1343225522"
-    session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
-    logger.error "Just set user id to: " + session[:fb_id]
-    
-    puts "******* COOKIES************" 
-    logger.error cookies.to_json
-    puts "******** FB DATA ***********" 
-    fbdata = @fb_oauth.get_user_info_from_cookies(cookies)
-    logger.error fbdata
-    puts "***************************"
-    
-    begin
-      #if user is logged in
-      if session[:fb_id]
-        
-        #Grab their access token, and upgrade the graph object
-        if fbdata
-          logger.error "Trying to grab token"
-          token = fbdata["access_token"]
-          logger.error "Token found: " + token
-          @fb_graph = Koala::Facebook::API.new( token )
-          logger.error "Just upgraded graph object with token"
-        end
-        
-        logger.error "Moving on to DB"
-        #load existing user from DB if possible
-        @current_user = User.find_by_facebook_id( session[:fb_id] )
-
-        #otherwise create new user
-        if !@current_user
-          fb_obj = @fb_graph.get_object( session[:fb_id] )
-          @current_user = User.newFromFB( fb_obj )
-        end
-
-        #Update the last use time just for reporting purposes
-        @current_user.touch
-      end
-
-    rescue Koala::Facebook::APIError
-      #User cookie is stale, so don't act like they are logged in
-      #session.clear
-      logger.error "Koala API error"
+    #if user is already logged in, just load graph object from session
+    if session[:fb_id] && session[:fb_token]
+      logger.error "Recreating graph object from session token"
+      @fb_graph = Koala::Facebook::API.new( session[:fb_token] )
+      return
     end
+    
+    
+    #otherwise generate from cookies
+    logger.error "Grabbing new graph token from login cookies"
+    
+    #debug cookies first
+    logger.error  "******* COOKIES ************" 
+    logger.error cookies.to_json
+    
+    #then get userid from cookies
+    session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
+    logger.error  "******* FB ID ************" 
+    logger.error session[:fb_id]
+    
+    #and get user info from cookies
+    fbdata = @fb_oauth.get_user_info_from_cookies(cookies)
+    logger.error "******* FB Object ************"
+    logger.error fbdata
+    
+    #if no user or user info, something failed!
+    if !session[:fb_id] || !fbdata
+      @fb_graph = Koala::Facebook::API.new
+      logger.error  "No FB cookies found. Generating public (unprivlidged) graph object."
+      return
+    end
+
+    #otherwise, continue
+    
+    #grab access token
+    token = fbdata["access_token"]
+    logger.error "Token found: " + token
+    
+    #and upgrade the graph object
+    @fb_graph = Koala::Facebook::API.new( token )
+    logger.error "Just upgraded graph object with token"
+    
+    #check for user in DB 
+    logger.error "Moving on to DB"
+    @current_user = User.find_by_facebook_id( session[:fb_id] )
+
+    #create new user in DB if necessary
+    if !@current_user
+      fb_obj = @fb_graph.get_object( session[:fb_id] )
+      @current_user = User.newFromFB( fb_obj )
+    end
+
+    #Update the last use time just for reporting purposes
+    @current_user.touch
+  end
+
     
   end
   
