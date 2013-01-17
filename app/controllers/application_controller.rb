@@ -29,15 +29,16 @@ class ApplicationController < ActionController::Base
     puts "******* COOKIES************" 
     logger.error cookies.to_json
     puts "******** FB DATA ***********" 
-    logger.error @fb_oauth.get_user_info_from_cookies(cookies)
+    fbdata = @fb_oauth.get_user_info_from_cookies(cookies)
+    logger.error fbdata
     puts "***************************"
     
     begin
       #if user is logged in
       if session[:fb_id]
-
+        
         #Grab their access token, and upgrade the graph object
-        if @fb_oauth.get_user_info_from_cookies(cookies)
+        if fbdata
           logger.error "Trying to grab token"
           token = @fb_oauth.get_user_info_from_cookies(cookies)["access_token"]
           logger.error "Token found: " + token
