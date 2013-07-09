@@ -37,9 +37,9 @@ class ApplicationController < ActionController::Base
     logger.error cookies.to_json
 
     #then get userid from cookies
-    session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
-    logger.error  "******* FB ID ************" 
-    logger.error session[:fb_id]
+    # session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
+    # logger.error  "******* FB ID ************" 
+    # logger.error session[:fb_id]
 
     #and get user info from cookies
     fbdata = @fb_oauth.get_user_info_from_cookies(cookies)
