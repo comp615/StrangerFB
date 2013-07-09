@@ -101,6 +101,14 @@ Splash Page
 ------------------------------------------------------------------------------------------*/
 $(document).ready( function() {
 
+  //Bind the crsf
+  var csrf_token = $("meta[name=csrf-token]").attr("content");
+  $.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': csrf_token
+    }
+  });
+
   //Facebook Login Code
   fb_connect($("#fb_login"), loginSuccess);
 
