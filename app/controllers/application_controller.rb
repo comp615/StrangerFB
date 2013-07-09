@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-  skip_filter :verify_authenticity_token # TODO: FIX THIS SHIZZZZ
   before_filter :set_local_vars
   before_filter :load_user
 
