@@ -65,4 +65,11 @@ StrangerFB::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  #Use notifier plugin gem
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[WHF] ",
+    :sender_address => %{"WHF Bug Notifier" <>},
+    :exception_recipients => %w{},
+    :ignore_exceptions => ExceptionNotifier.default_ignore_exceptions
 end
