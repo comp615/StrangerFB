@@ -61,6 +61,7 @@ class ApplicationController < ActionController::Base
 
     #and upgrade the graph object
     @fb_graph = Koala::Facebook::API.new( token )
+    session[:fb_token] = token
     logger.error "Just upgraded graph object with token"
 
     #check for user in DB 
