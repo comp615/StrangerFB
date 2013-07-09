@@ -36,32 +36,30 @@ class ApplicationController < ActionController::Base
     logger.error  "******* COOKIES ************" 
     logger.error cookies.to_json
 
-    #then get userid from cookies
-    # session[:fb_id] ||= @fb_oauth.get_user_from_cookies(cookies)
-    # logger.error  "******* FB ID ************" 
-    # logger.error session[:fb_id]
-
     #and get user info from cookies
-    fbdata = @fb_oauth.get_user_info_from_cookies(cookies)
-    logger.error "******* FB Object ************"
-    logger.error fbdata
+    # NOTE: we can only do this once now, so we need to store the good stuff
+    if !session[:fb_id] || !session[:token]
+      fbdata = @fb_oauth.get_user_info_from_cookies(cookies)
+      logger.error "******* FB Object ************"
+      logger.error fbdata
 
-    #if no user or user info, something failed!
-    if !session[:fb_id] || !fbdata
-      @fb_graph = Koala::Facebook::API.new
-      logger.error  "No FB cookies found. Generating public (unprivlidged) graph object."
-      return
+      #if no user or user info, something failed!
+      if !fbdata
+        @fb_graph = Koala::Facebook::API.new
+        logger.error  "No FB cookies found. Generating public (unprivlidged) graph object."
+        return
+      end
+
+      session[:fb_id] = fbdata["user_id"]
+      session[:fb_token] = fbdata["access_token"]
+      token = session[:fb_token]
+      logger.error "Token found: " + token
     end
-
-    #otherwise, continue
-
-    #grab access token
-    token = fbdata["access_token"]
-    logger.error "Token found: " + token
+    
+    logger.error "Using old session data"
 
     #and upgrade the graph object
-    @fb_graph = Koala::Facebook::API.new( token )
-    session[:fb_token] = token
+    @fb_graph = Koala::Facebook::API.new( session[:fb_token] )
     logger.error "Just upgraded graph object with token"
 
     #check for user in DB 
