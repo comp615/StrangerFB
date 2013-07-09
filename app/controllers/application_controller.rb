@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery
+  skip_filter :verify_authenticity_token # TODO: FIX THIS SHIZZZZ
   before_filter :set_local_vars
   before_filter :load_user
 
@@ -24,6 +26,7 @@ class ApplicationController < ActionController::Base
     if session[:fb_id] && session[:fb_token]
       logger.error "Recreating graph object from session token"
       @fb_graph = Koala::Facebook::API.new( session[:fb_token] )
+      @current_user = User.find_by_facebook_id( session[:fb_id] )
       return
     end
 
