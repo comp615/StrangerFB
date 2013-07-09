@@ -44,5 +44,5 @@ group :production do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 	gem 'therubyracer'
   gem 'execjs'
-  gem 'exception_notification'
+  gem 'exception_notification', '~>3.0.1'
 end
