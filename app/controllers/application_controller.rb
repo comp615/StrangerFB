@@ -3,12 +3,17 @@ class ApplicationController < ActionController::Base
   skip_filter :verify_authenticity_token # TODO: FIX THIS SHIZZZZ
   before_filter :set_local_vars
   before_filter :load_user
+  rescue_from Koala::Facebook::AuthenticationError, :with => :handle_auth_error
 
   def render_optional_error_file(status_code)
     status = interpret_status(status_code)
     render :template => "/errors/#{status[0,3]}.html.erb", :status => status, :layout => 'pages'
-  end    
+  end
 
+  def handle_auth_error
+    reset_session
+    redirect_to root_path
+  end
 
   protected
 
