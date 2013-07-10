@@ -115,7 +115,7 @@ $(document).ready( function() {
     var originalSuccess = options.success;
 
     options.success = function (data) {
-        if (data.redirect) {
+        if (data && data.redirect) {
           // data.redirect contains the string URL to redirect to
           alert("Sorry there was a problem with your FB authentication, we'll send you back home and you can give it another try!");
           window.location.href = data.redirect;
