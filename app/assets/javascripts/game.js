@@ -7,6 +7,7 @@ var requestActive = false;
 var game_end_ts = null;
 var timeout;
 var old_ids = [];
+var numAnswered = 0;
 
 //CONSTANTS FOR LOADING
 var initial_load = 15;
@@ -165,6 +166,7 @@ Instructions Page
 $(document).ready( function() {
 
   $('#start_button').click(function(){
+    numAnswered = 0;
     $('#game').show();
     showNextFriend();
     var h = $('#instructions').outerHeight();
@@ -340,6 +342,8 @@ function startResizeInterval(){
 
         function sendAnswer(guess, success){
 
+          numAnswered += 1;
+
           if ( CurrFriend === undefined )
           return;
 
@@ -388,7 +392,6 @@ function startResizeInterval(){
               $('#game').hide();
             });
             $('#container').animate({'height' : '400px'}, 800);
-            game_end_ts = new Date().getTime();
           }
           /*----------------------------------------------------------------------------------------
           Results Page
@@ -396,7 +399,7 @@ function startResizeInterval(){
           $(document).ready( function() {
 
             $('#results_button').click(function(){
-              document.location.href= "/results?ts=" + game_end_ts;
+              document.location.href= "/results?recent=" + numAnswered;
             });
 
             $('#share_on_facebook').click(function(){

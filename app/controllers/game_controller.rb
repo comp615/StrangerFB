@@ -185,11 +185,11 @@ class GameController < ApplicationController
     return if !@indivFlag
 
 
-    #Expect a ts if coming from a game, otherwise use all
-    if(params[:ts])
+    #Expect a recent number count if coming from a game, otherwise use all
+    if(params[:recent])
       time = Time.at(params[:ts].to_i / 1000) #comes in in milliseconds, to seconds
       time_range = (time - 95.seconds)..Time.now
-      @curr_attempts = @current_user.attempts.where(:created_at => time_range)
+      @curr_attempts = @current_user.attempts.order("id DESC").limit(params[:recent].to_i)
     else
       @curr_attempts = @current_user.attempts
     end
