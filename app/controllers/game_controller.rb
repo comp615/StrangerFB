@@ -101,14 +101,14 @@ class GameController < ApplicationController
           friend_id = friends[idx]["uid"].to_i
           tag = all_tags.detect{ |t| t["id"].to_i == friend_id}
           
-          x = tag["x"],
+          x = tag["x"][0], # unclear why, but this was getting set to a smaller copy of the same object
           y = tag["y"],
           src = p["source"],
           tt = p["tags"]["data"].length
         end
         
           #result of map is new hash
-          { :xcoord =>x,
+          { :xcoord => x,
             :ycoord => y,
             :src => src,
             :total_tags => tt
