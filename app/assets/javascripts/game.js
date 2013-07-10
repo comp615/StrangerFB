@@ -109,6 +109,23 @@ $(document).ready( function() {
     }
   });
 
+  // Be ready for the session token to time out at any time
+  $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+    var originalSuccess = options.success;
+
+    options.success = function (data) {
+        if (data.redirect) {
+          // data.redirect contains the string URL to redirect to
+          alert("Sorry there was a problem with your FB authentication, we'll send you back home and you can give it another try!");
+          window.location.href = data.redirect;
+        } else {
+            if (originalSuccess != null) {
+                originalSuccess(data);
+            }
+        }   
+    };
+});
+
   //Facebook Login Code
   fb_connect($("#fb_login"), loginSuccess);
 
