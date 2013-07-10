@@ -89,11 +89,11 @@ class GameController < ApplicationController
         
         #handle bug when no tags attachted for some reason
         if !p["tags"]
-          x = 0
-          y = 0
-          src = p["source"]
-          tt = 100 #hackfix: we sort by lowest tags... but 1 tag is actually better than 0, so 0 => 100
-          
+          { :xcoord => 0,
+            :ycoord => 0,
+            :src => p["source"],
+            :total_tags => 100 #hackfix: we sort by lowest tags... but 1 tag is actually better than 0, so 0 => 100
+          }
         #normal procession
         else
         
@@ -101,18 +101,12 @@ class GameController < ApplicationController
           friend_id = friends[idx]["uid"].to_i
           tag = all_tags.detect{ |t| t["id"].to_i == friend_id}
           
-          x = tag["x"][0], # unclear why, but this was getting set to a smaller copy of the same object
-          y = tag["y"],
-          src = p["source"],
-          tt = p["tags"]["data"].length
-        end
-        
-          #result of map is new hash
-          { :xcoord => x,
-            :ycoord => y,
-            :src => src,
-            :total_tags => tt
+          { :xcoord =>  tag["x"],
+            :ycoord =>  tag["y"],
+            :src => p["source"],
+            :total_tags => p["tags"]["data"].length
           }
+        end
       end
       
       #sort by photos with fewest tags (most likely to be good face shot)
