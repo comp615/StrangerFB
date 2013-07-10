@@ -294,6 +294,9 @@ function startResizeInterval(){
         $("#hover_img .tag_box").css("left", x);
         $("#hover_img .tag_box").css("top", y);
         $("#hover_img .tag_box").width(wh).height(wh);
+
+        // Only show if the tag looks valid (hack for server sending 0 normally)
+        $("#hover_img .tag_box").toggle($(data_obj).data("x") > 0);
 					
       };	
     }
@@ -341,8 +344,9 @@ function startResizeInterval(){
         }
 
         function sendAnswer(guess, success){
-
-          numAnswered += 1;
+          if(guess != 'unfair') {
+            numAnswered += 1;
+          }
 
           if ( CurrFriend === undefined )
           return;
