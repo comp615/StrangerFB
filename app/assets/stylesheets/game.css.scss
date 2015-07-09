@@ -20,10 +20,11 @@ The Login Splash
         }
     }
     #fb_connect{
-        width: 208px;
+        width: 300px;
         margin-left: auto;
         margin-right: auto;
         margin-top: 30px;
+        text-align:center;
     }
     #privacy_info {
         color: $sec_text;
