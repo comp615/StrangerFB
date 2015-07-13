@@ -18,11 +18,16 @@ The Login Splash
             color:$blue;
         }
     }
-    #fb_connect{
+    #fb_connect {
         width: 550px;
         margin-left: auto;
         margin-right: auto;
         margin-top: 20px;
+        .panel p {
+          font-size: 13px;
+          line-height: 17px;
+          margin-bottom: 10px;
+        }
     }
     #privacy_info {
         color: $sec_text;
