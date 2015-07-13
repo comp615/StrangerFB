@@ -5,8 +5,7 @@ The Login Splash
 ------------------------------------------*/
 #splash{
     background-color:#fff;
-    padding:50px !important;
-    padding-bottom:20px !important;
+    padding: 20px 50px !important;
     h4{
         margin-bottom:15px;
     }
@@ -20,11 +19,10 @@ The Login Splash
         }
     }
     #fb_connect{
-        width: 300px;
+        width: 550px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 30px;
-        text-align:center;
+        margin-top: 20px;
     }
     #privacy_info {
         color: $sec_text;
@@ -145,7 +143,7 @@ The Game Page
             height:16px;
         }
         #idk{
-            margin-top:4px;  
+            margin-top:4px;
         }
     }
 }
@@ -155,7 +153,7 @@ The Game Page
 	padding: 15px;
 	@include rounded_corners(6px);
 	position: absolute;
-	
+
 	.tag_box {
 		border: 2px solid red;
 		position: absolute;
@@ -248,7 +246,7 @@ The Actual Results Page
         color:$dark_blue;
         font-weight:bold;
         text-shadow:0px -1px 0px $grey;
-    } 
+    }
     .friend_box{
         display:block;
         float:left;
@@ -388,10 +386,10 @@ The Actual Results Page
         display:inline-block;
         padding-left:8px;
         iframe{
-            border:none; 
-            overflow:hidden; 
-            width:92px !important; 
-            height:24px !important; 
+            border:none;
+            overflow:hidden;
+            width:92px !important;
+            height:24px !important;
             vertical-align: middle;
         }
     }
