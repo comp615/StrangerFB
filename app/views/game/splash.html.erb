@@ -20,6 +20,9 @@
         <p>Unfortunately, due to <a href="https://developers.facebook.com/docs/apps/changelog#v2_0_login">changes in the Facebook API</a>. We are no longer able to fetch a list of your friends, even with your explicit permission, meaning the game is over!</p>
         <p>We hope you had a chance to play while the site was operational and encourage you to check out archived results at the link below. Thanks!</p>
         <p style="text-align: center;">
+          <% if params[:test] %>
+            <div id='fb_login' class='facebook-button large'><span class='button-text'>I bet I know 'em all!</span></div>
+          <% end %>
           <a class="medium radius blue button" href="/results">View the Results</a>
         </p>
       </div>
