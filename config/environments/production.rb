@@ -1,5 +1,6 @@
 StrangerFB::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  config.eager_load = true
 
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -38,15 +39,15 @@ StrangerFB::Application.configure do
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
-  
-  
+
+
   # config.middleware.use ExceptionNotifier,
   #   :email_prefix => "[WhatsHerFace Exception] ",
   #   :sender_address => %{"WhatsHerFace Notifier" <support@whatsherface-book.com>},
   #   :exception_recipients => %w{ }
-    
-    
-  
+
+
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 

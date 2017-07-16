@@ -1,22 +1,22 @@
 StrangerFB::Application.routes.draw do
- 
+
 # Public Routes
-  match 'about' => "public#about" 
-  match 'privacy' => "public#privacy"
+  get 'about' => "public#about"
+  get 'privacy' => "public#privacy"
 
 
 # Game Routes
-    match 'grab_friends' => "game#grab_friends"
-    match 'answer' => "game#answer"
-    match 'results' => "game#results"
+    get 'grab_friends' => "game#grab_friends"
+    get 'answer' => "game#answer"
+    get 'results' => "game#results"
 
 
 # Misc
-    match 'logout' => "facebook#logout"
-    match 'get_social_media' => 'public#get_social_media'
+    get 'logout' => "facebook#logout"
+    get 'get_social_media' => 'public#get_social_media'
 
 # map the root
   root :to => "game#splash"
-      
-      
+
+
 end

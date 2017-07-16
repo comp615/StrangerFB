@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~>3.2.3'
+gem 'rails', '~>4'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -14,11 +14,13 @@ gem 'annotate'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'compass',      '~> 0.11.0'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  gem 'compass'
 end
+
+gem 'actionpack-action_caching'
 
 gem 'jquery-rails'
 
@@ -28,15 +30,23 @@ gem 'jquery-rails'
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+end
+
+group :development do
+  gem 'capistrano', '~> 3.6'
+  gem 'capistrano-rails', '~> 1.3'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  gem 'cap-ec2'
+  gem 'capistrano-linked-files'
+  # gem 'capistrano-unicorn-nginx'
+  # gem 'slackistrano', :require => nil
 end
 
 #Add a JS Runtime for the servers
