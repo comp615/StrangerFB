@@ -14,7 +14,7 @@ var initial_load = 15;
 var load_increment = 8;
 var load_threshold = 16; //higher than initial load so it immediately triggers another set
 
-/* 
+/*
 friend = {
 :uid
 :name
@@ -42,7 +42,7 @@ function ajaxLoadFriends(count, newRound){
   //collect current friend list
   existing_friends = old_ids;
   $.each(Friends, function(i, f){
-    existing_friends.push(f.fb_id); 
+    existing_friends.push(f.fb_id);
   });
 
   //request new batch of friends
@@ -67,14 +67,14 @@ function ajaxLoadFriends(count, newRound){
       if(newRound) {
         preload(Friends[0].photos);
         preload(Friends[0]['big_path']);
-        preload(Friends[1].photos);   
+        preload(Friends[1].photos);
         preload(Friends[1]['big_path']);
       }
 
       if(Friends.length < load_threshold)
       ajaxLoadFriends(load_increment);
 
-    }, 
+    },
     // problem with ajax, just show a nice error message and hide the game
     error: function(){
       requestActive = false;
@@ -93,7 +93,7 @@ function preload(arrayOfImages) {
       $('<img/>').attr("src",this["src"]);
     });
   } else {
-    $('<img/>').attr("src",arrayOfImages);   
+    $('<img/>').attr("src",arrayOfImages);
   }
 }
 
@@ -123,16 +123,16 @@ $(document).ready( function() {
             if (originalSuccess != null) {
                 originalSuccess(data);
             }
-        }   
+        }
     };
 });
 
   //Facebook Login Code
-  fb_connect($("#fb_login"), loginSuccess);
+  // fb_connect($("#fb_login"), loginSuccess);
 
 });
 
-function loginSuccess() { 
+function loginSuccess() {
   $('#instructions').show();
   var h = $('#splash').outerHeight();
   $('#splash').animate({ marginTop: h*-1 }, 800, function(){
@@ -177,7 +177,7 @@ $(document).ready( function() {
       $('#guess').focus();
       startPauseFade();
     });
-  });  
+  });
 
   $('#left_block').delegate('img.small','hover',function(event) {
     if( event.type === 'mouseenter' ) {
@@ -197,7 +197,7 @@ $(document).ready( function() {
 //called once 15 friends are loaded
 function showPlayButton(){
   $("#loading_wait").hide();
-  $('#start_button').show(); 
+  $('#start_button').show();
 }
 /*----------------------------------------------------------------------------------------
 Game Page
@@ -234,7 +234,7 @@ function startResizeInterval(){
     //show the next friend, after guess/skip
     function showNextFriend(){
 
-      //reset 
+      //reset
       $("#hover_img").hide();
       $('#guess').val("").removeClass('invalid').focus();
       $('#ibig').attr('src', "/images/large_blank_placeholder.png");
@@ -262,8 +262,8 @@ function startResizeInterval(){
         return
       }
 
-      //add new pictures    
-      $('#ibig').attr('src', CurrFriend['big_path']);    
+      //add new pictures
+      $('#ibig').attr('src', CurrFriend['big_path']);
       $.each( CurrFriend.photos, function(i,p){
         $('#ibig').after('<img class="small" src="' + p["src"] + '" data-x="' + p["xcoord"] + '" data-y="' + p["ycoord"] + '"/>');
         //TODO: Add a target box?
@@ -276,7 +276,7 @@ function startResizeInterval(){
         $("#unfair").hide();
       }
 
-    }   
+    }
 
     //show red boxes around the tagged face
     function addRedBox(data_obj) {
@@ -290,15 +290,15 @@ function startResizeInterval(){
 
 				var x = w * $(data_obj).data("x") / 100 - wh/2;
 				var y = h * $(data_obj).data("y") / 100 - wh/2;
-				
+
         $("#hover_img .tag_box").css("left", x);
         $("#hover_img .tag_box").css("top", y);
         $("#hover_img .tag_box").width(wh).height(wh);
 
         // Only show if the tag looks valid (hack for server sending 0 normally)
         $("#hover_img .tag_box").toggle($(data_obj).data("x") > 0);
-					
-      };	
+
+      };
     }
 
     //verify guess against answer
@@ -313,12 +313,12 @@ function startResizeInterval(){
       if ( match_names(guess, CurrFriend.name) ){
         $('#guess').attr('disabled', true);
         setTimeout(function(){
-          $('#guess').attr('disabled', false); 
+          $('#guess').attr('disabled', false);
           }, 400);
           showAnswer( CurrFriend.name );
           sendAnswer( guess, true );
           return;
-        } 
+        }
 
         //mark guess as wrong (red)
         if ( guess.length > 2 )
@@ -337,9 +337,9 @@ function startResizeInterval(){
           //Ready for the best,literal programming ever seen?
           if($(this).is("#unfair")) {
             //Heh heh, don't worry, nothing could have prepared you for that
-            sendAnswer('unfair', false); 
+            sendAnswer('unfair', false);
           } else {
-            sendAnswer('', false); 
+            sendAnswer('', false);
           }
         }
 
@@ -409,7 +409,7 @@ function startResizeInterval(){
             $('#share_on_facebook').click(function(){
               var score = $('.score').last().text();
               var msg = "I know " + String(score) + " of my FB friends! Time for some unfriendin'... Think you can do better!?"
-              FB.ui({ 
+              FB.ui({
                 method: 'feed',
                 name: 'Whatsherface',
                 link: 'http://www.whatsherface-book.com',

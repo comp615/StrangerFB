@@ -7,38 +7,29 @@
 <!--[if gt IE 8]><!--> <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	
+
 	<title>What'sHerFace</title>
 	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width" />
-	
+
 	<meta name="description" content="Race the clock to name your Facebook friends! Or do you even still know their names!?" />
 	<meta name="keywords" content="facebook, game, friend, unfriend, defriend, privacy, race, name, photos, sharing" />
 	<meta property="og:title" content="WhatsHerFace"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:url" content="http://www.whatsherface-book.com"/>
 	<meta property="og:image" content="http://whatsherface-book.com/images/fb_logo.png"/>
-	<meta property="og:description" content="Race the clock to name your Facebook friends as they appear! Or do you even still know their names!?"/> 
+	<meta property="og:description" content="Race the clock to name your Facebook friends as they appear! Or do you even still know their names!?"/>
 	<meta property="og:locale" content="en_US"/>
 	<meta property="fb:admins" content="1343225522, 1252230433">
 	<link rel="icon" href="/images/favicon.png" type="image/ico" />
-	
+
 	<%= csrf_meta_tag %>
 	<%= stylesheet_link_tag 'application' %>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<%= javascript_include_tag 'application' %>
 	<%= javascript_include_tag @current_controller %>
 	<%= stylesheet_link_tag @current_controller %>
-	
-	<!--[if lt IE 9]>
-		<%= stylesheet_link_tag 'ie' %>
-	<![endif]-->
-	
-	<!-- IE Fix for HTML5 Tags -->
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	
+
 	<%= yield :head %>
 
 </head>
@@ -47,9 +38,9 @@
 	<div id="social_block" class="hide-on-phones">
         <!-- filled with ajax call -->
 	</div>
-    
+
     <% if !@fullPageFlag %>
-        <%= render :partial => 'shared/photo_row', :locals => { :animatePhotosFlag => @animatePhotosFlag } %>  
+        <%= render :partial => 'shared/photo_row', :locals => { :animatePhotosFlag => @animatePhotosFlag } %>
         <div id="container">
     	    <%= yield %>
     	</div>
@@ -74,20 +65,17 @@
     <% else %>
         <div id="container_full">
       	    <%= yield %>
-    	</div>  
+    	</div>
     <% end %>
-    
-	
+
+
 	<div id="footer">
-	    
+
 	</div>
-	
+
 	<!-- Page specific Javascript -->
 	<%= yield :bottom %>
-	
-	<!-- FB partial settings -->
-	<%= render :partial => 'shared/fbinit'%>
-	
+
 	<!-- Gaug.es -->
     <script type="text/javascript">
       var _gauges = _gauges || [];
@@ -102,7 +90,7 @@
         s.parentNode.insertBefore(t, s);
       })();
     </script>
-    
+
   <!-- Google Analytics -->
 
 </body>

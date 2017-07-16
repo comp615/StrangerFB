@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   skip_filter :verify_authenticity_token # TODO: FIX THIS SHIZZZZ
   before_filter :set_local_vars
-  before_filter :load_user
+  # before_filter :load_user
   rescue_from Koala::Facebook::AuthenticationError, :with => :handle_auth_error
 
   def render_optional_error_file(status_code)
@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
     @current_controller = controller_name
   end
 
-  def load_user  
+  def load_user
 
     #load fb_oauth object
-    @fb_oauth = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET, Facebook::CALLBACK_URL) 
+    @fb_oauth = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET, Facebook::CALLBACK_URL)
 
     #if user is already logged in, just load graph object from session
     if session[:fb_id] && session[:fb_token]
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     logger.error "Grabbing new graph token from login cookies"
 
     #debug cookies first
-    logger.error  "******* COOKIES ************" 
+    logger.error  "******* COOKIES ************"
     logger.error cookies.to_json
 
     #and get user info from cookies
@@ -62,14 +62,14 @@ class ApplicationController < ActionController::Base
       token = session[:fb_token]
       logger.error "Token found: " + token
     end
-    
+
     logger.error "Using old session data"
 
     #and upgrade the graph object
     @fb_graph = Koala::Facebook::API.new( session[:fb_token] )
     logger.error "Just upgraded graph object with token"
 
-    #check for user in DB 
+    #check for user in DB
     logger.error "Moving on to DB"
     @current_user = User.find_by_facebook_id( session[:fb_id] )
 
