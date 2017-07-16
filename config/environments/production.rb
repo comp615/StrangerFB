@@ -10,7 +10,7 @@ StrangerFB::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = true
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -68,9 +68,9 @@ StrangerFB::Application.configure do
   config.active_support.deprecation = :notify
 
   #Use notifier plugin gem
-  config.middleware.use ExceptionNotifier,
-    :email_prefix => "[WHF] ",
-    :sender_address => %{"WHF Bug Notifier" <>},
-    :exception_recipients => %w{},
-    :ignore_exceptions => ExceptionNotifier.default_ignore_exceptions
+  # config.middleware.use ExceptionNotifier,
+  #   :email_prefix => "[WHF] ",
+  #   :sender_address => %{"WHF Bug Notifier" <>},
+  #   :exception_recipients => %w{},
+  #   :ignore_exceptions => ExceptionNotifier.default_ignore_exceptions
 end

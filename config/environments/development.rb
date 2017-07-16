@@ -1,6 +1,6 @@
 StrangerFB::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
+  config.serve_static_files = true
   config.eager_load = false
 
   # In the development environment your application's code is reloaded on

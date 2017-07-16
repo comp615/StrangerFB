@@ -1,0 +1,15 @@
+/*   SCSS for Public Controller  */
+/*       [ static pages ]        */
+#static_page {
+  padding: 30px 60px 40px 40px !important; }
+  #static_page .bottom_link {
+    float: right; }
+  #static_page .hand {
+    font-size: 2em;
+    display: inline-block;
+    padding-left: 5px;
+    line-height: 8px;
+    vertical-align: middle; }
+  #static_page .emphasis {
+    color: #3E86CE;
+    font-weight: bold; }

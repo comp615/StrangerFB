@@ -20,7 +20,7 @@ group :assets do
   gem 'compass'
 end
 
-gem 'actionpack-action_caching'
+gem 'actionpack-page_caching'
 
 gem 'jquery-rails'
 
@@ -54,5 +54,5 @@ group :production do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 	gem 'therubyracer'
   gem 'execjs'
-  gem 'exception_notification', '~>3.0.1'
+  # gem 'exception_notification', '~>3.0.1'
 end

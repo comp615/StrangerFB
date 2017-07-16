@@ -44,5 +44,11 @@ module StrangerFB
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+
+    config.assets.precompile += %w( game.js, public.js, public.css.scss  )
+
+    config.log_level = :debug
+
   end
 end

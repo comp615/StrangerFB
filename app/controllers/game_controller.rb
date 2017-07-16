@@ -1,5 +1,9 @@
 class GameController < ApplicationController
 
+  caches_page :splash
+  # NOTE: static nowadays since you can't login
+  caches_page :results
+
   def splash
     #run animation on splash page
     @animatePhotosFlag = true
