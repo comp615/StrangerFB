@@ -21,7 +21,7 @@ require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'cap-ec2/capistrano'
 require 'capistrano/linked_files'
-# require 'capistrano/unicorn_nginx'
+require 'capistrano/unicorn_nginx'
 
 # Include tasks from other gems included in your Gemfile
 #

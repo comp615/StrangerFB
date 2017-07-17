@@ -34,6 +34,10 @@ ec2_role :app,
     keys: [File.join(Dir.pwd, "./config/playon.pem")]
   }
 
+
+set :nginx_server_name, 'whatsherface-book.com whatshisface-book.com'
+set :nginx_use_ssl, false
+
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a

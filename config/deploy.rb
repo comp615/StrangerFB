@@ -24,7 +24,7 @@ set :git_shallow_clone, 1
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml').push('config/application.yml')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml').push('config/facebook.yml')
 
 # Default value for linked_dirs is []
 # set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
@@ -39,8 +39,8 @@ namespace :deploy do
   after 'deploy:publishing', 'linked_files:upload_files' # Do before we restart unicorn
   # after :publishing, 'unicorn:restart'
   # after 'deploy:publishing', 'unicorn:reload'    # app IS NOT preloaded
-  # after 'deploy:publishing', 'deploy:restart'
-  # after 'deploy:publishing', 'unicorn:restart'   # app preloaded
+  after 'deploy:publishing', 'deploy:restart'
+  after 'deploy:publishing', 'unicorn:restart'   # app preloaded
   # after 'deploy:publishing', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
 end
 

@@ -45,7 +45,7 @@ group :development do
   gem 'capistrano-rvm'
   gem 'cap-ec2'
   gem 'capistrano-linked-files'
-  # gem 'capistrano-unicorn-nginx'
+  gem 'capistrano-unicorn-nginx'
   # gem 'slackistrano', :require => nil
 end
 
@@ -54,5 +54,6 @@ group :production do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 	gem 'therubyracer'
   gem 'execjs'
+  gem 'unicorn'
   # gem 'exception_notification', '~>3.0.1'
 end
