@@ -2,7 +2,7 @@
 lock "3.13.0"
 
 set :application, "StrangerFB"
-set :repo_url, "git@github.com:comp615/StrangerFB.git"
+set :repo_url, "https://github.com/comp615/StrangerFB.git"
 
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
