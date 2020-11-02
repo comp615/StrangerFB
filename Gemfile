@@ -52,8 +52,9 @@ end
 #Add a JS Runtime for the servers
 group :production do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-	gem 'therubyracer'
-  gem 'execjs'
-  gem 'unicorn'
+  # Relies on NodeJS being present on the server
+	#gem 'therubyracer'
+  #gem 'execjs'
+  #gem 'unicorn'
   # gem 'exception_notification', '~>3.0.1'
 end
