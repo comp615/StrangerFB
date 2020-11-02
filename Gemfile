@@ -6,7 +6,7 @@ gem 'rails', '~>4'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.5.3'
 
 gem 'koala'
 gem 'annotate'

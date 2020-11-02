@@ -235,7 +235,7 @@ DEPENDENCIES
   compass
   jquery-rails
   koala
-  mysql2
+  mysql2 (~> 0.5.3)
   rails (~> 4)
   sass-rails
   turn
