@@ -43,7 +43,10 @@ group :development do
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
-  gem 'cap-ec2'
+  # Unmaintained https://github.com/kfit-dev/cap-ec2/commits/v1.1.2-fave
+  # Updates dependency on aws-sdk, and fixes issue with parsing
+  # https://github.com/forward3d/cap-ec2/issues/80
+  gem 'cap-ec2', :github => "kfit-dev/cap-ec2", :branch => "v1.1.2-fave"
   gem 'capistrano-linked-files'
   gem 'capistrano-unicorn-nginx'
   # gem 'slackistrano', :require => nil
