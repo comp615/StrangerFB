@@ -62,6 +62,6 @@ group :production do
   # Relies on NodeJS being present on the server
 	#gem 'therubyracer'
   #gem 'execjs'
-  #gem 'unicorn'
+  gem 'unicorn'
   # gem 'exception_notification', '~>3.0.1'
 end
