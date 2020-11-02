@@ -1,4 +1,5 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+ruby "2.7.2"
 
 gem 'rails', '~>4'
 
@@ -9,6 +10,9 @@ gem 'mysql2'
 
 gem 'koala'
 gem 'annotate'
+
+# Fix Ruby 2.7 incompatibility
+gem 'bigdecimal', '~>1.4.2'
 
 
 # Gems used only for assets and not required
